@@ -6,5 +6,17 @@
 
 module.exports = {
   /* Your site config here */
-  plugins: [],
+  plugins: [
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `roboto slab`,
+          `montserrat`,
+          `lato`
+        ],
+        display: 'swap'
+      }
+    }
+  ],
 }
