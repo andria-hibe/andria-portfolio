@@ -1,10 +1,19 @@
-import React from "react"
+import React from 'react'
+import styled from 'styled-components'
+
+import { Background } from '../components/global'
+
+const HomeHeader = styled.h1`
+  font-size: 3rem;
+  text-align: center;
+  color: white;
+`
 
 export default function Home() {
   return (
-  <div style={{ color: `purple` }}>
-    <h1>Hello Home!</h1>
-    <p>Heya</p>
-  </div>
+    <Background gradient>
+      <HomeHeader>Andria Hibe</HomeHeader>
+      <p>Heya</p>
+    </Background>
   )
 }
