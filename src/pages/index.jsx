@@ -25,7 +25,7 @@ const HomeHeader = styled.h1`
 
 const HomeSubtitle = styled.h2`
   font-size: 2rem;
-  color: #5B5B5B;
+  color: #5b5b5b;
   margin: 0;
 `
 
@@ -45,7 +45,7 @@ const CardContainer = styled.div`
 `
 
 const HomeCard = styled.div`
-  background: linear-gradient(#FBC2EB, #A6C1EE);
+  background: linear-gradient(#fbc2eb, #a6c1ee);
   padding: 50px;
   box-shadow: -0.5em -0.5em 0.1em rgba(91, 91, 91, 0.25);
   border-radius: 0.5em;
@@ -53,9 +53,9 @@ const HomeCard = styled.div`
   font-size: 2rem;
 `
 
-const linkStyle = { 
-  color: 'white', 
-  textDecoration: 'none' 
+const linkStyle = {
+  color: 'white',
+  textDecoration: 'none',
 }
 
 export default function Home() {
@@ -67,9 +67,21 @@ export default function Home() {
         <Divider />
         <HomeSubtitle>Full Stack Developer</HomeSubtitle>
         <CardContainer>
-          <HomeCard><Link to='/resume' style={linkStyle}>Resumé</Link></HomeCard>
-          <HomeCard><Link to='/projects' style={linkStyle}>Projects</Link></HomeCard>
-          <HomeCard><Link to='/about' style={linkStyle}>About</Link></HomeCard>
+          <HomeCard>
+            <Link to="/resume" style={linkStyle}>
+              Resumé
+            </Link>
+          </HomeCard>
+          <HomeCard>
+            <Link to="/projects" style={linkStyle}>
+              Projects
+            </Link>
+          </HomeCard>
+          <HomeCard>
+            <Link to="/about" style={linkStyle}>
+              About
+            </Link>
+          </HomeCard>
         </CardContainer>
       </MainContainer>
     </>
