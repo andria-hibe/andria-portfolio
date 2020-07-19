@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'gatsby'
+import { Link as GatsbyLink } from 'gatsby'
 import styled from 'styled-components'
 
 import { device, GlobalStyles } from '../components/globalStyle'
@@ -20,7 +20,6 @@ const HomeHeader = styled.h1`
   font-size: 4rem;
   color: white;
   margin: 0;
-  text-align: center;
 `
 
 const HomeSubtitle = styled.h2`
@@ -46,41 +45,37 @@ const CardContainer = styled.div`
 
 const HomeCard = styled.div`
   background: linear-gradient(#fbc2eb, #a6c1ee);
-  padding: 50px;
+  padding: 2em;
+  min-width: 3.5em;
   box-shadow: -0.5em -0.5em 0.1em rgba(91, 91, 91, 0.25);
   border-radius: 0.5em;
   margin: 2.5em;
   font-size: 2rem;
+  text-align: center;
 `
 
-const linkStyle = {
-  color: 'white',
-  textDecoration: 'none',
-}
+const StyledLink = styled(GatsbyLink)`
+  font-family: Montserrat;
+  color: white;
+`
 
 export default function Home() {
   return (
     <>
-      <GlobalStyles gradient />
+      <GlobalStyles gradient whitetext />
       <MainContainer>
         <HomeHeader>Andria Hibe</HomeHeader>
         <Divider />
         <HomeSubtitle>Full Stack Developer</HomeSubtitle>
         <CardContainer>
           <HomeCard>
-            <Link to="/resume" style={linkStyle}>
-              Resumé
-            </Link>
+            <StyledLink to="/resume">Resume</StyledLink>
           </HomeCard>
           <HomeCard>
-            <Link to="/projects" style={linkStyle}>
-              Projects
-            </Link>
+            <StyledLink to="/projects">Projects</StyledLink>
           </HomeCard>
           <HomeCard>
-            <Link to="/about" style={linkStyle}>
-              About
-            </Link>
+            <StyledLink to="/about">About</StyledLink>
           </HomeCard>
         </CardContainer>
       </MainContainer>

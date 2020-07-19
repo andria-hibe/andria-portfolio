@@ -38,4 +38,12 @@ export const GlobalStyles = createGlobalStyle`
   h2 {
     font-family: Roboto Slab;
   }
+
+  a {
+    text-decoration: none;
+  }
+
+  a:hover {
+    ${props => (props.whitetext ? 'color: #5b5b5b;' : 'color: white;')}
+  }
 `
