@@ -33,10 +33,12 @@ export const GlobalStyles = createGlobalStyle`
 
   h1 {
     font-family: Roboto Slab;
+    text-align: center;
   }
 
   h2 {
     font-family: Roboto Slab;
+    text-align: center;
   }
 
   a {
@@ -45,5 +47,9 @@ export const GlobalStyles = createGlobalStyle`
 
   a:hover {
     ${props => (props.whitetext ? 'color: #5b5b5b;' : 'color: white;')}
+  }
+
+  svg:hover {
+    fill: #E0E0E0
   }
 `
