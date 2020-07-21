@@ -11,6 +11,7 @@ const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  margin-top: 1.5em;
 
   @media ${device.tablet} {
     height: 100vh;
@@ -63,8 +64,8 @@ const StyledLink = styled(GatsbyLink)`
 export default function Home() {
   return (
     <>
-      <GlobalStyles gradient whitetext />
       <MainContainer>
+        <GlobalStyles gradient whitetext noscroll />
         <HomeHeader>Andria Hibe</HomeHeader>
         <Divider />
         <HomeSubtitle>Full Stack Developer</HomeSubtitle>

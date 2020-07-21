@@ -29,6 +29,8 @@ export const GlobalStyles = createGlobalStyle`
       props.gradient
         ? 'background-image: linear-gradient(#A6C1EE, #FBC2EB);'
         : 'background-color: #FBFBFB;'}
+    ${props =>
+      props.noscroll ? `@media ${device.tablet} {overflow: hidden;}` : ''}
   }
 
   h1 {
