@@ -45,10 +45,16 @@ export const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
+    font-family: Montserrat;
+    color: white;
   }
 
   a:hover {
     ${props => (props.whitetext ? 'color: #5b5b5b;' : 'color: white;')}
+  }
+
+  svg {
+    padding: 0.5em
   }
 
   svg:hover {

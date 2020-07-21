@@ -56,11 +56,6 @@ const HomeCard = styled.div`
   text-align: center;
 `
 
-const StyledLink = styled(GatsbyLink)`
-  font-family: Montserrat;
-  color: white;
-`
-
 export default function Home() {
   return (
     <MainContainer>
@@ -68,16 +63,16 @@ export default function Home() {
       <HomeHeader>Andria Hibe</HomeHeader>
       <Divider />
       <HomeSubtitle>Full Stack Developer</HomeSubtitle>
-      <IconLink />
+      <IconLink size="home" />
       <CardContainer>
         <HomeCard>
-          <StyledLink to="/resume">Resume</StyledLink>
+          <GatsbyLink to="/resume">Resume</GatsbyLink>
         </HomeCard>
         <HomeCard>
-          <StyledLink to="/projects">Projects</StyledLink>
+          <GatsbyLink to="/projects">Projects</GatsbyLink>
         </HomeCard>
         <HomeCard>
-          <StyledLink to="/about">About</StyledLink>
+          <GatsbyLink to="/about">About</GatsbyLink>
         </HomeCard>
       </CardContainer>
     </MainContainer>

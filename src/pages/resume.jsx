@@ -1,10 +1,6 @@
-import React from "react"
+import React from 'react'
+import Nav from '../split-layout/nav'
 
 export default function Resume() {
-  return (
-  <div style={{ color: `pink` }}>
-    <h1>Hello Resume!</h1>
-    <p>Heya</p>
-  </div>
-  )
+  return <Nav />
 }

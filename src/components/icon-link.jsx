@@ -12,17 +12,23 @@ const IconContainer = styled.div`
   flex-direction: row;
   margin: 1em;
 `
-
-const iconStyle = {
-  size: '4em',
-  color: '#555555',
+const iconSize = {
+  home: '4em',
+  nav: '3em',
 }
 
-export default function IconLink() {
+const iconStyle = size => {
+  return {
+    size: iconSize[size],
+    color: '#555555',
+  }
+}
+
+export default function IconLink(props) {
   return (
     <>
       <IconContainer>
-        <IconContext.Provider value={iconStyle}>
+        <IconContext.Provider value={iconStyle(props.size)}>
           <a href="mailto:andriacohibe@gmail.com">
             <TiSocialAtCircular />
           </a>
