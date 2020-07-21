@@ -63,25 +63,23 @@ const StyledLink = styled(GatsbyLink)`
 
 export default function Home() {
   return (
-    <>
-      <MainContainer>
-        <GlobalStyles gradient whitetext noscroll />
-        <HomeHeader>Andria Hibe</HomeHeader>
-        <Divider />
-        <HomeSubtitle>Full Stack Developer</HomeSubtitle>
-        <IconLink />
-        <CardContainer>
-          <HomeCard>
-            <StyledLink to="/resume">Resume</StyledLink>
-          </HomeCard>
-          <HomeCard>
-            <StyledLink to="/projects">Projects</StyledLink>
-          </HomeCard>
-          <HomeCard>
-            <StyledLink to="/about">About</StyledLink>
-          </HomeCard>
-        </CardContainer>
-      </MainContainer>
-    </>
+    <MainContainer>
+      <GlobalStyles gradient whitetext noscroll />
+      <HomeHeader>Andria Hibe</HomeHeader>
+      <Divider />
+      <HomeSubtitle>Full Stack Developer</HomeSubtitle>
+      <IconLink />
+      <CardContainer>
+        <HomeCard>
+          <StyledLink to="/resume">Resume</StyledLink>
+        </HomeCard>
+        <HomeCard>
+          <StyledLink to="/projects">Projects</StyledLink>
+        </HomeCard>
+        <HomeCard>
+          <StyledLink to="/about">About</StyledLink>
+        </HomeCard>
+      </CardContainer>
+    </MainContainer>
   )
 }
