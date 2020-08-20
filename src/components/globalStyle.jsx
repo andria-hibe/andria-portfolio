@@ -34,25 +34,39 @@ export const GlobalStyles = createGlobalStyle`
     ${props =>
       props.gradient
         ? 'background-image: linear-gradient(#A6C1EE, #FBC2EB);'
-        : 'background-color: #FAE0EE;'}
+        : 'background-color: #fff2f9;'}
     ${props =>
       props.noscroll ? `@media ${device.tablet} {overflow: hidden;}` : ''}
   }
 
   h1 {
     font-family: Roboto Slab;
-    text-align: center;
   }
 
   h2 {
-    font-family: Roboto Slab;
-    text-align: center;
+    font-family: Lato;
+  }
+
+  h3 {
+    font-family: Lato;
+  }
+
+  h4 {
+    font-family: Lato;
   }
 
   a {
     text-decoration: none;
     font-family: Montserrat;
     color: white;
+  }
+
+  p {
+    font-size: 1rem;
+    text-align: left;
+    color: #5b5b5b;
+    line-height: 1.4em;
+    font-weight: normal;
   }
 
   a:hover {
