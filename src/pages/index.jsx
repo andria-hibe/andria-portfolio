@@ -3,7 +3,11 @@ import { Link as GatsbyLink } from 'gatsby'
 import styled from 'styled-components'
 
 import { device, GlobalStyles } from '../components/globalStyle'
-import IconLink from '../components/icon-link'
+import {
+  TiSocialGithubCircular,
+  TiSocialAtCircular,
+  TiSocialLinkedinCircular,
+} from 'react-icons/ti'
 
 const MainContainer = styled.div`
   height: 100%;
@@ -60,6 +64,30 @@ const HomeCard = styled.div`
   }
 `
 
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 1em;
+`
+
+const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
+  color: #555555;
+  height: 4em;
+  width: 4em;
+`
+
+const StyledLinkedinLinkIcon = styled(TiSocialLinkedinCircular)`
+  color: #555555;
+  height: 4em;
+  width: 4em;
+`
+
+const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
+  color: #555555;
+  height: 4em;
+  width: 4em;
+`
+
 export default function Home() {
   return (
     <MainContainer>
@@ -67,7 +95,17 @@ export default function Home() {
       <HomeHeader>Andria Hibe</HomeHeader>
       <Divider />
       <HomeSubtitle>Full Stack Developer</HomeSubtitle>
-      <IconLink size="home" />
+      <IconContainer>
+        <a href="mailto:andriacohibe@gmail.com">
+          <StyledEmailLinkIcon />
+        </a>
+        <a href="https://github.com/andria-hibe">
+          <StyledGithubLinkIcon />
+        </a>
+        <a href="https://www.linkedin.com/in/andriacristiahibe/">
+          <StyledLinkedinLinkIcon />
+        </a>
+      </IconContainer>
       <CardContainer>
         <HomeCard>
           <GatsbyLink to="/resume">Resume</GatsbyLink>
