@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { device, GlobalStyles } from '../components/globalStyle'
 
 import Nav from '../split-layout/nav'
+import Button from '../components/button'
 
 const ContentContainer = styled.div`
   height: 100vh;
@@ -29,6 +30,12 @@ const ResumeLayout = styled.div`
     overflow-y: scroll;
     grid-column: 2;
   }
+`
+
+const ButtonLayout = styled.div`
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 3em;
 `
 
 const Heading = styled.h1`
@@ -78,7 +85,7 @@ const ListParagraph = styled.li`
 `
 
 const ScrollToTop = styled.div`
-  color: #fff2f9;
+  font-size: 0;
 
   @media (max-width: 1023px) {
     position: fixed;
@@ -88,6 +95,11 @@ const ScrollToTop = styled.div`
     background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
     color: white;
     text-align: center;
+    font-size: 1rem;
+  }
+
+  :hover {
+    color: #555555;
   }
 `
 
@@ -102,9 +114,7 @@ export default function Resume() {
       </NavLayout>
       <ResumeLayout>
         <Heading>Andria Cristia Hibe</Heading>
-
         <SubHeading>Full Stack Developer</SubHeading>
-
         <p>
           I will bring to your organisation a passion for tech, and a continued
           and deep desire to learn and improve.
@@ -118,7 +128,6 @@ export default function Resume() {
           clients, project management and communication skills that I have
           developed through years of working in advocacy, marketing, and sales.
         </p>
-
         <CategoryHeading>Skills</CategoryHeading>
         <CategorySubHeading>Tech Stack:</CategorySubHeading>
         <List>
@@ -136,7 +145,6 @@ export default function Resume() {
           <li>Version Control with Git</li>
           <li>SEO & Google Analytics</li>
         </List>
-
         <CategorySubHeading>Other Skills:</CategorySubHeading>
         <List>
           <ListParagraph>
@@ -157,7 +165,6 @@ export default function Resume() {
             variety of ways.
           </ListParagraph>
         </List>
-
         <CategoryHeading>Work Experience</CategoryHeading>
         <CategorySubHeading>
           Humanitarian OpenStreetMap Team (Outreachy Programme)
@@ -182,7 +189,6 @@ export default function Resume() {
             of a free, open-source software community.
           </li>
         </List>
-
         <CategorySubHeading>Freelance</CategorySubHeading>
         <Bold>Web Developer (May 2020 - Present)</Bold>
         <List>
@@ -190,7 +196,6 @@ export default function Resume() {
           frameworks and libraries—React, Redux, Gatsby—Node.js, Express,
           SQLite3, and Netlify
         </List>
-
         <CategorySubHeading>
           Joylab Restaurant Group - Regatta Bar & Eatery
         </CategorySubHeading>
@@ -205,7 +210,6 @@ export default function Resume() {
             maximise the highest level of spend and customer satisfaction.
           </li>
         </List>
-
         <CategorySubHeading>
           Takapuna Beach Business Association
         </CategorySubHeading>
@@ -224,7 +228,6 @@ export default function Resume() {
             thousands of visitors to the town centre.
           </li>
         </List>
-
         <CategoryHeading>Education</CategoryHeading>
         <CategorySubHeading>Enspiral DevAcademy</CategorySubHeading>
         <Bold>Web Development Bootcamp</Bold>
@@ -245,13 +248,20 @@ export default function Resume() {
             worked with colleagues in pairs and groups.
           </li>
         </List>
-
         <CategorySubHeading>De La Salle University</CategorySubHeading>
         <Bold>Bachelor of Arts in International Studies</Bold>
         <List>
           <li>Graduated with First Class Honours</li>
           <li>Awarded Outstanding Theses</li>
         </List>
+        <ButtonLayout>
+          <a href="mailto:andriacohibe@gmail.com">
+            <Button text="Email me!" />
+          </a>
+          <a href="https://drive.google.com/uc?export=download&id=1WFBif-SXgrJOJGzeigoZwM7V6Eo5QTko">
+            <Button text="Download as pdf" />
+          </a>
+        </ButtonLayout>
         <a href="#top">
           <ScrollToTop>Scroll to the top</ScrollToTop>
         </a>
