@@ -11,7 +11,7 @@ const MainContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  margin-top: 1.5em;
+  margin: 1.5em 1em;
 
   @media ${device.tablet} {
     height: 100vh;
@@ -54,6 +54,10 @@ const HomeCard = styled.div`
   margin: 1em 2em;
   font-size: 2rem;
   text-align: center;
+
+  @media ${device.laptop} {
+    margin: 1em 1.5em;
+  }
 `
 
 export default function Home() {
