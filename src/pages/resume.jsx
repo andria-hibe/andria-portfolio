@@ -11,8 +11,8 @@ const ContentContainer = styled.div`
   @media ${device.laptop} {
     display: grid;
     justify-items: center;
-    grid-template-columns: 30% 70%;
-    grid-gap: 5em;
+    grid-template-columns: 30% auto;
+    overflow: hidden;
   }
 `
 
@@ -23,7 +23,12 @@ const NavLayout = styled.div`
 `
 
 const ResumeLayout = styled.div`
-  margin: 0 1.5em;
+  padding: 0 3em;
+
+  @media ${device.laptop} {
+    overflow-y: scroll;
+    grid-column: 2;
+  }
 `
 
 const Heading = styled.h1`
@@ -43,7 +48,7 @@ const CategoryHeading = styled.h3`
   font-size: 1.5rem;
   text-align: left;
   color: #ff9498;
-  margin-top: 3em;
+  margin-top: 2em;
 `
 
 const CategorySubHeading = styled.h4`
@@ -56,7 +61,7 @@ const CategorySubHeading = styled.h4`
 
 const Bold = styled.p`
   font-weight: bold;
-  margin-bottom: 0;
+  margin: 0;
 `
 
 const List = styled.ul`
@@ -68,23 +73,22 @@ const List = styled.ul`
   margin: 0.5em 0 3em;
 `
 
-const PageAnchor = styled.a`
-  color: #5b5b5b;
-  font-family: Lato;
-
-  :hover {
-    color: grey;
-  }
+const ListParagraph = styled.li`
+  padding: 1em 0;
 `
 
 const ScrollToTop = styled.div`
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
-  color: white;
-  text-align: center;
+  color: #fff2f9;
+
+  @media (max-width: 1023px) {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
+    color: white;
+    text-align: center;
+  }
 `
 
 export default function Resume() {
@@ -135,29 +139,23 @@ export default function Resume() {
 
         <CategorySubHeading>Other Skills:</CategorySubHeading>
         <List>
-          <li>
+          <ListParagraph>
             <Bold>Project management</Bold>
-            <p>
-              Heading projects including budget planning, negotiating with
-              clients and suppliers, and managing team members and suppliers.
-            </p>
-          </li>
+            Heading projects including budget planning, negotiating with clients
+            and suppliers, and managing team members and suppliers.
+          </ListParagraph>
 
-          <li>
+          <ListParagraph>
             <Bold>Communication skills</Bold>
-            <p>
-              Liaising with stakeholders including clients, suppliers, community
-              groups, and government agencies.
-            </p>
-          </li>
+            Liaising with stakeholders including clients, suppliers, community
+            groups, and government agencies.
+          </ListParagraph>
 
-          <li>
+          <ListParagraph>
             <Bold>Content writing</Bold>
-            <p>
-              Crafting and editing articles and stories that engage audiences in
-              a variety of ways.
-            </p>
-          </li>
+            Crafting and editing articles and stories that engage audiences in a
+            variety of ways.
+          </ListParagraph>
         </List>
 
         <CategoryHeading>Work Experience</CategoryHeading>
