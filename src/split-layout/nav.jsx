@@ -3,14 +3,23 @@ import { Link as GatsbyLink } from 'gatsby'
 import styled from 'styled-components'
 
 import { device, GlobalStyles } from '../components/globalStyle'
-import IconLink from '../components/icon-link'
+import {
+  TiSocialGithubCircular,
+  TiSocialAtCircular,
+  TiSocialLinkedinCircular,
+} from 'react-icons/ti'
 
 const NavContainer = styled.div`
   display: flex;
+  flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   background-image: linear-gradient(#a6c1ee, #fbc2eb);
-  width: 100%;
-  height: 5vh;
+  height: 18vh;
+
+  @media ${device.tablet} {
+    height: 10vh;
+  }
 
   @media ${device.laptop} {
     width: 20em;
@@ -20,9 +29,13 @@ const NavContainer = styled.div`
 `
 
 const NavHeader = styled.h1`
-  font-size: 1rem;
+  font-size: 1.3rem;
   color: #5b5b5b;
   margin-left: 0.5em;
+
+  @media ${device.tablet} {
+    font-size: 1.5rem;
+  }
 
   @media ${device.laptop} {
     font-size: 2rem;
@@ -36,27 +49,119 @@ const NavHeader = styled.h1`
 
 const Divider = styled.hr`
   width: 0;
-  height: 1em;
+  height: 3em;
   border: 0.1em solid #828282;
+  margin: 0;
 
   @media ${device.laptop} {
     width: 15em;
     height: 0;
-    margin: 1em 0;
+  }
+`
+
+const NavLinkContainer = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+
+  @media ${device.mobileL} {
+    flex-direction: row;
+  }
+
+  @media ${device.laptop} {
+    flex-direction: column;
+    margin: 0 1em;
   }
 `
 
 const NavLink = styled(GatsbyLink)`
-  font-size: 1rem;
-  padding: 1em;
+  padding: 0.7em;
+
+  @media ${device.mobileL} {
+    font-size: 1.2rem;
+    padding: 1em;
+  }
+
+  @media ${device.tablet} {
+    font-size: 1.5rem;
+  }
 
   @media ${device.laptop} {
     font-size: 1.5rem;
-    padding: 0.5em;
     margin-top: 0.5em;
+    padding: 0.5em;
   }
 `
 
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-right: 1.5em;
+
+  @media ${device.mobileL} {
+    flex-direction: row;
+  }
+
+  @media ${device.laptop} {
+    margin-right: 0;
+    margin-bottom: 1em;
+  }
+`
+const linkIconMobileStyle = `
+  color: #555555; 
+  height: 2em;
+  width: 2em;
+  padding: 0.1em;
+`
+
+const linkIconTabletStyle = `
+  height: 2.5em;
+  width: 2.5em;
+  padding: 0.3em;
+`
+
+const linkIconLaptopStyle = `
+  height: 3.5em;
+  width: 3.5em;
+  margin-bottom: 1em;
+`
+
+const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
+  ${linkIconMobileStyle}
+
+  @media ${device.tablet} {
+    ${linkIconTabletStyle}
+  }
+
+  @media ${device.laptop} {
+    ${linkIconLaptopStyle}
+  }
+`
+
+const StyledLinkedinLinkIcon = styled(TiSocialLinkedinCircular)`
+  ${linkIconMobileStyle}
+
+  @media ${device.tablet} {
+    ${linkIconTabletStyle}
+  }
+
+  @media ${device.laptop} {
+    ${linkIconLaptopStyle}
+  }
+`
+
+const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
+  ${linkIconMobileStyle}
+
+  @media ${device.tablet} {
+    ${linkIconTabletStyle}
+  }
+
+  @media ${device.laptop} {
+    ${linkIconLaptopStyle}
+  }
+`
 export default function Nav() {
   return (
     <NavContainer>
@@ -65,10 +170,22 @@ export default function Nav() {
         <NavHeader>Andria Hibe</NavHeader>
       </NavLink>
       <Divider />
-      <NavLink to="/resume">Resume</NavLink>
-      <NavLink to="/projects">Projects</NavLink>
-      <NavLink to="/about">About</NavLink>
-      <IconLink size="nav" />
+      <NavLinkContainer>
+        <NavLink to="/resume">Resume</NavLink>
+        <NavLink to="/projects">Projects</NavLink>
+        <NavLink to="/about">About</NavLink>
+      </NavLinkContainer>
+      <IconContainer>
+        <a href="mailto:andriacohibe@gmail.com">
+          <StyledEmailLinkIcon />
+        </a>
+        <a href="https://github.com/andria-hibe">
+          <StyledGithubLinkIcon />
+        </a>
+        <a href="https://www.linkedin.com/in/andriacristiahibe/">
+          <StyledLinkedinLinkIcon />
+        </a>
+      </IconContainer>
     </NavContainer>
   )
 }
