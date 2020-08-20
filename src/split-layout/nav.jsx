@@ -16,14 +16,18 @@ const NavContainer = styled.div`
   justify-content: space-between;
   background-image: linear-gradient(#a6c1ee, #fbc2eb);
   height: 18vh;
+  width: 90%;
+  margin-top: 1em;
 
   @media ${device.tablet} {
     height: 10vh;
+    width: 95%;
   }
 
   @media ${device.laptop} {
     width: 20em;
     height: 30em;
+    margin-top: 0;
     flex-direction: column;
   }
 `
@@ -32,6 +36,7 @@ const NavHeader = styled.h1`
   font-size: 1.3rem;
   color: #5b5b5b;
   margin-left: 0.5em;
+  text-align: center;
 
   @media ${device.tablet} {
     font-size: 1.5rem;
@@ -63,7 +68,7 @@ const NavLinkContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: column;
-  margin: 1em;
+  margin: 0.5em;
 
   @media ${device.mobileL} {
     flex-direction: row;
@@ -76,7 +81,7 @@ const NavLinkContainer = styled.div`
 `
 
 const NavLink = styled(GatsbyLink)`
-  padding: 0.7em;
+  padding: 0.5em;
 
   @media ${device.mobileL} {
     font-size: 1.2rem;
