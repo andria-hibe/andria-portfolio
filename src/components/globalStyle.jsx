@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components'
 const size = {
   mobileS: '320px',
   mobileM: '375px',
-  mobileL: '425px',
+  mobileL: '495px',
   tablet: '768px',
   laptop: '1024px',
   laptopL: '1440px',
@@ -14,7 +14,7 @@ export const device = {
   mobileS: `(min-width: ${size.mobileS})`,
   mobileM: `(min-width: ${size.mobileM})`,
   mobileL: `(min-width: ${size.mobileL})`,
-  tablet: `(min-width: ${size.tablet})`,
+  tablet: `(min-width: ${size.tablet}) and (min-height: ${size.tablet})`,
   laptop: `(min-width: ${size.laptop})`,
   laptopL: `(min-width: ${size.laptopL})`,
   desktop: `(min-width: ${size.desktop})`,
@@ -28,7 +28,7 @@ export const GlobalStyles = createGlobalStyle`
     ${props =>
       props.gradient
         ? 'background-image: linear-gradient(#A6C1EE, #FBC2EB);'
-        : 'background-color: #FBFBFB;'}
+        : 'background-color: #FAE0EE;'}
     ${props =>
       props.noscroll ? `@media ${device.tablet} {overflow: hidden;}` : ''}
   }
