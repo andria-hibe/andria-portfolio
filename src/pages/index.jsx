@@ -24,12 +24,14 @@ const MainContainer = styled.div`
 
 const HomeHeader = styled.h1`
   font-size: 4rem;
+  text-align: center;
   color: white;
   margin: 0;
 `
 
 const HomeSubtitle = styled.h2`
   font-size: 2rem;
+  text-align: center;
   color: #5b5b5b;
   margin: 0;
 `
