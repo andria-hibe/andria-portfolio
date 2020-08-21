@@ -1,22 +1,26 @@
-/**
- * Configure your Gatsby site with this file.
- *
- * See: https://www.gatsbyjs.org/docs/gatsby-config/
- */
-
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: 'Andria Hibe',
+    description: 'Website for my software development work. Hire me!',
+    author: 'Andria Hibe',
+  },
   plugins: [
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [
-          `roboto slab`,
-          `montserrat`,
-          `lato`
-        ],
-        display: 'swap'
-      }
-    }
+        fonts: [`roboto slab`, `montserrat`, `lato`],
+        display: 'swap',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: `${__dirname}/src/images`,
+      },
+    },
+
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sharp',
   ],
 }
