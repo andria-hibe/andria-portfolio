@@ -41,7 +41,7 @@ export default function Resume() {
       <ul>
         <li>JavaScript & Node.js</li>
         <li>Cloud-computing platforms—AWS & Netlify</li>
-        <li>Express</li>
+        <li>Express.js</li>
         <li>React</li>
         <li>Redux</li>
         <li>Gatsby</li>
@@ -111,7 +111,9 @@ export default function Resume() {
       <h4>Joylab Restaurant Group - Regatta Bar & Eatery</h4>
       <h5>Sales and Events Manager (March - July 2019)</h5>
       <ul>
-        <li>Created strategies to generate revenue and maximise venue sales</li>
+        <li>
+          Created strategies to generate revenue and maximise venue sales.
+        </li>
         <br />
         <li>
           Oversaw all event requirements and ensured events ran smoothly to
