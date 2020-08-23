@@ -3,6 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
 import Img from 'gatsby-image'
 
+import SEO from '../components/seo'
 import { GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 
@@ -29,6 +30,7 @@ export default function About() {
 
   return (
     <SplitLayout>
+      <SEO title="404: You took a wrong turn" />
       <GlobalStyles />
       <Img
         style={{

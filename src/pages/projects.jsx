@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { device, GlobalStyles } from '../components/globalStyle'
 
+import SEO from '../components/seo'
+import { device, GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 import Button from '../components/button'
 
@@ -71,6 +72,7 @@ const ProjectCardList = styled.ul`
 export default function Resume() {
   return (
     <SplitLayout>
+      <SEO title="Andria's Projects" description="A little bit about Andria" />
       <GlobalStyles />
       <h1>Projects I'm particularly proud of:</h1>
       <ProjectCardContainer>

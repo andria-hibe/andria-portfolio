@@ -2,6 +2,7 @@ import React from 'react'
 import { Link as GatsbyLink } from 'gatsby'
 import styled from 'styled-components'
 
+import SEO from '../components/seo'
 import { device, GlobalStyles } from '../components/globalStyle'
 import {
   TiSocialGithubCircular,
@@ -93,6 +94,7 @@ export default function Home() {
   return (
     <MainContainer>
       <GlobalStyles gradient whitetext noscroll />
+      <SEO title="Andria Hibe" />
       <HomeHeader>Andria Hibe</HomeHeader>
       <Divider />
       <HomeSubheading>Full Stack Developer</HomeSubheading>

@@ -1,7 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { device, GlobalStyles } from '../components/globalStyle'
 
+import SEO from '../components/seo'
+import { device, GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 import Button from '../components/button'
 
@@ -18,6 +19,7 @@ const ButtonLayout = styled.div`
 export default function Resume() {
   return (
     <SplitLayout>
+      <SEO title="Andria's Resume" description="Check out my journey so far" />
       <GlobalStyles />
       <h1>Andria Cristia Hibe</h1>
       <h2>Full Stack Developer</h2>

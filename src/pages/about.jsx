@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import Img from 'gatsby-image'
 
+import SEO from '../components/seo'
 import { GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 
@@ -23,6 +24,10 @@ export default function About() {
 
   return (
     <SplitLayout>
+      <SEO
+        title="A little bit about me"
+        description="There's something about Andria"
+      />
       <GlobalStyles />
       <h1>A little bit about me:</h1>
       <Img
