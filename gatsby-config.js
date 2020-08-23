@@ -1,13 +1,13 @@
 module.exports = {
   siteMetadata: {
     title: 'Andria Hibe',
-    description: 'Website for my software development work. Hire me!',
+    description: 'Looking to hire a software developer? Check out my work!',
     author: 'Andria Hibe',
+    url: 'https://andria-hibe.netlify.app',
   },
   plugins: [
-    {
-      resolve: `gatsby-plugin-styled-components`,
-    },
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
@@ -22,7 +22,6 @@ module.exports = {
         path: `${__dirname}/src/images`,
       },
     },
-    `gatsby-plugin-styled-components`,
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
   ],
