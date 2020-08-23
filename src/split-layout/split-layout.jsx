@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { device } from '../components/globalStyle'
+import { device, GlobalStyles } from '../components/globalStyle'
 
 import Nav from '../split-layout/nav'
 
@@ -55,6 +55,7 @@ const ScrollToTop = styled.div`
 export default function SplitLayout(props) {
   return (
     <ContentContainer>
+      <GlobalStyles />
       <NavLayout>
         <a name="top">
           <Nav />

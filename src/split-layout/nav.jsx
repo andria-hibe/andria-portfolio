@@ -99,6 +99,10 @@ const NavLink = styled(GatsbyLink)`
     margin-top: 0.5em;
     padding: 0.5em;
   }
+
+  :hover {
+    color: #5b5b5b;
+  }
 `
 
 const IconContainer = styled.div`
@@ -172,7 +176,7 @@ const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
 export default function Nav() {
   return (
     <NavContainer>
-      <GlobalStyles whitetext />
+      <GlobalStyles />
       <NavLink to="/">
         <NavHeader>Andria Hibe</NavHeader>
       </NavLink>

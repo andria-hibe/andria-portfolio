@@ -92,7 +92,7 @@ const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
 export default function Home() {
   return (
     <MainContainer>
-      <GlobalStyles home gradient whitetext noscroll />
+      <GlobalStyles gradient whitetext noscroll />
       <HomeHeader>Andria Hibe</HomeHeader>
       <Divider />
       <HomeSubheading>Full Stack Developer</HomeSubheading>
