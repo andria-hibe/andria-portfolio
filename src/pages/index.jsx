@@ -24,21 +24,19 @@ const MainContainer = styled.div`
 
 const HomeHeader = styled.h1`
   font-size: 4rem;
-  text-align: center;
   color: white;
   margin: 0;
 `
 
-const HomeSubtitle = styled.h2`
+const HomeSubheading = styled.h2`
   font-size: 2rem;
-  text-align: center;
-  color: #5b5b5b;
   margin: 0;
 `
 
 const Divider = styled.hr`
   width: 20em;
   border: 0.1em solid #828282;
+
   @media ${device.laptop} {
     width: 30em;
   }
@@ -60,6 +58,7 @@ const HomeCard = styled.div`
   margin: 1em 2em;
   font-size: 2rem;
   text-align: center;
+  font-family: Montserrat;
 
   @media ${device.laptop} {
     margin: 1em 1.5em;
@@ -93,10 +92,10 @@ const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
 export default function Home() {
   return (
     <MainContainer>
-      <GlobalStyles gradient whitetext noscroll />
+      <GlobalStyles home gradient whitetext noscroll />
       <HomeHeader>Andria Hibe</HomeHeader>
       <Divider />
-      <HomeSubtitle>Full Stack Developer</HomeSubtitle>
+      <HomeSubheading>Full Stack Developer</HomeSubheading>
       <IconContainer>
         <a href="mailto:andriacohibe@gmail.com">
           <StyledEmailLinkIcon />
