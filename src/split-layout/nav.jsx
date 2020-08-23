@@ -37,6 +37,7 @@ const NavHeader = styled.h1`
   color: #5b5b5b;
   margin-left: 0.5em;
   text-align: center;
+  font-family: Lato;
 
   @media ${device.tablet} {
     font-size: 1.5rem;
@@ -82,6 +83,7 @@ const NavLinkContainer = styled.div`
 
 const NavLink = styled(GatsbyLink)`
   padding: 0.5em;
+  font-family: Montserrat;
 
   @media ${device.mobileL} {
     font-size: 1.2rem;
@@ -93,7 +95,7 @@ const NavLink = styled(GatsbyLink)`
   }
 
   @media ${device.laptop} {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     margin-top: 0.5em;
     padding: 0.5em;
   }
