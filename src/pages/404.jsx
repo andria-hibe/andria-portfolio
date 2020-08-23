@@ -42,7 +42,9 @@ export default function About() {
         alt="Robot graphic"
       />
       <CenteredH3>Oh no... We cannot find that page :(</CenteredH3>
-      <CenteredH4>Check out the navigation menu instead.</CenteredH4>
+      <CenteredH4>
+        Check out the navigation menu to get back on track.
+      </CenteredH4>
     </SplitLayout>
   )
 }
