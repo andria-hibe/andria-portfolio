@@ -40,24 +40,81 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   h1 {
-    font-family: Roboto Slab;
+    font-family: Oswald;
+    text-align: center;
+    font-size: 2.5rem;
+    color: #5b5b5b;
+    
+    @media ${device.tablet} {
+      font-size: 4rem;
+    }
+
   }
 
   h2 {
     font-family: Lato;
+    color: #5b5b5b;
+    text-align: center;
+    font-size: 1.5rem;
+    
+    @media ${device.tablet} {
+      font-size: 2rem;
+    }
   }
 
   h3 {
     font-family: Lato;
+    font-size: 1.5rem;
+    text-align: left;
+    color: #ff9498;
+    margin: 1em 0 0;
+
+    @media ${device.tablet} {
+      font-size: 1.75rem;
+      margin: 2em 0 0;
+    }
   }
 
   h4 {
     font-family: Lato;
+    font-size: 1.2rem;
+    text-align: left;
+    color: #53c0f6;
+    font-weight: bold;
+    margin: 1em 0 0;
+
+    @media ${device.tablet} {
+      font-size: 1.5rem;
+      margin: 1.5em 0 0;
+    }
+  }
+
+  h5 {
+    font-size: 1rem;
+    color: #5b5b5b;
+    font-weight: bold;
+    margin: 1em 0 0;
+
+    @media ${device.tablet} {
+      font-size: 1.25rem;
+    }
+  }
+
+  ul {
+    font-size: 1rem;
+    line-height: 1.5em;
+    list-style-type: circle;
+    text-align: left;
+    color: #5b5b5b;
+    margin: 0.5em 0;
+
+    @media ${device.tablet} {
+      font-size: 1.25rem;
+    }
   }
 
   a {
     text-decoration: none;
-    font-family: Montserrat;
     color: white;
   }
 
@@ -67,6 +124,10 @@ export const GlobalStyles = createGlobalStyle`
     color: #5b5b5b;
     line-height: 1.4em;
     font-weight: normal;
+
+    @media ${device.tablet} {
+      font-size: 1.25rem;
+    }
   }
 
   a:hover {
