@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { device, GlobalStyles } from '../components/globalStyle'
+import { device } from '../components/globalStyle'
 
 const GradientButton = styled.button`
   background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
