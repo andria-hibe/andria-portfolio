@@ -8,7 +8,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-google-fonts`,
       options: {
-        fonts: [`roboto slab`, `montserrat`, `lato`],
+        fonts: [`oswald`, `montserrat`, `lato`],
         display: 'swap',
       },
     },
