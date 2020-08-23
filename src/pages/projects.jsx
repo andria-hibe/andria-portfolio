@@ -72,7 +72,10 @@ const ProjectCardList = styled.ul`
 export default function Resume() {
   return (
     <SplitLayout>
-      <SEO title="Andria's Projects" description="A little bit about Andria" />
+      <SEO
+        title="Andria's Projects"
+        description="A list of project I'm proud of"
+      />
       <GlobalStyles />
       <h1>Projects I'm particularly proud of:</h1>
       <ProjectCardContainer>
