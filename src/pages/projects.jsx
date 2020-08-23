@@ -152,6 +152,10 @@ export default function Resume() {
             <li>Netlify</li>
             <li>Figma</li>
           </ProjectCardList>
+          <ProjectCardParagraph>
+            I had a design-first approach when creating this website with a
+            focus on reusable components.
+          </ProjectCardParagraph>
           <ButtonLayout>
             <a href="https://github.com/andria-hibe/andria-portfolio">
               <Button text="GitHub" />
@@ -176,11 +180,11 @@ export default function Resume() {
           <ProjectCardParagraph>
             I was responsible for using the GoogleMaps API to render a map of
             the immediate area of the current user as well as creating map
-            markers for the tasks uled depending on proximity to the user.
+            markers for the tasks listed depending on proximity to the user.
           </ProjectCardParagraph>
           <ProjectCardParagraph>
-            I was responsible for coordinating the team and troubleshooting for
-            blocked members.
+            I was also responsible for coordinating the team and troubleshooting
+            with blocked members.
           </ProjectCardParagraph>
         </ProjectCard>
       </ProjectCardContainer>
