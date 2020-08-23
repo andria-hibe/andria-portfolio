@@ -87,18 +87,20 @@ export default function Resume() {
           </ProjectCardParagraph>
           <ProjectCardList>
             <h5>Stack:</h5>
-            <li>Node.JS</li>
+            <li>Node.js</li>
             <li>AWS Services (CloudFormation, API Gateway, SNS, Lambda)</li>
             <li>Various APIs (Slack, GitHub, OpenStreetMap tools)</li>
           </ProjectCardList>
           <ProjectCardParagraph>
-            I created the application from scratch as well as was heavily
-            involved in the architecture planning and stakeholder
-            communications.
+            The application is a collection of different bots that deliver
+            information using a router setup which asynchoronously parses and
+            forwards incoming messages to respective Lambdas.
           </ProjectCardParagraph>
           <ProjectCardParagraph>
             This project was both exciting and challenging as I had to learn
-            various AWS Services within a tight deadline.
+            various AWS Services within a tight deadline and had to ensure the
+            project was maintanable, scalable, cost-efficient, and easy to
+            contribute to as per the needs of an open-source project.
           </ProjectCardParagraph>
           <ButtonLayout>
             <a href="https://github.com/hotosm/slack-bots/">
@@ -139,8 +141,8 @@ export default function Resume() {
         <ProjectCard>
           <ProjectCardHeading primary>This Website</ProjectCardHeading>
           <ProjectCardParagraph>
-            This portfolio website was designed and created by myself using
-            Gatsby and hosted on Netlify.
+            This website was designed and created by myself using Gatsby and
+            hosted on Netlify.
           </ProjectCardParagraph>
           <ProjectCardList>
             <h5>Stack:</h5>
@@ -148,6 +150,7 @@ export default function Resume() {
             <li>Gatsby</li>
             <li>Styled Components</li>
             <li>Netlify</li>
+            <li>Figma</li>
           </ProjectCardList>
           <ButtonLayout>
             <a href="https://github.com/andria-hibe/andria-portfolio">
