@@ -74,7 +74,7 @@ export default function Resume() {
     <SplitLayout>
       <SEO
         title="Andria's Projects"
-        description="A list of project I'm proud of"
+        description="A list of projects I'm proud of"
       />
       <GlobalStyles />
       <h1>Projects I'm particularly proud of:</h1>
