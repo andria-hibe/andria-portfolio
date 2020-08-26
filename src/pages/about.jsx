@@ -62,7 +62,7 @@ export default function About() {
       <p>
         But work is not all there is to life and away from my keyboard, you can
         find me travelling, trying out new food, making miniatures, tending to
-        my plants, and going on meadering walks.
+        my plants, and going on meandering walks.
       </p>
     </SplitLayout>
   )
