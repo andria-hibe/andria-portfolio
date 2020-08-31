@@ -90,7 +90,7 @@ export default function Resume() {
             <li>Node.js</li>
             <li>AWS Services (CloudFormation, API Gateway, SNS, Lambda)</li>
             <li>Various APIs (Slack, GitHub, OpenStreetMap tools)</li>
-            <li>Testing: Tape & Sinon</li>
+            <li>Tape & Sinon for testing</li>
           </ProjectCardList>
           <ProjectCardParagraph>
             The application is a collection of different bots that deliver
@@ -180,7 +180,7 @@ export default function Resume() {
             <li>SQLite3</li>
             <li>Semantic UI CSS framework</li>
             <li>GoogleMaps API</li>
-            <li>Testing: Jest & Enzyme</li>
+            <li>Jest & Enzyme for testing</li>
           </ProjectCardList>
           <ProjectCardParagraph>
             I was responsible for using the GoogleMaps API to render a map of
