@@ -56,7 +56,7 @@ const NavHeader = styled.h1`
 const Divider = styled.hr`
   width: 0;
   height: 3em;
-  border: 0.1em solid #828282;
+  border: 0.1px solid #828282;
   margin: 0;
 
   @media ${device.laptop} {
