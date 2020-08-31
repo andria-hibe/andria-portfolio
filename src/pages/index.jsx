@@ -36,7 +36,7 @@ const HomeSubheading = styled.h2`
 
 const Divider = styled.hr`
   width: 20em;
-  border: 0.1em solid #828282;
+  border: 0.1px solid #828282;
 
   @media ${device.laptop} {
     width: 30em;
