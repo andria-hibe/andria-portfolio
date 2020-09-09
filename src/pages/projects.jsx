@@ -90,6 +90,7 @@ export default function Resume() {
             <li>Node.js</li>
             <li>AWS Services (CloudFormation, API Gateway, SNS, Lambda)</li>
             <li>Various APIs (Slack, GitHub, OpenStreetMap tools)</li>
+            <li>Tape & Sinon for testing</li>
           </ProjectCardList>
           <ProjectCardParagraph>
             The application is a collection of different bots that deliver
@@ -122,8 +123,8 @@ export default function Resume() {
           </ProjectCardParagraph>
           <ProjectCardList>
             <h5>Stack:</h5>
-            <li>Node.JS</li>
-            <li>React and Redux</li>
+            <li>Node.js</li>
+            <li>React & Redux</li>
             <li>Bootstrap</li>
             <li>Google Maps API</li>
           </ProjectCardList>
@@ -165,17 +166,21 @@ export default function Resume() {
         <ProjectCard>
           <ProjectCardHeading>Wa</ProjectCardHeading>
           <ProjectCardParagraph>
+            Graduation project for Enspiral DevAcademy.
+          </ProjectCardParagraph>
+          <ProjectCardParagraph>
             Graduation project for Enspiral DevAcademy. Wa is a location-based
             time-banking application where users can offer and request services
             using time as currency.
           </ProjectCardParagraph>
           <ProjectCardList>
             <h5>Stack:</h5>
-            <li>React and Redux</li>
-            <li>Node.js and Express.js</li>
+            <li>React & Redux</li>
+            <li>Node.js & Express.js</li>
             <li>SQLite3</li>
             <li>Semantic UI CSS framework</li>
             <li>GoogleMaps API</li>
+            <li>Jest & Enzyme for testing</li>
           </ProjectCardList>
           <ProjectCardParagraph>
             I was responsible for using the GoogleMaps API to render a map of

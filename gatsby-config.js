@@ -4,6 +4,7 @@ module.exports = {
     description: 'Looking to hire a software developer? Check out my work!',
     author: 'Andria Hibe',
     url: 'https://andria-hibe.netlify.app',
+    image: '/preview.png',
   },
   plugins: [
     `gatsby-plugin-styled-components`,
