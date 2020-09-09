@@ -20,7 +20,7 @@ const MainContainer = styled.div`
 `
 
 const HomeHeader = styled.h1`
-  font-size: 4rem;
+  font-size: 4.5rem;
   color: white;
   margin: 0;
 `
@@ -32,7 +32,7 @@ const HomeSubheading = styled.h2`
 
 const Divider = styled.hr`
   width: 20em;
-  border: 0.1px solid #828282;
+  border: 0.1em solid #828282;
 
   @media ${device.laptop} {
     width: 30em;
@@ -67,20 +67,20 @@ const IconContainer = styled.div`
 
 const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
   color: #555555;
-  height: 4em;
-  width: 4em;
+  height: 4.5em;
+  width: 4.5em;
 `
 
 const StyledLinkedinLinkIcon = styled(TiSocialLinkedinCircular)`
   color: #555555;
-  height: 4em;
-  width: 4em;
+  height: 4.5em;
+  width: 4.5em;
 `
 
 const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
   color: #555555;
-  height: 4em;
-  width: 4em;
+  height: 4.5em;
+  width: 4.5em;
 `
 
 export default function Home() {

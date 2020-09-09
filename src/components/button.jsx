@@ -3,7 +3,11 @@ import styled from 'styled-components'
 import { device } from '../components/globalStyle'
 
 const GradientButton = styled.button`
-  background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
+  background-image: linear-gradient(
+    to right,
+    rgba(166, 193, 238, 0.9) 0%,
+    rgba(251, 194, 235, 0.9) 100%
+  );
   border: none;
   text-align: center;
   border-radius: 0.5em;

@@ -14,7 +14,11 @@ const NavContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-image: linear-gradient(#a6c1ee, #fbc2eb);
+  background-image: linear-gradient(
+    180deg,
+    rgba(166, 193, 238, 0.9) 0%,
+    rgba(251, 194, 235, 0.9) 100%
+  );
   height: 18vh;
   width: 90%;
   margin-top: 1em;
