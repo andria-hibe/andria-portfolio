@@ -87,7 +87,7 @@ const NavLink = styled(GatsbyLink)`
 
   @media ${device.mobileL} {
     font-size: 1.2rem;
-    padding: 1em;
+    padding: 0.7em;
   }
 
   @media ${device.tablet} {
@@ -110,7 +110,7 @@ const IconContainer = styled.div`
   flex-direction: column;
   margin-right: 1.5em;
 
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     flex-direction: row;
   }
 
