@@ -6,4 +6,6 @@ The website was designed using [Figma](https://www.figma.com/), built with [Gats
 
 Found any errors or typos? Please open a ticket for it so I can fix it.
 
-Thank you! 💖
+[Visit my website!](https://andriahibe.netlify.app/)
+
+Thank you 💖
