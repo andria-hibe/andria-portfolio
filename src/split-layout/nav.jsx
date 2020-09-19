@@ -14,7 +14,11 @@ const NavContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-image: linear-gradient(#a6c1ee, #fbc2eb);
+  background-image: linear-gradient(
+    180deg,
+    rgba(166, 193, 238, 0.9) 0%,
+    rgba(251, 194, 235, 0.9) 100%
+  );
   height: 18vh;
   width: 90%;
   margin-top: 1em;
@@ -87,7 +91,7 @@ const NavLink = styled(GatsbyLink)`
 
   @media ${device.mobileL} {
     font-size: 1.2rem;
-    padding: 1em;
+    padding: 0.7em;
   }
 
   @media ${device.tablet} {
@@ -110,7 +114,7 @@ const IconContainer = styled.div`
   flex-direction: column;
   margin-right: 1.5em;
 
-  @media ${device.mobileL} {
+  @media ${device.tablet} {
     flex-direction: row;
   }
 

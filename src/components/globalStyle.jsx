@@ -33,7 +33,7 @@ export const GlobalStyles = createGlobalStyle`
     font-family: Lato;
     ${props =>
       props.gradient
-        ? 'background-image: linear-gradient(#A6C1EE, #FBC2EB);'
+        ? 'background-image: linear-gradient(180deg, rgba(166, 193, 238, 0.9) 0%, rgba(251, 194, 235, 0.9) 100%);'
         : 'background-color: #fff2f9;'}
     ${props =>
       props.noscroll ? `@media ${device.tablet} {overflow: hidden;}` : ''}

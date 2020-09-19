@@ -11,20 +11,16 @@ import {
 } from 'react-icons/ti'
 
 const MainContainer = styled.div`
-  height: 100%;
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   margin: 1.5em 1em;
-
-  @media ${device.tablet} {
-    height: 100vh;
-  }
 `
 
 const HomeHeader = styled.h1`
-  font-size: 4rem;
+  font-size: 4.5rem;
   color: white;
   margin: 0;
 `
@@ -51,19 +47,16 @@ const CardContainer = styled.div`
 `
 
 const HomeCard = styled.div`
-  background: linear-gradient(#fbc2eb, #a6c1ee);
-  padding: 2em;
-  min-width: 3.5em;
-  box-shadow: -0.5em -0.5em 0.1em rgba(91, 91, 91, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 7em;
+  height: 3em;
   border-radius: 0.5em;
-  margin: 1em 2em;
+  border: 0.1em solid #828282;
+  margin: 1em;
   font-size: 2rem;
-  text-align: center;
   font-family: Montserrat;
-
-  @media ${device.laptop} {
-    margin: 1em 1.5em;
-  }
 `
 
 const IconContainer = styled.div`
@@ -74,20 +67,20 @@ const IconContainer = styled.div`
 
 const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
   color: #555555;
-  height: 4em;
-  width: 4em;
+  height: 4.5em;
+  width: 4.5em;
 `
 
 const StyledLinkedinLinkIcon = styled(TiSocialLinkedinCircular)`
   color: #555555;
-  height: 4em;
-  width: 4em;
+  height: 4.5em;
+  width: 4.5em;
 `
 
 const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
   color: #555555;
-  height: 4em;
-  width: 4em;
+  height: 4.5em;
+  width: 4.5em;
 `
 
 export default function Home() {

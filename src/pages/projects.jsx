@@ -80,7 +80,7 @@ export default function Resume() {
       <h1>Projects I'm particularly proud of:</h1>
       <ProjectCardContainer>
         <ProjectCard>
-          <ProjectCardHeading primary>Slack Bots</ProjectCardHeading>
+          <ProjectCardHeading primary>Slackbot Router</ProjectCardHeading>
           <ProjectCardParagraph>
             A project I did for the Humanitarian OpenStreetMap Team as part of
             the Outreachy Programme to improve internal comms for the team.
