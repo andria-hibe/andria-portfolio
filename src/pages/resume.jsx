@@ -23,19 +23,6 @@ export default function Resume() {
       <GlobalStyles />
       <h1>Andria Cristia Hibe</h1>
       <h2>Full Stack Developer</h2>
-      <p>
-        I will bring to your organisation a passion for tech, and a continued
-        and deep desire to learn and improve.
-      </p>
-      <p>
-        I am looking to work with a collaborative team where I can have
-        meaningful impact.
-      </p>
-      <p>
-        I have proven experience in rapport building with stakeholders and
-        clients, project management and communication skills that I have
-        developed through years of working in advocacy, marketing, and sales.
-      </p>
       <h3>Skills</h3>
       <h4>Tech Stack:</h4>
       <ul>
@@ -80,6 +67,8 @@ export default function Resume() {
         </li>
       </ul>
       <h3>Work Experience</h3>
+      <h4>Runn.io</h4>
+      <h5>Software Developer (October 2020 - Present)</h5>
       <h4>Humanitarian OpenStreetMap Team (Outreachy Programme)</h4>
       <h5>Software Developer Intern (May 2020 - August 2020)</h5>
       <ul>
