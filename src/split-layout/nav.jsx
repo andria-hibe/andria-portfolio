@@ -10,136 +10,173 @@ import {
 } from 'react-icons/ti'
 
 const NavContainer = styled.div`
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   background-image: linear-gradient(
-    180deg,
-    rgba(166, 193, 238, 0.9) 0%,
-    rgba(251, 194, 235, 0.9) 100%
+    90deg,
+    rgba(166, 193, 238, 0.95) 0%,
+    rgba(251, 194, 235, 0.95) 100%
   );
-  height: 18vh;
-  width: 90%;
-  margin-top: 1em;
+  backdrop-filter: blur(10px);
+  height: 4rem;
+  width: 100%;
+  padding: 0 1rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 
   @media ${device.tablet} {
-    height: 10vh;
-    width: 95%;
+    padding: 0 2rem;
+    height: 4.5rem;
   }
 
   @media ${device.laptop} {
-    width: 20em;
-    height: 30em;
-    margin-top: 0;
-    flex-direction: column;
+    padding: 0 3rem;
+    height: 5rem;
   }
 `
 
 const NavHeader = styled.h1`
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   color: #5b5b5b;
-  margin-left: 0.5em;
-  text-align: center;
+  margin: 0;
+  text-align: left;
   font-family: Lato;
+  font-weight: 600;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
 
   @media ${device.tablet} {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
   }
 
   @media ${device.laptop} {
-    font-size: 2rem;
-    margin: 1em 0 0;
-  }
-
-  :hover {
-    color: white;
-  }
-`
-
-const Divider = styled.hr`
-  width: 0;
-  height: 3em;
-  border: 0.1px solid #828282;
-  margin: 0;
-
-  @media ${device.laptop} {
-    width: 15em;
-    height: 0;
+    font-size: 1.6rem;
   }
 `
 
 const NavLinkContainer = styled.div`
   align-items: center;
   display: flex;
-  flex-direction: column;
-  margin: 0.5em;
+  flex-direction: row;
+  gap: 0.5rem;
 
-  @media ${device.mobileL} {
-    flex-direction: row;
+  @media ${device.tablet} {
+    gap: 1rem;
   }
 
   @media ${device.laptop} {
-    flex-direction: column;
-    margin: 0 1em;
+    gap: 1.5rem;
   }
 `
 
 const NavLink = styled(GatsbyLink)`
-  padding: 0.5em;
+  padding: 0.5rem 0.75rem;
   font-family: Montserrat;
-
-  @media ${device.mobileL} {
-    font-size: 1.2rem;
-    padding: 0.7em;
-  }
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
 
   @media ${device.tablet} {
-    font-size: 1.5rem;
+    font-size: 1rem;
+    padding: 0.6rem 1rem;
+    border-radius: 0.6rem;
   }
 
   @media ${device.laptop} {
-    font-size: 1.75rem;
-    margin-top: 0.5em;
-    padding: 0.5em;
+    font-size: 1.1rem;
+    padding: 0.7rem 1.2rem;
+    border-radius: 0.7rem;
   }
 
-  :hover {
-    color: #5b5b5b;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    color: #5b5b5b !important;
+    background-color: rgba(255, 255, 255, 0.25) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+`
+
+const LogoLink = styled(GatsbyLink)`
+  text-decoration: none;
+  display: inline-block;
+
+  &:hover {
+    background-color: transparent !important;
+  }
+
+  &:hover h1 {
+    color: white !important;
+    transform: scale(1.03);
+  }
+
+  &:active h1 {
+    transform: scale(1.01);
   }
 `
 
 const IconContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  margin-right: 1.5em;
+  flex-direction: row;
+  gap: 0.1rem;
 
   @media ${device.tablet} {
-    flex-direction: row;
+    gap: 0.2rem;
   }
 
   @media ${device.laptop} {
-    margin-right: 0;
-    margin-bottom: 1em;
+    gap: 0.3rem;
   }
 `
 const linkIconMobileStyle = `
   color: #555555; 
-  height: 2em;
-  width: 2em;
-  padding: 0.1em;
+  height: 2rem;
+  width: 2rem;
+  padding: 0.25rem;
+  transition: all 0.2s ease;
 `
 
 const linkIconTabletStyle = `
-  height: 2.5em;
-  width: 2.5em;
-  padding: 0.3em;
+  height: 2.5rem;
+  width: 2.5rem;
+  padding: 0.3rem;
 `
 
 const linkIconLaptopStyle = `
-  height: 3.5em;
-  width: 3.5em;
-  margin-bottom: 1em;
+  height: 3rem;
+  width: 3rem;
+  padding: 0.4rem;
 `
 
 const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
@@ -151,6 +188,16 @@ const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
 
   @media ${device.laptop} {
     ${linkIconLaptopStyle}
+  }
+
+  &:hover {
+    color: white !important;
+    fill: white !important;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(1.05);
   }
 `
 
@@ -164,6 +211,16 @@ const StyledLinkedinLinkIcon = styled(TiSocialLinkedinCircular)`
   @media ${device.laptop} {
     ${linkIconLaptopStyle}
   }
+
+  &:hover {
+    color: white !important;
+    fill: white !important;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
 `
 
 const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
@@ -176,15 +233,24 @@ const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
   @media ${device.laptop} {
     ${linkIconLaptopStyle}
   }
+
+  &:hover {
+    color: white !important;
+    fill: white !important;
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
 `
 export default function Nav() {
   return (
     <NavContainer>
       <GlobalStyles />
-      <NavLink to="/">
+      <LogoLink to="/">
         <NavHeader>Andria Hibe</NavHeader>
-      </NavLink>
-      <Divider />
+      </LogoLink>
       <NavLinkContainer>
         <NavLink to="/resume">Resume</NavLink>
         <NavLink to="/projects">Projects</NavLink>

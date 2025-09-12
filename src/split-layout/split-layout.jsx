@@ -5,50 +5,25 @@ import { device, GlobalStyles } from '../components/globalStyle'
 import Nav from '../split-layout/nav'
 
 const ContentContainer = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
-
-  @media ${device.laptop} {
-    display: grid;
-    justify-items: center;
-    grid-template-columns: 30% auto;
-    overflow: hidden;
-  }
-`
-
-const NavLayout = styled.div`
-  @media ${device.laptop} {
-    grid-column: 1;
-  }
+  display: flex;
+  flex-direction: column;
 `
 
 const PageLayout = styled.div`
+  flex: 1;
   width: 100%;
-  padding: 0 2em 3em;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @media ${device.tablet} {
+    padding: 2rem 3rem;
+  }
 
   @media ${device.laptop} {
-    overflow-y: scroll;
-    grid-column: 2;
-    padding: 0 5em 3em;
-  }
-`
-
-const ScrollToTop = styled.div`
-  font-size: 0;
-
-  @media (max-width: 1023px) {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-image: linear-gradient(to right, #a6c1ee, #fbc2eb);
-    color: white;
-    text-align: center;
-    font-size: 1rem;
-  }
-
-  :hover {
-    color: #555555;
+    padding: 3rem 4rem;
   }
 `
 
@@ -56,16 +31,9 @@ export default function SplitLayout(props) {
   return (
     <ContentContainer>
       <GlobalStyles />
-      <NavLayout>
-        <a name="top">
-          <Nav />
-        </a>
-      </NavLayout>
+      <Nav />
       <PageLayout>
         {props.children}
-        <a href="#top">
-          <ScrollToTop>Scroll to the top</ScrollToTop>
-        </a>
       </PageLayout>
     </ContentContainer>
   )
