@@ -14,7 +14,7 @@ const ButtonLayout = styled.div`
   padding-left: 1em;
 
   @media ${device.tablet} {
-    padding-left: 2em;
+    padding-left: 1.5em;
   }
 `
 
@@ -50,12 +50,12 @@ const TechStack = styled.span`
   font-style: normal;
   background: linear-gradient(
     120deg,
-    rgba(255, 154, 158, 0.1) 0%,
-    rgba(254, 207, 239, 0.1) 100%
+    rgba(83, 192, 246, 0.1) 0%,
+    rgba(166, 193, 238, 0.1) 100%
   );
   padding: 0.3em 0.6em;
   border-radius: 0.5em;
-  border-left: 3px solid #ff9a9e;
+  border-left: 3px solid #53c0f6;
   display: inline-block;
   margin-top: 0.5em;
 `
@@ -71,7 +71,7 @@ const CarouselWrapper = styled.div`
   gap: 1.5em;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 0 1rem 1rem 1rem;
+  padding: 0 3rem 1rem 3rem;
 
   /* Hide scrollbar but keep functionality */
   scrollbar-width: none;
@@ -86,13 +86,13 @@ const CarouselWrapper = styled.div`
   touch-action: pan-x;
 
   @media ${device.tablet} {
-    padding: 0 2rem 1rem 2rem;
+    padding: 0 4rem 1rem 4rem;
   }
 `
 
 const ProjectCard = styled.div`
-  min-width: 300px;
-  max-width: 350px;
+  min-width: 360px;
+  max-width: 420px;
   flex-shrink: 0;
   background: white;
   box-shadow: 0.25em 0.5em 1.5em rgba(91, 91, 91, 0.25);
@@ -120,8 +120,8 @@ const ProjectCard = styled.div`
   }
 
   @media ${device.tablet} {
-    min-width: 350px;
-    max-width: 400px;
+    min-width: 420px;
+    max-width: 480px;
   }
 `
 
@@ -158,6 +158,40 @@ const ProjectCardList = styled.ul`
   padding-right: 1em;
 `
 
+const StyledStackContainer = styled.div`
+  background: linear-gradient(
+    120deg,
+    rgba(83, 192, 246, 0.1) 0%,
+    rgba(166, 193, 238, 0.1) 100%
+  );
+  padding: 0.8em 1em;
+  margin: 0.5em 1em;
+  border-radius: 0.5em;
+  border-left: 3px solid #53c0f6;
+
+  h5 {
+    margin: 0 0 0.5em 0;
+    font-weight: 600;
+    color: #5b5b5b;
+  }
+
+  ul {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+`
+
+const StackContainer = ({ technologies }) => (
+  <StyledStackContainer>
+    <h5>Stack:</h5>
+    <ul>
+      {technologies.map((tech, index) => (
+        <li key={index}>{tech}</li>
+      ))}
+    </ul>
+  </StyledStackContainer>
+)
+
 const ScrollButton = styled.button`
   position: absolute;
   top: 50%;
@@ -189,11 +223,11 @@ const ScrollButton = styled.button`
   }
 
   &.left {
-    left: 10px;
+    left: 5px;
   }
 
   &.right {
-    right: 10px;
+    right: 5px;
   }
 
   @media ${device.tablet} {
@@ -202,11 +236,11 @@ const ScrollButton = styled.button`
     font-size: 18px;
 
     &.left {
-      left: 20px;
+      left: 10px;
     }
 
     &.right {
-      right: 20px;
+      right: 10px;
     }
   }
 `
@@ -242,9 +276,10 @@ export default function Resume() {
           Some of the features I built at Runn, a strategic resource management
           platform.
           <br />
-          As the third engineer hire, I worked across the stack for 5+ years,
-          leading and delivering key features that helped scale the platform
-          globally.
+          As the third engineer hire, I've been part of the journey starting
+          from a small startup team to a global company with customers across
+          multiple countries. I've led and delivered key features that helped
+          scale the platform globally.
           <br />
           <TechStack>
             Stack: TypeScript · React · Node.js · GraphQL (Hasura) · Postgres ·
@@ -296,9 +331,9 @@ export default function Resume() {
                 people and attributes.
               </ProjectCardParagraph>
               <ProjectCardParagraph>
-                <strong>Solution:</strong> Built an AI-driven matching feature
-                that suggests the best person or placeholder for a role based on
-                skills and attributes.
+                <strong>Solution:</strong> Helped deliver an AI-driven matching
+                feature that improves scheduling by suggesting the best person
+                or placeholder based on skills and attributes.
               </ProjectCardParagraph>
               <ProjectCardParagraph>
                 <strong>Impact:</strong> Made scheduling faster, more accurate,
@@ -401,12 +436,9 @@ export default function Resume() {
                 Interactive portfolio where you can explore my cozy cottage and
                 get to know me by interacting with objects.
               </ProjectCardParagraph>
-              <ProjectCardList>
-                <h5>Stack:</h5>
-                <li>Javascript</li>
-                <li>Kaplay.js</li>
-                <li>Vite</li>
-              </ProjectCardList>
+              <StackContainer
+                technologies={['Javascript', 'Kaplay.js', 'Vite']}
+              />
               <ProjectCardParagraph>
                 I wanted to try building something I haven't done before and so
                 I made this little game to showcase who I am. Try it out on both
@@ -432,17 +464,19 @@ export default function Resume() {
             <ProjectCard>
               <ProjectCardHeading primary>Slackbot Router</ProjectCardHeading>
               <ProjectCardParagraph>
-                A project I did for the Humanitarian OpenStreetMap Team as part
-                of the Outreachy Programme to improve internal comms for the
-                team.
+                A project I built for the Humanitarian OpenStreetMap Team (HOT),
+                an international organization that creates open map data for
+                disaster response and humanitarian action in vulnerable
+                communities.
               </ProjectCardParagraph>
-              <ProjectCardList>
-                <h5>Stack:</h5>
-                <li>Node.js</li>
-                <li>AWS Services (CloudFormation, API Gateway, SNS, Lambda)</li>
-                <li>Various APIs (Slack, GitHub, OpenStreetMap tools)</li>
-                <li>Tape & Sinon for testing</li>
-              </ProjectCardList>
+              <StackContainer
+                technologies={[
+                  'Node.js',
+                  'AWS Services (CloudFormation, API Gateway, SNS, Lambda)',
+                  'Various APIs (Slack, GitHub, OpenStreetMap tools)',
+                  'Tape & Sinon for testing',
+                ]}
+              />
               <ProjectCardParagraph>
                 The application is a collection of different bots that deliver
                 information using a router setup which asynchronously parses and
@@ -470,14 +504,15 @@ export default function Resume() {
                 This website was designed and created by myself using Gatsby and
                 hosted on Netlify.
               </ProjectCardParagraph>
-              <ProjectCardList>
-                <h5>Stack:</h5>
-                <li>React</li>
-                <li>Gatsby</li>
-                <li>Styled Components</li>
-                <li>Netlify</li>
-                <li>Figma</li>
-              </ProjectCardList>
+              <StackContainer
+                technologies={[
+                  'React',
+                  'Gatsby',
+                  'Styled Components',
+                  'Netlify',
+                  'Figma',
+                ]}
+              />
               <ProjectCardParagraph>
                 I had a design-first approach when creating this website with a
                 focus on reusable components.
@@ -504,13 +539,14 @@ export default function Resume() {
                 A prototype for a peer-to-peer delivery service focused on local
                 communities and businesses.
               </ProjectCardParagraph>
-              <ProjectCardList>
-                <h5>Stack:</h5>
-                <li>Node.js</li>
-                <li>React & Redux</li>
-                <li>Bootstrap</li>
-                <li>Google Maps API</li>
-              </ProjectCardList>
+              <StackContainer
+                technologies={[
+                  'Node.js',
+                  'React & Redux',
+                  'Bootstrap',
+                  'Google Maps API',
+                ]}
+              />
               <ProjectCardParagraph>
                 I was lead developer for the team and was responsible for
                 managing the dev team as well as coordinating between the tech

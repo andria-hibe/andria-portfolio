@@ -12,15 +12,19 @@ const GradientButton = styled.button`
   text-align: center;
   border-radius: 0.5em;
   color: white;
-  padding: 1em 0.75em;
+  padding: 0.6em 0.8em;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
 
   &:hover {
     color: #555555 !important;
     cursor: pointer;
+    transform: scale(1.05);
   }
 
   @media ${device.tablet} {
-    font-size: 1.25rem;
+    padding: 0.7em 1em;
+    font-size: 1rem;
   }
 `
 
