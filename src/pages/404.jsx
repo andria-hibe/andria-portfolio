@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import styled from 'styled-components'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import SEO from '../components/seo'
 import { GlobalStyles } from '../components/globalStyle'
@@ -20,9 +20,7 @@ export default function About() {
     query {
       robot: file(sourceInstanceName: { eq: "images" }, name: { eq: "robot" }) {
         childImageSharp {
-          fluid(maxWidth: 500, maxHeight: 500) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(width: 500, height: 500, layout: CONSTRAINED)
         }
       }
     }
@@ -30,15 +28,14 @@ export default function About() {
 
   return (
     <SplitLayout>
-      <SEO title="404: You took a wrong turn" />
       <GlobalStyles />
-      <Img
+      <GatsbyImage
         style={{
           maxWidth: '250px',
           maxHeight: '250px',
           margin: '0 auto',
         }}
-        fluid={data.robot.childImageSharp.fluid}
+        image={getImage(data.robot)}
         alt="Robot graphic"
       />
       <CenteredH3>Oh no... We cannot find that page :(</CenteredH3>
@@ -47,4 +44,8 @@ export default function About() {
       </CenteredH4>
     </SplitLayout>
   )
+}
+
+export function Head() {
+  return <SEO title="404: You took a wrong turn" />
 }

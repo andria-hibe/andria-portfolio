@@ -87,7 +87,6 @@ export default function Home() {
   return (
     <MainContainer>
       <GlobalStyles gradient whitetext noscroll />
-      <SEO title="Andria Hibe" />
       <HomeHeader>Andria Hibe</HomeHeader>
       <Divider />
       <HomeSubheading>Full Stack Developer</HomeSubheading>
@@ -115,4 +114,8 @@ export default function Home() {
       </CardContainer>
     </MainContainer>
   )
+}
+
+export function Head() {
+  return <SEO title="Andria Hibe" />
 }

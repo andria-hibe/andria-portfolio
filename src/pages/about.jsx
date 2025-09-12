@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
-import Img from 'gatsby-image'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import SEO from '../components/seo'
 import { GlobalStyles } from '../components/globalStyle'
@@ -14,9 +14,7 @@ export default function About() {
         name: { eq: "about-photo" }
       ) {
         childImageSharp {
-          fluid(maxWidth: 650, maxHeight: 450) {
-            ...GatsbyImageSharpFluid
-          }
+          gatsbyImageData(width: 650, height: 450, layout: CONSTRAINED)
         }
       }
     }
@@ -24,19 +22,15 @@ export default function About() {
 
   return (
     <SplitLayout>
-      <SEO
-        title="A little bit about me"
-        description="There's something about Andria"
-      />
       <GlobalStyles />
       <h1>A little bit about me:</h1>
-      <Img
+      <GatsbyImage
         style={{
           maxWidth: '650px',
           maxHeight: '450px',
           margin: '0 auto',
         }}
-        fluid={data.aboutMePhoto.childImageSharp.fluid}
+        image={getImage(data.aboutMePhoto)}
         alt="Photo of Andria"
       />
       <p>I am a full stack web developer based in New Zealand.</p>
@@ -65,5 +59,14 @@ export default function About() {
         my plants, and going on meandering walks.
       </p>
     </SplitLayout>
+  )
+}
+
+export function Head() {
+  return (
+    <SEO
+      title="A little bit about me"
+      description="There's something about Andria"
+    />
   )
 }

@@ -19,7 +19,6 @@ const ButtonLayout = styled.div`
 export default function Resume() {
   return (
     <SplitLayout>
-      <SEO title="Andria's Resume" description="Check out my journey so far" />
       <GlobalStyles />
       <h1>Andria Cristia Hibe</h1>
       <h2>Full Stack Developer</h2>
@@ -159,4 +158,8 @@ export default function Resume() {
       </ButtonLayout>
     </SplitLayout>
   )
+}
+
+export function Head() {
+  return <SEO title="Andria's Resume" description="Check out my journey so far" />
 }
