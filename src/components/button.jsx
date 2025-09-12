@@ -14,8 +14,8 @@ const GradientButton = styled.button`
   color: white;
   padding: 1em 0.75em;
 
-  :hover {
-    color: #555555;
+  &:hover {
+    color: #555555 !important;
     cursor: pointer;
   }
 
