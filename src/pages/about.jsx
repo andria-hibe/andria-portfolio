@@ -1,10 +1,31 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import styled from 'styled-components'
 
 import SEO from '../components/seo'
 import { GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
+
+const IntroText = styled.p`
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+`
+
+const AboutParagraph = styled.p`
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+`
+
+const SectionHeader = styled.p`
+  line-height: 1.6;
+  margin-bottom: 1rem;
+`
+
+const HobbiesList = styled.p`
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+`
 
 export default function About() {
   const data = useStaticQuery(graphql`
@@ -29,35 +50,54 @@ export default function About() {
           maxWidth: '650px',
           maxHeight: '450px',
           margin: '0 auto',
+          display: 'block',
         }}
         image={getImage(data.aboutMePhoto)}
         alt="Photo of Andria"
       />
-      <p>I am a full stack web developer based in New Zealand.</p>
+      <IntroText>Hi, I'm Andria. 🌷</IntroText>
+      <AboutParagraph>
+        I'm a full-stack engineer who enjoys solving tricky problems and turning
+        them into simple, useful products. I care about creating software that
+        feels good to use and makes life easier for the people behind the
+        screen.
+      </AboutParagraph>
 
-      <p>
-        I’ve always loved problem solving and tinkering with things to figure
-        out how they work which is why after a couple of years working in
-        advocacy, marketing, and events—when I finally had the resources to do
-        so—I looked into software development.
-      </p>
-      <p>
-        I enrolled in an intensive web development bootcamp where we were taught
-        how to create our own web applications through completing projects
-        following Agile and Scrum principles.
-      </p>
-      <p>
-        After the bootcamp, I became interested in contributing to free
-        open-source software communities and was accepted as an intern for the
-        Humanitarian OpenStreetMap Team through the Outreachy Programme where I
-        was tasked to create a Slack app to improve their internal
-        communications and increase efficiency.
-      </p>
-      <p>
-        But work is not all there is to life and away from my keyboard, you can
-        find me travelling, trying out new food, making miniatures, tending to
-        my plants, and going on meandering walks.
-      </p>
+      <AboutParagraph>
+        Before moving into tech, I worked in policy advocacy, marketing, and
+        event management. These roles gave me a strong foundation in
+        communication, strategic thinking, and stakeholder engagement. I still
+        draw on those skills every day as an engineer.
+      </AboutParagraph>
+
+      <SectionHeader>A few things about me outside of work:</SectionHeader>
+
+      <HobbiesList>
+        🌊 I love diving. It's a mix of calm and discovery that always leaves me
+        wanting more.
+        <br />
+        🧶 I'm drawn to detail-oriented hobbies that reward focus and patience
+        and you will often find me working on pottery, miniatures, or
+        embroidery.
+        <br />
+        🏔️ I love getting outdoors to hike, surf, and ski whenever I can.
+        <br />
+        🌿 I'm slowly filling my home with plants until it looks and feels like
+        a jungle.
+        <br />
+        📚 I love reading fiction from all over the world and the way it gives
+        me a glimpse into another way of life.
+        <br />
+        🍫 I love baking, it's one of my favorite ways to relax and it makes
+        home feel extra cozy
+      </HobbiesList>
+
+      <AboutParagraph>
+        At the heart of it, I love creating things, whether that's a piece of
+        software, a ceramic bowl, or something fresh out of the oven. I'm
+        curious by nature and enjoy learning new skills, solving problems, and
+        finding better ways of doing things.
+      </AboutParagraph>
     </SplitLayout>
   )
 }
