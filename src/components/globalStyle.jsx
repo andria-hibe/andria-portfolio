@@ -42,11 +42,11 @@ export const GlobalStyles = createGlobalStyle`
   h1 {
     font-family: Oswald;
     text-align: center;
-    font-size: 2.5rem;
+    font-size: 2rem;
     color: #5b5b5b;
     
     @media ${device.tablet} {
-      font-size: 4rem;
+      font-size: 3rem;
     }
 
   }

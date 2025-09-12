@@ -14,16 +14,16 @@ const ContentContainer = styled.div`
 const PageLayout = styled.div`
   flex: 1;
   width: 100%;
-  padding: 2rem;
-  max-width: 1200px;
+  padding: 2rem 0.5rem;
+  max-width: 90%;
   margin: 0 auto;
 
   @media ${device.tablet} {
-    padding: 2rem 3rem;
+    padding: 2rem 1rem;
   }
 
   @media ${device.laptop} {
-    padding: 3rem 4rem;
+    padding: 3rem 1rem;
   }
 `
 
@@ -32,9 +32,7 @@ export default function SplitLayout(props) {
     <ContentContainer>
       <GlobalStyles />
       <Nav />
-      <PageLayout>
-        {props.children}
-      </PageLayout>
+      <PageLayout>{props.children}</PageLayout>
     </ContentContainer>
   )
 }
