@@ -44,7 +44,7 @@ const SectionSubtitle = styled.p`
   color: #6b5b47;
   font-size: 1rem;
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.5;
 
   @media ${device.tablet} {
     font-size: 1.1rem;
@@ -276,7 +276,7 @@ export default function Projects() {
   return (
     <SplitLayout>
       <GlobalStyles />
-      <PageHeading>Projects I'm particularly proud of:</PageHeading>
+      <PageHeading>Featured Projects:</PageHeading>
 
       <ProjectSection>
         <SectionTitle>Work Projects</SectionTitle>
@@ -284,10 +284,10 @@ export default function Projects() {
           Some of the features I built at Runn, a strategic resource management
           platform.
           <br />
-          As the third engineer hire, I've been part of the journey starting
-          from a small startup team to a global company with customers across
-          multiple countries. I've led and delivered key features that helped
-          scale the platform globally.
+          As employee #3 on the engineering team, I've contributed to Runn's
+          growth from a small startup to a global platform serving customers
+          across multiple countries. I've led and delivered key features that
+          helped scale the platform globally.
           <br />
           <TechStack>
             Stack: TypeScript · React · Node.js · GraphQL (Hasura) · Postgres ·
@@ -523,7 +523,7 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="primary">More details</Button>
+                  <Button variant="primary">Details</Button>
                 </a>
               </ButtonLayout>
             </ProjectCard>

@@ -16,7 +16,7 @@ const resumeData = {
     portfolio: 'https://andriahibe.netlify.app',
   },
   profile:
-    'Full-stack engineer with a unique blend of technical expertise and business acumen. Experienced in delivering features end-to-end, collaborating with product and customer success, and contributing to architectural decisions. Background in legislative advocacy, data-driven marketing, and stakeholder management brings valuable perspective on user needs, regulatory considerations, and cross-functional collaboration. Proven ability to bridge technical complexity with business strategy, making complex systems accessible to diverse audiences.',
+    'Full-stack software engineer who enjoys building scalable, reliable, and user-focused products. Skilled at delivering complex features end-to-end, improving performance at scale, and collaborating across product and engineering. With a background in policy advocacy, marketing, and event management, I bring strong communication, strategic thinking, and stakeholder engagement to technical work, enabling me to contribute effectively to both product and organizational success.',
   skills: {
     technical: [
       'TypeScript',
@@ -41,15 +41,15 @@ const resumeData = {
       company: 'Runn.io',
       period: 'October 2020 - Present',
       achievements: [
-        'Third engineering hire. Helped shape product direction, tech stack, and engineering culture as the company scaled.',
-        'Delivered enterprise performance improvements up to 10x for large accounts with 1,000+ users through client-side data handling optimization, GraphQL query improvements, and enhanced rendering logic for high-volume datasets.',
+        'Third engineering hire, grew from Junior to Senior Software Engineer. Helped shape product direction, tech stack, and engineering culture as the company scaled.',
+        'Delivered up to 10x performance improvement for enterprise accounts with 1,000+ users through client-side data handling optimization, GraphQL query improvements, and enhanced rendering logic for high-volume datasets.',
         'Led and contributed to end-to-end delivery of major features, including:',
         '• SmartMatching AI - intelligent resource matching based on people attributes, powered by AI.',
         '• Project Templates - reusable project blueprints that streamline project setup and onboarding.',
         '• Project Team Membership - enables linking people to projects without active allocations, simplifying reassignments and long-term capacity planning.',
-        '• Workstreams - enables dividing projects into related activity groups with dedicated resource allocation.',
+        '• Workstreams - enables dividing projects into activity groups with dedicated resource allocation.',
         '• Consistent Time Off - refactored leave logic for accurate forecasting.',
-        'Collaborated with product, design and customer success teams, often refining requirements and suggesting improvements.',
+        'Collaborated with product, design, and customer success teams, often refining requirements and suggesting improvements.',
       ],
     },
     {
@@ -59,7 +59,7 @@ const resumeData = {
       achievements: [
         'Developed a Slack app to improve internal communication and efficiency, integrating the Slack API, GitHub API, and OpenStreetMap tools.',
         'Built the application using AWS services, including Lambda for logic, API Gateway for routing, SNS for messaging, and CloudFormation for infrastructure as code.',
-        'Collaborated with the dev team to plan an architecture focused on maintainability, scalability, and cost efficiency for an open-source community project.',
+        'Collaborated with the engineering team to plan an architecture focused on maintainability, scalability, and cost efficiency for an open-source community project.',
       ],
     },
     {
@@ -241,6 +241,7 @@ const JobTitle = styled.h3`
   font-size: 1.1em;
   color: #4a3f35;
   margin-bottom: 0.2em;
+  font-weight: 600;
 `
 
 const Company = styled.h4`

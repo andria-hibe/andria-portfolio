@@ -35,8 +35,7 @@ const SectionHeader = styled.p`
   line-height: 1.6;
   margin-bottom: 1rem;
   color: #4a3f35;
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-style: italic;
 `
 
 const HobbiesList = styled.p`
@@ -94,23 +93,28 @@ export default function About() {
       <SectionHeader>A few things about me outside of work:</SectionHeader>
 
       <HobbiesList>
-        🌊 I love diving. It's a mix of calm and discovery that always leaves me
-        wanting more.
+        🌊 I love diving. It's a mix of calm and discovery that always leave me
+        wanting more. Exploring underwater is one of my favourite things to do
+        in the world.
         <br />
         🧶 I'm drawn to detail-oriented hobbies that reward focus and patience
-        and you will often find me working on pottery, miniatures, or
+        and you will often find me working on pottery, miniatures, and
         embroidery.
         <br />
-        🏔️ I love getting outdoors to hike, surf, and ski whenever I can.
+        🏔️ I enjoy getting outdoors to hike, surf, and ski whenever I can. These
+        activities push me out of my comfort zone in the best way possible and I
+        love a good adventure!
         <br />
         🌿 I'm slowly filling my home with plants until it looks and feels like
-        a jungle.
+        a jungle. If I wasn't a software engineer, I would probably be a
+        horticulturist.
         <br />
-        📚 I love reading fiction from all over the world and the way it gives
-        me a glimpse into another way of life.
+        📚 I love reading books from all over the world. There's something
+        magical about how stories can transport you into completely different
+        worlds and perspectives.
         <br />
-        🍫 I love baking, it's one of my favorite ways to relax and it makes
-        home feel extra cozy
+        🍫 I'm a decent baker, it's one of my favorite ways to relax and it
+        makes my home feel extra cozy.
       </HobbiesList>
 
       <AboutParagraph>
