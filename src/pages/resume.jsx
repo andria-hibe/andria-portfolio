@@ -6,160 +6,453 @@ import { device, GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 import Button from '../components/button'
 
+// Resume data structure for easy updates
+const resumeData = {
+  personal: {
+    name: 'Andria Hibe',
+    email: 'andriacohibe@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/andriacristiahibe/',
+    github: 'https://github.com/andria-hibe',
+    portfolio: 'https://andriahibe.netlify.app',
+  },
+  profile:
+    'Full-stack engineer with a unique blend of technical expertise and business acumen. Experienced in delivering features end-to-end, collaborating with product and customer success, and contributing to architectural decisions. Background in legislative advocacy, data-driven marketing, and stakeholder management brings valuable perspective on user needs, regulatory considerations, and cross-functional collaboration. Proven ability to bridge technical complexity with business strategy, making complex systems accessible to diverse audiences.',
+  skills: {
+    technical: [
+      'TypeScript',
+      'React',
+      'GraphQL (Hasura)',
+      'Node.js',
+      'Ruby on Rails',
+      'Postgres',
+    ],
+    professional: [
+      'Feature Ownership',
+      'Product Collaboration',
+      'Communication',
+      'Stakeholder Engagement',
+      'Strategic Thinking',
+      'Project Coordination',
+    ],
+  },
+  experience: [
+    {
+      title: 'Senior Software Engineer',
+      company: 'Runn.io',
+      period: 'October 2020 - Present',
+      achievements: [
+        'Third engineering hire. Helped shape product direction, tech stack, and engineering culture as the company scaled.',
+        'Delivered enterprise performance improvements up to 10x for large accounts with 1,000+ users through client-side data handling optimization, GraphQL query improvements, and enhanced rendering logic for high-volume datasets.',
+        'Led and contributed to end-to-end delivery of major features, including:',
+        '• SmartMatching AI - intelligent resource matching based on people attributes, powered by AI.',
+        '• Project Templates - reusable project blueprints that streamline project setup and onboarding.',
+        '• Project Team Membership - enables linking people to projects without active allocations, simplifying reassignments and long-term capacity planning.',
+        '• Workstreams - enables dividing projects into related activity groups with dedicated resource allocation.',
+        '• Consistent Time Off - refactored leave logic for accurate forecasting.',
+        'Refactored backend logic and data models to improve accuracy and scalability.',
+        'Collaborated with product and design teams, often refining requirements and suggesting improvements.',
+      ],
+    },
+    {
+      title: 'Software Developer Intern',
+      company: 'Humanitarian OpenStreetMap Team (Outreachy Programme)',
+      period: 'May 2020 - August 2020',
+      achievements: [
+        'Developed a Slack app to improve internal communication and efficiency, integrating the Slack API, GitHub API, and OpenStreetMap tools.',
+        'Built the application using AWS services, including Lambda for logic, API Gateway for routing, SNS for messaging, and CloudFormation for infrastructure as code.',
+        'Collaborated with the dev team to plan an architecture focused on maintainability, scalability, and cost efficiency for an open-source community project.',
+      ],
+    },
+    {
+      title: 'Other Professional Experience',
+      company: '(Policy Advocacy, Marketing, and Event Management roles)',
+      period: '2013 - 2020',
+      achievements: [
+        'Legislative Advocacy - Successfully advocated for the passage of major economic legislation, developing skills in stakeholder alignment, strategic communication, and navigating complex regulatory environments.',
+        'Brand Management & Digital Marketing - Grew social media engagement by 50%+ and increased local economic activity by 15% through data-driven marketing campaigns and community events.',
+        'Business Development - Generated revenue through multi-channel sales strategies, client relationship management, and event coordination, building strong commercial acumen.',
+        'Cross-functional Leadership - Managed diverse stakeholders including government agencies, business owners, suppliers, and community groups, translating between technical and non-technical audiences.',
+      ],
+    },
+  ],
+  projects: [
+    {
+      name: 'Interactive Portfolio Game',
+      description:
+        'A gamified portfolio built with Kaplay.js, where visitors explore a virtual cottage to learn about me.',
+      tech: 'JavaScript, Kaplay.js, Vite',
+    },
+    {
+      name: 'Personal Portfolio Website',
+      description:
+        'Clean, responsive website showcasing my projects and experience.',
+      tech: 'React, Gatsby, Styled Components, Netlify',
+    },
+    {
+      name: 'Slackbot Router (HOTOSM)',
+      description:
+        'Open-source Slack bot framework with asynchronous message routing, integrating multiple APIs to automate tasks and improve internal communications.',
+      tech: 'Node.js, AWS (Lambda, API Gateway, SNS, CloudFormation)',
+    },
+    {
+      name: 'Peer Postie',
+      description:
+        'Hackathon-winning prototype for a peer-to-peer delivery service (Hack the Crisis NZ 2020, 800+ participants).',
+      tech: 'React, Node.js, Google Maps API',
+    },
+  ],
+  education: [
+    {
+      degree: 'Web Development Bootcamp',
+      institution: 'Enspiral DevAcademy',
+      details: [
+        'Simulated work environment using modern web development tech stack',
+        'Completed projects with tight deadlines following Agile and Scrum principles',
+      ],
+    },
+    {
+      degree: 'Bachelor of Arts in International Studies',
+      institution: 'De La Salle University',
+      details: [
+        'Graduated with First Class Honours',
+        'Awarded Outstanding Thesis',
+      ],
+    },
+  ],
+}
+
+// Styled components for better readability
+const ResumeContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #333;
+  padding: 0 1rem;
+
+  @media ${device.tablet} {
+    padding: 0 2rem;
+  }
+
+  @media ${device.laptop} {
+    padding: 0;
+  }
+`
+
+const Header = styled.header`
+  text-align: center;
+  margin-bottom: 1.5em;
+  padding-bottom: 1em;
+  border-bottom: 2px solid #f0f0f0;
+
+  @media ${device.tablet} {
+    margin-bottom: 2em;
+    padding-bottom: 1.5em;
+  }
+`
+
+const Name = styled.h1`
+  font-size: 2em;
+  margin-bottom: 0.2em;
+  color: #2c3e50;
+
+  @media ${device.tablet} {
+    font-size: 2.5em;
+  }
+`
+
+const ContactInfo = styled.div`
+  font-size: 0.8em;
+  color: #666;
+  margin-bottom: 1em;
+  line-height: 1.4;
+
+  @media ${device.tablet} {
+    font-size: 0.9em;
+  }
+
+  a {
+    color: #3498db;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`
+
+const Section = styled.section`
+  margin-bottom: 2em;
+
+  @media ${device.tablet} {
+    margin-bottom: 2.5em;
+  }
+`
+
+const SectionTitle = styled.h2`
+  font-size: 1.4em;
+  color: #2c3e50;
+  margin-bottom: 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #e0e0e0;
+`
+
+const SubSection = styled.div`
+  margin-bottom: 1.5em;
+`
+
+const JobTitle = styled.h3`
+  font-size: 1.1em;
+  color: #2c3e50;
+  margin-bottom: 0.2em;
+`
+
+const Company = styled.h4`
+  font-size: 1em;
+  color: #3498db;
+  margin-bottom: 0.2em;
+  margin-top: 0.1em;
+`
+
+const Period = styled.p`
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 0.8em;
+  font-style: italic;
+`
+
+const SkillGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  margin-bottom: 1em;
+
+  @media ${device.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5em;
+  }
+`
+
+const SkillCategory = styled.div`
+  h4 {
+    color: #2c3e50;
+    margin-bottom: 0.5em;
+    font-size: 1em;
+  }
+`
+
+const SkillList = styled.ul`
+  list-style: none;
+  padding: 0;
+
+  li {
+    background: #f8f9fa;
+    padding: 0.3em 0.6em;
+    margin-bottom: 0.3em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border-left: 3px solid #3498db;
+  }
+`
+
+const AchievementList = styled.ul`
+  margin-left: 0;
+  padding-left: 1em;
+
+  li {
+    margin-bottom: 0.5em;
+    line-height: 1.5;
+
+    &.indented {
+      margin-left: 1.5em;
+      list-style-type: none;
+      text-indent: -0.8em;
+      padding-left: 0.8em;
+    }
+  }
+`
+
+const ProjectGrid = styled.div`
+  display: grid;
+  gap: 1.5em;
+
+  @media ${device.laptop} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`
+
+const ProjectCard = styled.div`
+  background: #f8f9fa;
+  padding: 1.2em;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+
+  h4 {
+    color: #2c3e50;
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    margin-bottom: 0.5em;
+    line-height: 1.5;
+  }
+
+  .tech {
+    font-size: 0.85em;
+    color: #666;
+    font-style: italic;
+  }
+`
+
 const ButtonLayout = styled.div`
   display: flex;
-  justify-content: space-evenly;
-  margin-top: 2em;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: 1.5em;
+  align-items: center;
+
+  @media ${device.tablet} {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2em;
+    gap: 0.8em;
+  }
 
   @media ${device.laptop} {
     padding-bottom: 3em;
   }
 `
 
+const Profile = styled.p`
+  font-size: 1.05em;
+  line-height: 1.7;
+  color: #555;
+  text-align: justify;
+  margin-bottom: 0;
+`
+
 export default function Resume() {
   return (
     <SplitLayout>
       <GlobalStyles />
-      <h1>Andria Cristia Hibe</h1>
-      <h2>Full Stack Developer</h2>
-      <h3>Skills</h3>
-      <h4>Tech Stack:</h4>
-      <ul>
-        <li>JavaScript & Node.js</li>
-        <li>Cloud-computing platforms—AWS & Netlify</li>
-        <li>Express.js</li>
-        <li>React</li>
-        <li>Redux</li>
-        <li>Gatsby</li>
-        <li>SQLite3 & Knex</li>
-        <li>REST-ful APIs</li>
-        <li>HTML & CSS—including CSS frameworks</li>
-        <li>Testing suites—Jest, Tape, Sinon, Enzyme, Supertest</li>
-        <li>UI/UX design tools—Figma, Adobe XD</li>
-        <li>Version Control with Git</li>
-        <li>SEO & Google Analytics</li>
-      </ul>
-      <h4>Other Skills:</h4>
-      <ul>
-        <li>
-          <h5>Project management</h5>
-          <p>
-            Heading projects including budget planning, negotiating with clients
-            and suppliers, and managing team members and suppliers.
-          </p>
-        </li>
+      <ResumeContainer>
+        <Header>
+          <Name>{resumeData.personal.name}</Name>
+          <ContactInfo>
+            <a href={`mailto:${resumeData.personal.email}`}>
+              {' '}
+              {resumeData.personal.email}
+            </a>{' '}
+            ·
+            <a
+              href={resumeData.personal.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {' '}
+              LinkedIn
+            </a>{' '}
+            ·
+            <a
+              href={resumeData.personal.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {' '}
+              GitHub
+            </a>
+          </ContactInfo>
+          <ButtonLayout>
+            <a href={`mailto:${resumeData.personal.email}`}>
+              <Button text="Email me!" />
+            </a>
+            <a href="https://drive.google.com/uc?export=download&id=1WFBif-SXgrJOJGzeigoZwM7V6Eo5QTko">
+              <Button text="Download as pdf" />
+            </a>
+          </ButtonLayout>
+        </Header>
 
-        <li>
-          <h5>Communication skills</h5>
-          <p>
-            Liaising with stakeholders including clients, suppliers, community
-            groups, and government agencies.
-          </p>
-        </li>
+        <Section>
+          <SectionTitle>Profile</SectionTitle>
+          <Profile>{resumeData.profile}</Profile>
+        </Section>
 
-        <li>
-          <h5>Content writing</h5>
-          <p>
-            Crafting and editing articles and stories that engage audiences in a
-            variety of ways.
-          </p>
-        </li>
-      </ul>
-      <h3>Work Experience</h3>
-      <h4>Runn.io</h4>
-      <h5>Software Developer (October 2020 - Present)</h5>
-      <h4>Humanitarian OpenStreetMap Team (Outreachy Programme)</h4>
-      <h5>Software Developer Intern (May 2020 - August 2020)</h5>
-      <ul>
-        <li>
-          Developed a Slack app to improve internal comms and increase
-          efficiency. Utilised the Slack API, GitHub API, and different
-          OpenStreetMap APIs and tools.
-        </li>
-        <br />
-        <li>
-          Created the application using AWS services—Lambda functions to handle
-          application logic, API Gateway for routing, SNS for messaging, and
-          CloudFormation to codify the infrastructure.
-        </li>
-        <br />
-        <li>
-          Planned the architecture with the dev team bearing in mind
-          maintainability, scalability, and cost-efficiency as per the needs of
-          a free, open-source software community.
-        </li>
-      </ul>
-      <h4>Freelance</h4>
-      <h5>Web Developer (May 2020 - Present)</h5>
-      <ul>
-        Building static and dynamic websites for clients using Javascript
-        frameworks and libraries—React, Redux, Gatsby—Node.js, Express, SQLite3,
-        and Netlify
-      </ul>
-      <h4>Joylab Restaurant Group - Regatta Bar & Eatery</h4>
-      <h5>Sales and Events Manager (March - July 2019)</h5>
-      <ul>
-        <li>
-          Created strategies to generate revenue and maximise venue sales.
-        </li>
-        <br />
-        <li>
-          Oversaw all event requirements and ensured events ran smoothly to
-          maximise the highest level of spend and customer satisfaction.
-        </li>
-      </ul>
-      <h4>Takapuna Beach Business Association</h4>
-      <h5>Marketing and Events Coordinator (September 2015 - December 2018)</h5>
-      <ul>
-        <li>
-          Grew the following and engagement of the I Love Takapuna website and
-          social media accounts and coordinated the production of marketing
-          collaterals.
-        </li>
-        <br />
-        <li>
-          Organised and managed events and promotions in Takapuna attracting
-          thousands of visitors to the town centre.
-        </li>
-      </ul>
-      <h3>Education</h3>
-      <h4>Enspiral DevAcademy</h4>
-      <h5>Web Development Bootcamp</h5>
-      <ul>
-        <li>
-          Simulated work environment using topical web development tech stack
-          and following Agile and Scrum principles.
-        </li>
-        <br />
-        <li>
-          Completed projects with tight deadlines, doing project planning,
-          coding, debugging, testing and presenting to tech and non-tech
-          audiences.
-        </li>
-        <br />
-        <li>
-          Developed soft skills essential to working in the tech industry and
-          worked with colleagues in pairs and groups.
-        </li>
-      </ul>
-      <h4>De La Salle University</h4>
-      <h5>Bachelor of Arts in International Studies</h5>
-      <ul>
-        <li>Graduated with First Class Honours</li>
-        <li>Awarded Outstanding Thesis</li>
-      </ul>
-      <ButtonLayout>
-        <a href="mailto:andriacohibe@gmail.com">
-          <Button text="Email me!" />
-        </a>
-        <a href="https://drive.google.com/uc?export=download&id=1WFBif-SXgrJOJGzeigoZwM7V6Eo5QTko">
-          <Button text="Download as pdf" />
-        </a>
-      </ButtonLayout>
+        <Section>
+          <SectionTitle>Key Skills</SectionTitle>
+          <SkillGrid>
+            <SkillCategory>
+              <h4>Technical</h4>
+              <SkillList>
+                {resumeData.skills.technical.map((skill, index) => (
+                  <li key={index}>{skill}</li>
+                ))}
+              </SkillList>
+            </SkillCategory>
+            <SkillCategory>
+              <h4>Professional</h4>
+              <SkillList>
+                {resumeData.skills.professional.map((skill, index) => (
+                  <li key={index}>{skill}</li>
+                ))}
+              </SkillList>
+            </SkillCategory>
+          </SkillGrid>
+        </Section>
+
+        <Section>
+          <SectionTitle>Professional Experience</SectionTitle>
+          {resumeData.experience.map((job, index) => (
+            <SubSection key={index}>
+              <JobTitle>{job.title}</JobTitle>
+              <Company>{job.company}</Company>
+              <Period>{job.period}</Period>
+              <AchievementList>
+                {job.achievements.map((achievement, achIndex) => (
+                  <li
+                    key={achIndex}
+                    className={achievement.startsWith('•') ? 'indented' : ''}
+                  >
+                    {achievement}
+                  </li>
+                ))}
+              </AchievementList>
+            </SubSection>
+          ))}
+        </Section>
+
+        <Section>
+          <SectionTitle>Projects (Personal & Open Source)</SectionTitle>
+          <ProjectGrid>
+            {resumeData.projects.map((project, index) => (
+              <ProjectCard key={index}>
+                <h4>{project.name}</h4>
+                <p>{project.description}</p>
+                <p className="tech">{project.tech}</p>
+              </ProjectCard>
+            ))}
+          </ProjectGrid>
+        </Section>
+
+        <Section>
+          <SectionTitle>Education</SectionTitle>
+          {resumeData.education.map((edu, index) => (
+            <SubSection key={index}>
+              <JobTitle>{edu.degree}</JobTitle>
+              <Company>{edu.institution}</Company>
+              <AchievementList>
+                {edu.details.map((detail, detailIndex) => (
+                  <li key={detailIndex}>{detail}</li>
+                ))}
+              </AchievementList>
+            </SubSection>
+          ))}
+        </Section>
+      </ResumeContainer>
     </SplitLayout>
   )
 }
 
 export function Head() {
-  return <SEO title="Andria's Resume" description="Check out my journey so far" />
+  return (
+    <SEO title="Andria's Resume" description="Check out my journey so far" />
+  )
 }

@@ -323,7 +323,7 @@ export default function Resume() {
             </ProjectCard>
             <ProjectCard>
               <ProjectCardHeading primary>
-                SmartMatching AI – Intelligent Resource Scheduling
+                SmartMatching AI - Intelligent Resource Scheduling
               </ProjectCardHeading>
               <ProjectCardParagraph>
                 <strong>Problem:</strong> Scheduling resources was
@@ -341,34 +341,8 @@ export default function Resume() {
               </ProjectCardParagraph>
             </ProjectCard>
             <ProjectCard>
-              <ProjectCardHeading>
-                Project Team Membership & Workstreams
-              </ProjectCardHeading>
-              <ProjectCardParagraph>
-                <strong>Problem:</strong> Complex projects lacked clear team
-                structures and sub-groups, making planning and long-term
-                allocation difficult.
-              </ProjectCardParagraph>
-              <ProjectCardParagraph>
-                <strong>Solution:</strong> Introduced Project Team Membership,
-                allowing people and placeholders to be linked to projects even
-                without active allocations, simplifying reassignments and
-                long-term planning. <br />
-                <br /> Developed Workstreams, enabling projects to be divided
-                into related sets of activities or deliverables (e.g., Research,
-                Design, Development, QA, Deployment), with people and
-                placeholders allocated directly to those workstreams within each
-                project.
-              </ProjectCardParagraph>
-              <ProjectCardParagraph>
-                <strong>Impact:</strong> Improved clarity, enabled sub-team
-                management, and made resource allocation more flexible for both
-                immediate and long-term needs.
-              </ProjectCardParagraph>
-            </ProjectCard>
-            <ProjectCard>
               <ProjectCardHeading primary>
-                Consistent Time Off – Scalable Leave Management
+                Consistent Time Off - Scalable Leave Management
               </ProjectCardHeading>
               <ProjectCardParagraph>
                 <strong>Problem:</strong> Inconsistent time-off logic led to
@@ -386,8 +360,48 @@ export default function Resume() {
               </ProjectCardParagraph>
             </ProjectCard>
             <ProjectCard>
+              <ProjectCardHeading>Project Team Membership</ProjectCardHeading>
+              <ProjectCardParagraph>
+                <strong>Problem:</strong> Long-term project planning was
+                difficult without clear project team structures, and reassigning
+                people between projects was cumbersome.
+              </ProjectCardParagraph>
+              <ProjectCardParagraph>
+                <strong>Solution:</strong> Introduced Project Team Membership,
+                allowing people and placeholders to be linked to projects even
+                without active allocations, simplifying reassignments and
+                long-term planning.
+              </ProjectCardParagraph>
+              <ProjectCardParagraph>
+                <strong>Impact:</strong> Made resource allocation more flexible
+                and improved long-term project planning capabilities.
+              </ProjectCardParagraph>
+            </ProjectCard>
+            <ProjectCard>
+              <ProjectCardHeading primary>
+                Workstreams - Sub-team Organization
+              </ProjectCardHeading>
+              <ProjectCardParagraph>
+                <strong>Problem:</strong> Complex projects lacked clear
+                sub-groups and activity organization, making it hard to manage
+                different work streams within a project.
+              </ProjectCardParagraph>
+              <ProjectCardParagraph>
+                <strong>Solution:</strong> Developed Workstreams, enabling
+                projects to be divided into related sets of activities or
+                deliverables (e.g., Research, Design, Development, QA,
+                Deployment), with people and placeholders allocated directly to
+                those workstreams within each project.
+              </ProjectCardParagraph>
+              <ProjectCardParagraph>
+                <strong>Impact:</strong> Improved clarity, enabled sub-team
+                management, and made resource allocation more granular and
+                organized.
+              </ProjectCardParagraph>
+            </ProjectCard>
+            <ProjectCard>
               <ProjectCardHeading>
-                Project Templates – Reusable Workflows
+                Project Templates - Reusable Workflows
               </ProjectCardHeading>
               <ProjectCardParagraph>
                 <strong>Problem:</strong> Customers had to repeatedly set up the
@@ -515,7 +529,7 @@ export default function Resume() {
               />
               <ProjectCardParagraph>
                 I had a design-first approach when creating this website with a
-                focus on reusable components.
+                focus on responsiveness and performance.
               </ProjectCardParagraph>
               <ButtonLayout>
                 <a
