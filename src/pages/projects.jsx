@@ -6,6 +6,11 @@ import { device, GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 import Button from '../components/button'
 
+const PageHeading = styled.h1`
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+`
+
 const ButtonLayout = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -23,6 +28,8 @@ const ProjectSection = styled.div`
 `
 
 const SectionTitle = styled.h2`
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
   margin-bottom: 0.5em;
   color: #5b5b5b;
   font-size: 1.8rem;
@@ -268,7 +275,7 @@ export default function Projects() {
   return (
     <SplitLayout>
       <GlobalStyles />
-      <h1>Projects I'm particularly proud of:</h1>
+      <PageHeading>Projects I'm particularly proud of:</PageHeading>
 
       <ProjectSection>
         <SectionTitle>Work Projects</SectionTitle>

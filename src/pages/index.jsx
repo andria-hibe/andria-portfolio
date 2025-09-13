@@ -88,6 +88,7 @@ const MainContainer = styled.div`
 
 const HomeHeader = styled.h1`
   font-size: 2.5rem;
+  font-weight: 300;
   color: white;
   margin: 0;
   text-align: center;
@@ -139,30 +140,64 @@ const CardContainer = styled.div`
   }
 `
 
-const HomeCard = styled.div`
+const HomeCard = styled(GatsbyLink)`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 7em;
   height: 3em;
-  border-radius: 0.5em;
-  border: 0.1em solid #828282;
+  border-radius: 0.8em;
+  border: 0.1em solid rgba(255, 255, 255, 0.2);
   margin: 1em;
   font-size: 2rem;
-  font-family: Montserrat;
+  font-family: 'Nunito', sans-serif;
   transition: all 0.3s ease;
   cursor: pointer;
+  text-decoration: none;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
 
   &:hover {
     transform: scale(1.05);
-    border-color: #ffffff;
-    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 0.2);
+    color: #828282;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+
+    &::before {
+      left: 100%;
+    }
   }
 
-  &:focus-within {
+  &:focus {
     outline: 2px solid #ffffff;
     outline-offset: 2px;
     transform: scale(1.05);
+    background: rgba(255, 255, 255, 0.2);
+
+    &::before {
+      left: 100%;
+    }
   }
 `
 
@@ -363,20 +398,14 @@ export default function Home() {
 
           <StaggeredAnimation delay="0.8s">
             <CardContainer role="navigation" aria-label="Main navigation">
-              <HomeCard>
-                <GatsbyLink to="/resume" aria-label="View resume page">
-                  Resume
-                </GatsbyLink>
+              <HomeCard to="/resume" aria-label="View resume page">
+                Resume
               </HomeCard>
-              <HomeCard>
-                <GatsbyLink to="/projects" aria-label="View projects page">
-                  Projects
-                </GatsbyLink>
+              <HomeCard to="/projects" aria-label="View projects page">
+                Projects
               </HomeCard>
-              <HomeCard>
-                <GatsbyLink to="/about" aria-label="View about page">
-                  About
-                </GatsbyLink>
+              <HomeCard to="/about" aria-label="View about page">
+                About
               </HomeCard>
             </CardContainer>
           </StaggeredAnimation>

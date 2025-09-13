@@ -40,7 +40,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   h1 {
-    font-family: Oswald;
+    font-family: 'Playfair Display', serif;
     text-align: center;
     font-size: 2rem;
     color: #5b5b5b;

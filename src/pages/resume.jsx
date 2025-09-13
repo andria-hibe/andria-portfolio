@@ -151,6 +151,8 @@ const Header = styled.header`
 `
 
 const Name = styled.h1`
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
   font-size: 2em;
   margin-bottom: 0.2em;
   color: #2c3e50;
@@ -189,6 +191,8 @@ const Section = styled.section`
 `
 
 const SectionTitle = styled.h2`
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
   font-size: 1.4em;
   color: #2c3e50;
   margin-bottom: 1em;

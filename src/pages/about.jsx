@@ -7,6 +7,11 @@ import SEO from '../components/seo'
 import { device, GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 
+const PageHeading = styled.h1`
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+`
+
 const IntroText = styled.p`
   line-height: 1.6;
   margin-bottom: 1.5rem;
@@ -58,7 +63,7 @@ export default function About() {
   return (
     <SplitLayout>
       <GlobalStyles />
-      <h1>A little bit about me:</h1>
+      <PageHeading>A little bit about me:</PageHeading>
       <GatsbyImage
         style={{
           maxWidth: '650px',

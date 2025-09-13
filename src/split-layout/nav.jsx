@@ -75,7 +75,7 @@ const NavLinkContainer = styled.div`
 
 const NavLink = styled(GatsbyLink)`
   padding: 0.5rem 0.75rem;
-  font-family: Montserrat;
+  font-family: 'Nunito', sans-serif;
   font-size: 0.9rem;
   font-weight: 500;
   border-radius: 0.5rem;
