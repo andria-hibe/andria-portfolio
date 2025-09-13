@@ -328,6 +328,10 @@ const Profile = styled.p`
   color: #555;
   text-align: justify;
   margin-bottom: 0;
+
+  @media ${device.tablet} {
+    font-size: 1.1em;
+  }
 `
 
 export default function Resume() {

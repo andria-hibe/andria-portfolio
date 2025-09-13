@@ -4,27 +4,41 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled from 'styled-components'
 
 import SEO from '../components/seo'
-import { GlobalStyles } from '../components/globalStyle'
+import { device, GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 
 const IntroText = styled.p`
   line-height: 1.6;
   margin-bottom: 1.5rem;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  font-weight: 500;
 `
 
 const AboutParagraph = styled.p`
   line-height: 1.7;
   margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.05rem;
+
+  @media ${device.tablet} {
+    font-size: 1.1rem;
+  }
 `
 
 const SectionHeader = styled.p`
   line-height: 1.6;
   margin-bottom: 1rem;
+  color: #2c3e50;
+  font-weight: 600;
+  font-size: 1.1rem;
 `
 
 const HobbiesList = styled.p`
   line-height: 1.8;
   margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.05rem;
 `
 
 export default function About() {

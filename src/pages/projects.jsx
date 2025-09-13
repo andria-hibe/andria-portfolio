@@ -245,7 +245,7 @@ const ScrollButton = styled.button`
   }
 `
 
-export default function Resume() {
+export default function Projects() {
   const workProjectsRef = useRef(null)
   const personalProjectsRef = useRef(null)
 
@@ -513,10 +513,13 @@ export default function Resume() {
               </ButtonLayout>
             </ProjectCard>
             <ProjectCard>
-              <ProjectCardHeading>This Website</ProjectCardHeading>
+              <ProjectCardHeading>
+                Personal Portfolio Website
+              </ProjectCardHeading>
               <ProjectCardParagraph>
-                This website was designed and created by myself using Gatsby and
-                hosted on Netlify.
+                Clean, responsive website showcasing my projects and experience.
+                Built with a focus on modern design patterns and optimal
+                performance.
               </ProjectCardParagraph>
               <StackContainer
                 technologies={[
@@ -524,12 +527,11 @@ export default function Resume() {
                   'Gatsby',
                   'Styled Components',
                   'Netlify',
-                  'Figma',
                 ]}
               />
               <ProjectCardParagraph>
-                I had a design-first approach when creating this website with a
-                focus on responsiveness and performance.
+                Features smooth navigation, responsive design, and static site
+                generation for fast loading times across all devices.
               </ProjectCardParagraph>
               <ButtonLayout>
                 <a
