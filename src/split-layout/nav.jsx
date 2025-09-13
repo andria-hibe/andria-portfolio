@@ -540,8 +540,7 @@ export default function Nav() {
   const isActive = path => {
     if (typeof window === 'undefined') return false
     const pathname = window.location.pathname
-    if (path === '/' && (pathname === '/' || pathname === '/resume/'))
-      return true
+    if (path === '/' && pathname === '/') return true
     if (path !== '/' && pathname.startsWith(path)) return true
     return false
   }
