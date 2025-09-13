@@ -311,7 +311,15 @@ const AchievementList = styled.ul`
 
 const ProjectGrid = styled.div`
   display: grid;
-  gap: 1.5em;
+  gap: 1em;
+
+  @media ${device.mobileM} {
+    gap: 1.2em;
+  }
+
+  @media ${device.tablet} {
+    gap: 1.5em;
+  }
 
   @media ${device.laptop} {
     grid-template-columns: repeat(2, 1fr);
@@ -324,11 +332,6 @@ const ProjectCard = styled.div`
   padding: 1.2em;
   border-radius: 12px;
   border-left: 4px solid #a94442;
-  margin-bottom: 1.5em;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 
   h4 {
     color: #4a3f35;
