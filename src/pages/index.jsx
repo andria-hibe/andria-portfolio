@@ -356,6 +356,7 @@ const ProjectLinks = styled.div`
 `
 
 const SubtleLink = styled.a`
+  font-family: 'Nunito', sans-serif;
   font-size: 0.8em;
   color: #a94442;
   text-decoration: none;
@@ -550,8 +551,8 @@ export default function Index() {
 export function Head() {
   return (
     <SEO
-      title="Andria Hibe - Full Stack Developer"
-      description="Portfolio of Andria Hibe, a passionate Full Stack Developer specializing in modern web technologies."
+      title="Andria Hibe - Senior Software Engineer"
+      description="Welcome to Andria Hibe's portfolio. Senior Software Engineer specializing in building scalable web applications. Explore my projects, experience, and technical expertise."
     />
   )
 }

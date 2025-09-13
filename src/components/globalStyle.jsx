@@ -10,8 +10,6 @@ const size = {
   mobileL: '495px',
   tablet: '768px',
   laptop: '1024px',
-  laptopL: '1440px',
-  desktop: '2560px',
 }
 
 export const device = {
@@ -20,24 +18,15 @@ export const device = {
   mobileL: `(min-width: ${size.mobileL})`,
   tablet: `(min-width: ${size.tablet})`,
   laptop: `(min-width: ${size.laptop})`,
-  laptopL: `(min-width: ${size.laptopL})`,
-  desktop: `(min-width: ${size.desktop})`,
-  desktopL: `(min-width: ${size.desktop})`,
 }
 
 export const GlobalStyles = createGlobalStyle`
   ${normalize};
   
   body {
-    height: auto;
-    font-family: 'Georgia', 'Times New Roman', serif;
-    ${props =>
-      props.gradient
-        ? 'background-image: linear-gradient(135deg, rgba(169, 68, 66, 0.1) 0%, rgba(212, 165, 165, 0.15) 35%, rgba(245, 240, 232, 0.95) 70%, rgba(250, 246, 240, 1) 100%);'
-        : 'background-color: #faf6f0;'}
+    font-family: 'Lato', 'Georgia', 'Times New Roman', serif;
+    background-color: #faf6f0;
     background-attachment: fixed;
-    ${props =>
-      props.noscroll ? `@media ${device.tablet} {overflow: hidden;}` : ''}
   }
 
   h1 {
@@ -106,6 +95,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   ul {
+    font-family: 'Lato', sans-serif;
     font-size: 0.9rem;
     line-height: 1.6em;
     list-style-type: disc;
@@ -131,7 +121,6 @@ export const GlobalStyles = createGlobalStyle`
     &:focus {
       outline: 2px solid #d4a5a5;
       outline-offset: 2px;
-      border-radius: 3px;
       border-radius: 0.5rem;
     }
     
@@ -141,29 +130,17 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   p {
+    font-family: 'Lato', sans-serif;
     font-size: 0.9rem;
     text-align: left;
     color: #6b5b47;
     line-height: 1.6em;
-    font-weight: normal;
 
     @media ${device.tablet} {
       font-size: 1.1rem;
     }
   }
 
-  /* Override for navigation and special cases */
-  ${props =>
-    props.whitetext
-      ? `
-    a {
-      color: #faf6f0;
-      &:hover {
-        color: #f5f0e8;
-      }
-    }
-  `
-      : ''}
 
   svg {
     padding: 0.5em;

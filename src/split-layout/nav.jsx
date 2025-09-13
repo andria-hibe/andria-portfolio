@@ -2,7 +2,6 @@ import React from 'react'
 import { Link as GatsbyLink, graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import styled, { createGlobalStyle } from 'styled-components'
-import { useLocation } from '@reach/router'
 
 import { device, GlobalStyles } from '../components/globalStyle'
 import {
@@ -299,6 +298,7 @@ const InteractivePortfolioLink = styled.a`
   align-items: center;
   gap: 0.3rem;
   text-decoration: none;
+  font-family: 'Nunito', sans-serif;
   transition:
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.3s ease,
@@ -535,16 +535,14 @@ export default function Nav() {
   `)
 
   const pixelRabbitImage = getImage(data.pixelRabbit)
-  const location = useLocation()
 
   // Helper function to determine if a link is active
   const isActive = path => {
-    if (
-      path === '/' &&
-      (location.pathname === '/' || location.pathname === '/resume/')
-    )
+    if (typeof window === 'undefined') return false
+    const pathname = window.location.pathname
+    if (path === '/' && (pathname === '/' || pathname === '/resume/'))
       return true
-    if (path !== '/' && location.pathname.startsWith(path)) return true
+    if (path !== '/' && pathname.startsWith(path)) return true
     return false
   }
 

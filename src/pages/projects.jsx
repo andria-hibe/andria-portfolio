@@ -265,6 +265,7 @@ const ScrollButton = styled.button`
   cursor: pointer;
   z-index: 3;
   transition: all 0.2s ease;
+  font-family: 'Nunito', sans-serif;
   font-size: 14px;
   color: #ffffff;
   pointer-events: auto;

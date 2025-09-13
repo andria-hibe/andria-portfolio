@@ -5,11 +5,11 @@ import { device } from '../components/globalStyle'
 const BaseButton = styled.button`
   border: none;
   text-align: center;
-  border-radius: 1.2em;
+  border-radius: 0.6rem;
   padding: 0.8em 1.2em;
   font-size: 0.9rem;
   font-weight: 500;
-  font-family: 'Georgia', serif;
+  font-family: 'Nunito', sans-serif;
   transition: all 0.3s ease;
   cursor: pointer;
   letter-spacing: 0.3px;
