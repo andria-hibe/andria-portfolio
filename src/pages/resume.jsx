@@ -49,8 +49,7 @@ const resumeData = {
         '• Project Team Membership - enables linking people to projects without active allocations, simplifying reassignments and long-term capacity planning.',
         '• Workstreams - enables dividing projects into related activity groups with dedicated resource allocation.',
         '• Consistent Time Off - refactored leave logic for accurate forecasting.',
-        'Refactored backend logic and data models to improve accuracy and scalability.',
-        'Collaborated with product and design teams, often refining requirements and suggesting improvements.',
+        'Collaborated with product, design and customer success teams, often refining requirements and suggesting improvements.',
       ],
     },
     {
@@ -249,7 +248,11 @@ const SkillList = styled.ul`
   padding: 0;
 
   li {
-    background: #f8f9fa;
+    background: linear-gradient(
+      120deg,
+      rgba(166, 193, 238, 0.08) 0%,
+      rgba(251, 194, 235, 0.08) 100%
+    );
     padding: 0.3em 0.6em;
     margin-bottom: 0.3em;
     border-radius: 4px;
@@ -285,7 +288,11 @@ const ProjectGrid = styled.div`
 `
 
 const ProjectCard = styled.div`
-  background: #f8f9fa;
+  background: linear-gradient(
+    120deg,
+    rgba(166, 193, 238, 0.06) 0%,
+    rgba(251, 194, 235, 0.06) 100%
+  );
   padding: 1.2em;
   border-radius: 8px;
   border-left: 4px solid #3498db;
