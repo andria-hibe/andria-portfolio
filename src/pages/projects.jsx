@@ -510,6 +510,13 @@ export default function Projects() {
                 >
                   <Button text="GitHub" />
                 </a>
+                <a
+                  href="https://www.canva.com/design/DAFgZ0AtNg4/M8zzeI00LBemZp8ZqhZV2w/view?utm_content=DAFgZ0AtNg4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h39eb4cb3de"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button text="More details" />
+                </a>
               </ButtonLayout>
             </ProjectCard>
             <ProjectCard>
