@@ -21,6 +21,62 @@ const MonogramFont = createGlobalStyle`
   }
 `
 
+const FadeInAnimation = styled.div`
+  animation: fadeIn 0.8s ease-in-out;
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`
+
+const StaggeredAnimation = styled.div`
+  animation: fadeInUp 0.8s ease-in-out;
+  animation-delay: ${props => props.delay || '0s'};
+  animation-fill-mode: both;
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+`
+
+const SkipLink = styled.a`
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 2000;
+
+  &:focus {
+    top: 6px;
+  }
+`
+
+const FocusableElement = styled.div`
+  &:focus-within {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+`
+
 const MainContainer = styled.div`
   height: 100vh;
   display: flex;
@@ -31,14 +87,40 @@ const MainContainer = styled.div`
 `
 
 const HomeHeader = styled.h1`
-  font-size: 4.5rem;
+  font-size: 2.5rem;
   color: white;
   margin: 0;
+  text-align: center;
+
+  @media ${device.mobileL} {
+    font-size: 3.5rem;
+  }
+
+  @media ${device.tablet} {
+    font-size: 4rem;
+  }
+
+  @media ${device.laptop} {
+    font-size: 4.5rem;
+  }
 `
 
 const HomeSubheading = styled.h2`
-  font-size: 2rem;
+  font-size: 1.2rem;
   margin: 0;
+  text-align: center;
+
+  @media ${device.mobileL} {
+    font-size: 1.5rem;
+  }
+
+  @media ${device.tablet} {
+    font-size: 1.8rem;
+  }
+
+  @media ${device.laptop} {
+    font-size: 2rem;
+  }
 `
 
 const Divider = styled.hr`
@@ -68,38 +150,111 @@ const HomeCard = styled.div`
   margin: 1em;
   font-size: 2rem;
   font-family: Montserrat;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.05);
+    border-color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  &:focus-within {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+    transform: scale(1.05);
+  }
 `
 
 const IconContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin: 1em;
+  gap: 0.5rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  @media ${device.tablet} {
+    gap: 1rem;
+  }
+`
+
+const SocialIconLink = styled.a`
+  display: inline-block;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+    transform: scale(1.1);
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `
 
 const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
   color: #555555;
-  height: 4.5em;
-  width: 4.5em;
+  height: 3.5em;
+  width: 3.5em;
+  transition: all 0.3s ease;
+
+  @media ${device.tablet} {
+    height: 4.5em;
+    width: 4.5em;
+  }
+
+  ${SocialIconLink}:hover & {
+    color: #333333;
+  }
 `
 
 const StyledLinkedinLinkIcon = styled(TiSocialLinkedinCircular)`
   color: #555555;
-  height: 4.5em;
-  width: 4.5em;
+  height: 3.5em;
+  width: 3.5em;
+  transition: all 0.3s ease;
+
+  @media ${device.tablet} {
+    height: 4.5em;
+    width: 4.5em;
+  }
+
+  ${SocialIconLink}:hover & {
+    color: #0077b5;
+  }
 `
 
 const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
   color: #555555;
-  height: 4.5em;
-  width: 4.5em;
+  height: 3.5em;
+  width: 3.5em;
+  transition: all 0.3s ease;
+
+  @media ${device.tablet} {
+    height: 4.5em;
+    width: 4.5em;
+  }
+
+  ${SocialIconLink}:hover & {
+    color: #ea4335;
+  }
 `
 
 const TopRightCorner = styled.div`
   position: fixed;
-  top: 2rem;
-  right: 2rem;
+  top: 1rem;
+  right: 1rem;
   z-index: 1000;
   display: flex;
+
+  @media ${device.tablet} {
+    top: 2rem;
+    right: 2rem;
+  }
 `
 
 const CornerRabbitLink = styled.a`
@@ -157,51 +312,116 @@ export default function Home() {
   const pixelRabbitImage = getImage(data.pixelRabbit)
 
   return (
-    <MainContainer>
-      <MonogramFont />
-      <GlobalStyles gradient whitetext noscroll />
-      <HomeHeader>Andria Hibe</HomeHeader>
-      <Divider />
-      <HomeSubheading>Full Stack Developer</HomeSubheading>
-      <IconContainer>
-        <a href="mailto:andriacohibe@gmail.com">
-          <StyledEmailLinkIcon />
-        </a>
-        <a href="https://github.com/andria-hibe">
-          <StyledGithubLinkIcon />
-        </a>
-        <a href="https://www.linkedin.com/in/andriacristiahibe/">
-          <StyledLinkedinLinkIcon />
-        </a>
-      </IconContainer>
-      <TopRightCorner>
-        <CornerRabbitLink
-          href="https://andria-hibe.github.io/2d-portfolio-cottage/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <MonogramText>Check out my interactive portfolio!</MonogramText>
-          <PixelRabbitIcon
-            image={pixelRabbitImage}
-            alt="Interactive Portfolio"
-          />
-        </CornerRabbitLink>
-      </TopRightCorner>
-      <CardContainer>
-        <HomeCard>
-          <GatsbyLink to="/resume">Resume</GatsbyLink>
-        </HomeCard>
-        <HomeCard>
-          <GatsbyLink to="/projects">Projects</GatsbyLink>
-        </HomeCard>
-        <HomeCard>
-          <GatsbyLink to="/about">About</GatsbyLink>
-        </HomeCard>
-      </CardContainer>
-    </MainContainer>
+    <>
+      <SkipLink href="#main-content">Skip to main content</SkipLink>
+      <MainContainer>
+        <MonogramFont />
+        <GlobalStyles gradient whitetext noscroll />
+
+        <main id="main-content" role="main">
+          <FadeInAnimation>
+            <HomeHeader>Andria Hibe</HomeHeader>
+          </FadeInAnimation>
+
+          <StaggeredAnimation delay="0.2s">
+            <Divider />
+          </StaggeredAnimation>
+
+          <StaggeredAnimation delay="0.4s">
+            <HomeSubheading>Full Stack Developer</HomeSubheading>
+          </StaggeredAnimation>
+
+          <StaggeredAnimation delay="0.6s">
+            <IconContainer role="list" aria-label="Social media links">
+              <SocialIconLink
+                href="mailto:andriacohibe@gmail.com"
+                aria-label="Send email to Andria Hibe"
+                role="listitem"
+              >
+                <StyledEmailLinkIcon />
+              </SocialIconLink>
+              <SocialIconLink
+                href="https://github.com/andria-hibe"
+                aria-label="Visit Andria Hibe's GitHub profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+              >
+                <StyledGithubLinkIcon />
+              </SocialIconLink>
+              <SocialIconLink
+                href="https://www.linkedin.com/in/andriacristiahibe/"
+                aria-label="Visit Andria Hibe's LinkedIn profile"
+                target="_blank"
+                rel="noopener noreferrer"
+                role="listitem"
+              >
+                <StyledLinkedinLinkIcon />
+              </SocialIconLink>
+            </IconContainer>
+          </StaggeredAnimation>
+
+          <StaggeredAnimation delay="0.8s">
+            <CardContainer role="navigation" aria-label="Main navigation">
+              <HomeCard>
+                <GatsbyLink to="/resume" aria-label="View resume page">
+                  Resume
+                </GatsbyLink>
+              </HomeCard>
+              <HomeCard>
+                <GatsbyLink to="/projects" aria-label="View projects page">
+                  Projects
+                </GatsbyLink>
+              </HomeCard>
+              <HomeCard>
+                <GatsbyLink to="/about" aria-label="View about page">
+                  About
+                </GatsbyLink>
+              </HomeCard>
+            </CardContainer>
+          </StaggeredAnimation>
+        </main>
+
+        <TopRightCorner>
+          <CornerRabbitLink
+            href="https://andria-hibe.github.io/2d-portfolio-cottage/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Visit interactive 2D portfolio cottage"
+          >
+            <MonogramText>Check out my interactive portfolio!</MonogramText>
+            <PixelRabbitIcon
+              image={pixelRabbitImage}
+              alt="Pixel art rabbit icon"
+              loading="eager"
+            />
+          </CornerRabbitLink>
+        </TopRightCorner>
+      </MainContainer>
+    </>
   )
 }
 
 export function Head() {
-  return <SEO title="Andria Hibe" />
+  return (
+    <>
+      <SEO
+        title="Andria Hibe - Full Stack Developer"
+        description="Portfolio of Andria Hibe, a passionate Full Stack Developer specializing in modern web technologies. View my projects, resume, and interactive portfolio."
+      />
+      <link
+        rel="preload"
+        href="../fonts/monogram.ttf"
+        as="font"
+        type="font/ttf"
+        crossOrigin="anonymous"
+      />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="theme-color" content="#a6c1ee" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content="../images/pixel_rabbit.png" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:creator" content="@andria-hibe" />
+    </>
+  )
 }
