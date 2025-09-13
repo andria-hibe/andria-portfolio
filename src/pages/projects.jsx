@@ -67,6 +67,39 @@ const CarouselContainer = styled.div`
   position: relative;
   overflow: hidden;
   margin-bottom: 2em;
+
+  /* Add subtle fade indicators for scrollability on mobile */
+  @media (max-width: 767px) {
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      z-index: 2;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    &::before {
+      left: 0;
+      background: linear-gradient(
+        to right,
+        rgba(250, 246, 240, 0.8),
+        transparent
+      );
+    }
+
+    &::after {
+      right: 0;
+      background: linear-gradient(
+        to left,
+        rgba(250, 246, 240, 0.8),
+        transparent
+      );
+    }
+  }
 `
 
 const CarouselWrapper = styled.div`
@@ -86,7 +119,23 @@ const CarouselWrapper = styled.div`
 
   /* Prevent browser back/forward navigation on horizontal scroll */
   overscroll-behavior-x: contain;
-  touch-action: pan-x;
+  overscroll-behavior-y: auto;
+
+  /* Allow both horizontal and vertical touch actions */
+  touch-action: pan-x pan-y;
+
+  /* Mobile-specific improvements */
+  @media (max-width: 767px) {
+    padding: 0 1rem 1rem 1rem;
+    gap: 1rem;
+
+    /* More permissive touch handling on mobile */
+    touch-action: manipulation;
+    overscroll-behavior: auto;
+
+    /* Reduce momentum scrolling interference */
+    -webkit-overflow-scrolling: touch;
+  }
 
   @media ${device.tablet} {
     padding: 0 4rem 1rem 4rem;
@@ -94,8 +143,8 @@ const CarouselWrapper = styled.div`
 `
 
 const ProjectCard = styled.div`
-  min-width: 360px;
-  max-width: 420px;
+  min-width: 280px;
+  max-width: 320px;
   flex-shrink: 0;
   background: #f5f0e8;
   border: 1px solid #d4c4b0;
@@ -122,6 +171,16 @@ const ProjectCard = styled.div`
   & a,
   & button {
     pointer-events: auto;
+  }
+
+  @media ${device.mobileM} {
+    min-width: 300px;
+    max-width: 340px;
+  }
+
+  @media ${device.mobileL} {
+    min-width: 340px;
+    max-width: 380px;
   }
 
   @media ${device.tablet} {
@@ -195,25 +254,27 @@ const ScrollButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(212, 165, 165, 0.9);
-  border: 2px solid rgba(212, 165, 165, 0.4);
+  background: rgba(212, 165, 165, 0.95);
+  border: 2px solid rgba(212, 165, 165, 0.6);
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  z-index: 2;
+  z-index: 3;
   transition: all 0.2s ease;
-  font-size: 16px;
+  font-size: 14px;
   color: #ffffff;
   pointer-events: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 
   &:hover {
     background: rgba(212, 165, 165, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     border-color: rgba(212, 165, 165, 1);
+    transform: translateY(-50%) scale(1.1);
   }
 
   &:focus {
@@ -231,11 +292,25 @@ const ScrollButton = styled.button`
   }
 
   &.left {
-    left: 5px;
+    left: 2px;
   }
 
   &.right {
-    right: 5px;
+    right: 2px;
+  }
+
+  @media ${device.mobileM} {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+
+    &.left {
+      left: 4px;
+    }
+
+    &.right {
+      right: 4px;
+    }
   }
 
   @media ${device.tablet} {
@@ -259,7 +334,7 @@ export default function Projects() {
 
   const scrollCarousel = (ref, direction) => {
     if (ref.current) {
-      const scrollAmount = 350 // Scroll by card width
+      const scrollAmount = 320 // Adjusted for smaller mobile cards
       const currentScroll = ref.current.scrollLeft
       const targetScroll =
         direction === 'left'
@@ -271,6 +346,36 @@ export default function Projects() {
         behavior: 'smooth',
       })
     }
+  }
+
+  // Enhanced touch handling for mobile
+  const handleTouchStart = (ref, e) => {
+    if (!ref.current) return
+    const touch = e.touches[0]
+    ref.current.touchStartX = touch.clientX
+    ref.current.touchStartY = touch.clientY
+    ref.current.scrollStartX = ref.current.scrollLeft
+  }
+
+  const handleTouchMove = (ref, e) => {
+    if (!ref.current || !ref.current.touchStartX) return
+
+    const touch = e.touches[0]
+    const deltaX = ref.current.touchStartX - touch.clientX
+    const deltaY = ref.current.touchStartY - touch.clientY
+
+    // Only prevent default if horizontal movement is dominant
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
+      e.preventDefault()
+      ref.current.scrollLeft = ref.current.scrollStartX + deltaX
+    }
+  }
+
+  const handleTouchEnd = ref => {
+    if (!ref.current) return
+    ref.current.touchStartX = null
+    ref.current.touchStartY = null
+    ref.current.scrollStartX = null
   }
 
   return (
@@ -309,7 +414,12 @@ export default function Projects() {
           >
             ›
           </ScrollButton>
-          <CarouselWrapper ref={workProjectsRef}>
+          <CarouselWrapper
+            ref={workProjectsRef}
+            onTouchStart={e => handleTouchStart(workProjectsRef, e)}
+            onTouchMove={e => handleTouchMove(workProjectsRef, e)}
+            onTouchEnd={() => handleTouchEnd(workProjectsRef)}
+          >
             <ProjectCard>
               <ProjectCardHeading primary>
                 Enterprise Performance Optimization at Scale
@@ -449,7 +559,12 @@ export default function Projects() {
           >
             ›
           </ScrollButton>
-          <CarouselWrapper ref={personalProjectsRef}>
+          <CarouselWrapper
+            ref={personalProjectsRef}
+            onTouchStart={e => handleTouchStart(personalProjectsRef, e)}
+            onTouchMove={e => handleTouchMove(personalProjectsRef, e)}
+            onTouchEnd={() => handleTouchEnd(personalProjectsRef)}
+          >
             <ProjectCard>
               <ProjectCardHeading>
                 Andria's Cottage - Interactive Portfolio

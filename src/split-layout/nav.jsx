@@ -26,14 +26,22 @@ const NavContainer = styled.div`
   );
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  height: 4rem;
+  height: 6rem;
   width: 100%;
-  padding: 0 1rem;
+  padding: 0.5rem 0.75rem;
   box-shadow:
     0 8px 32px rgba(75, 63, 53, 0.12),
     0 2px 8px rgba(169, 68, 66, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media ${device.mobileM} {
+    padding: 0.5rem 0.85rem;
+  }
+
+  @media ${device.mobileL} {
+    padding: 0.5rem 1rem;
+  }
 
   @media ${device.tablet} {
     padding: 0 2rem;
@@ -47,7 +55,7 @@ const NavContainer = styled.div`
 `
 
 const NavHeader = styled.h1`
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: #faf6f0;
   margin: 0;
   text-align: left;
@@ -59,6 +67,21 @@ const NavHeader = styled.h1`
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
+  white-space: nowrap;
+  min-width: fit-content;
+  flex-shrink: 0;
+
+  @media ${device.mobileS} {
+    font-size: 0.95rem;
+  }
+
+  @media ${device.mobileM} {
+    font-size: 1.1rem;
+  }
+
+  @media ${device.mobileL} {
+    font-size: 1.2rem;
+  }
 
   @media ${device.tablet} {
     font-size: 1.4rem;
@@ -71,7 +94,7 @@ const NavHeader = styled.h1`
 
 const InteractivePortfolioTab = styled.div`
   position: sticky;
-  top: 4rem;
+  top: 6rem;
   right: 1rem;
   z-index: 999;
   display: flex;
@@ -94,26 +117,41 @@ const InteractivePortfolioTab = styled.div`
 const NavLinkContainer = styled.div`
   align-items: center;
   display: flex;
-  flex-direction: row;
-  gap: 0.3rem;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 0.15rem;
+  justify-content: center;
+  flex: 1;
+
+  @media ${device.mobileS} {
+    gap: 0.2rem;
+  }
+
+  @media ${device.mobileM} {
+    gap: 0.25rem;
+  }
+
+  @media ${device.mobileL} {
+    gap: 0.3rem;
+  }
 
   @media ${device.tablet} {
+    flex-direction: row;
     gap: 0.8rem;
+    justify-content: flex-end;
+    flex: none;
   }
 
   @media ${device.laptop} {
     gap: 1.2rem;
-    flex-wrap: nowrap;
   }
 `
 
 const NavLink = styled(GatsbyLink)`
-  padding: 0.5rem 0.75rem;
+  padding: 0.25rem 0.8rem;
   font-family: 'Nunito', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   font-weight: 500;
-  border-radius: 0.5rem;
+  border-radius: 0.3rem;
   transition:
     background-color 0.4s ease,
     color 0.4s ease,
@@ -122,6 +160,28 @@ const NavLink = styled(GatsbyLink)`
   position: relative;
   overflow: hidden;
   color: #faf7f2;
+  text-align: center;
+  white-space: nowrap;
+  min-width: fit-content;
+  width: auto;
+
+  @media ${device.mobileS} {
+    padding: 0.3rem 0.9rem;
+    font-size: 0.78rem;
+    border-radius: 0.35rem;
+  }
+
+  @media ${device.mobileM} {
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+    border-radius: 0.4rem;
+  }
+
+  @media ${device.mobileL} {
+    padding: 0.35rem 1.1rem;
+    font-size: 0.85rem;
+    border-radius: 0.45rem;
+  }
 
   @media ${device.tablet} {
     font-size: 1rem;
@@ -195,7 +255,16 @@ const NavLink = styled(GatsbyLink)`
 const IconContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 0.2rem;
+  gap: 0.1rem;
+  min-width: fit-content;
+
+  @media ${device.mobileM} {
+    gap: 0.15rem;
+  }
+
+  @media ${device.mobileL} {
+    gap: 0.2rem;
+  }
 
   @media ${device.tablet} {
     gap: 0.3rem;
@@ -207,9 +276,9 @@ const IconContainer = styled.div`
 `
 const linkIconMobileStyle = `
   color: #faf7f2; 
-  height: 2rem;
-  width: 2rem;
-  padding: 0.25rem;
+  height: 1.8rem;
+  width: 1.8rem;
+  padding: 0.2rem;
   transition: all 0.2s ease;
 `
 
@@ -228,28 +297,51 @@ const linkIconLaptopStyle = `
 const InteractivePortfolioLink = styled.a`
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.3rem;
   text-decoration: none;
   transition:
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.3s ease,
     box-shadow 0.3s ease;
-  padding: 0.5rem 1rem 1rem 1rem;
+  padding: 0.4rem 0.7rem 0.8rem 0.7rem;
   background: linear-gradient(
     135deg,
     rgba(169, 68, 66, 0.8) 0%,
     rgba(169, 68, 66, 0.9) 100%
   );
-  border-radius: 0 0 1rem 1rem;
+  border-radius: 0 0 0.8rem 0.8rem;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: none;
   width: fit-content;
-  margin-right: 1rem;
+  margin-right: 0.7rem;
   pointer-events: auto;
   position: relative;
   overflow: hidden;
-  transform: translateY(-0.7rem);
+  transform: translateY(-0.5rem);
+
+  @media ${device.mobileM} {
+    gap: 0.35rem;
+    padding: 0.45rem 0.8rem 0.9rem 0.8rem;
+    margin-right: 0.8rem;
+    transform: translateY(-0.6rem);
+  }
+
+  @media ${device.mobileL} {
+    gap: 0.4rem;
+    padding: 0.5rem 0.9rem 1rem 0.9rem;
+    border-radius: 0 0 0.9rem 0.9rem;
+    margin-right: 0.9rem;
+    transform: translateY(-0.65rem);
+  }
+
+  @media ${device.tablet} {
+    gap: 0.5rem;
+    padding: 0.5rem 1rem 1rem 1rem;
+    border-radius: 0 0 1rem 1rem;
+    margin-right: 1rem;
+    transform: translateY(-0.7rem);
+  }
 
   &::before {
     content: '';
@@ -271,14 +363,26 @@ const InteractivePortfolioLink = styled.a`
     color: #faf6f0 !important;
     background: linear-gradient(
       135deg,
-      rgba(169, 68, 66, 0.85) 0%,
-      rgba(169, 68, 66, 0.95) 100%
+      rgba(212, 165, 165, 0.9) 0%,
+      rgba(169, 68, 66, 0.85) 100%
     ) !important;
-    transform: translateY(-0.2rem);
+    transform: translateY(-0.7rem) scale(1.02);
     box-shadow: 0 6px 20px rgba(75, 63, 53, 0.2);
 
     &::before {
       left: 100%;
+    }
+
+    @media ${device.mobileM} {
+      transform: translateY(-0.8rem) scale(1.02);
+    }
+
+    @media ${device.mobileL} {
+      transform: translateY(-0.85rem) scale(1.02);
+    }
+
+    @media ${device.tablet} {
+      transform: translateY(-0.9rem) scale(1.02);
     }
   }
 
@@ -294,8 +398,8 @@ const InteractivePortfolioLink = styled.a`
 `
 
 const PixelRabbitIcon = styled(GatsbyImage)`
-  width: 2rem !important;
-  height: 2rem !important;
+  width: 1.6rem !important;
+  height: 1.6rem !important;
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -303,24 +407,48 @@ const PixelRabbitIcon = styled(GatsbyImage)`
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
-  transform: translateY(0.3rem);
+  transform: translateY(0.2rem);
+
+  @media ${device.mobileM} {
+    width: 1.7rem !important;
+    height: 1.7rem !important;
+    transform: translateY(0.25rem);
+  }
+
+  @media ${device.mobileL} {
+    width: 1.8rem !important;
+    height: 1.8rem !important;
+    transform: translateY(0.3rem);
+  }
 
   @media ${device.tablet} {
     width: 2.5rem !important;
     height: 2.5rem !important;
+    transform: translateY(0.3rem);
   }
 `
 
 const InteractivePortfolioText = styled.span`
   font-family: 'Nunito', sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: #faf7f2;
   white-space: nowrap;
   transition: color 0.3s ease;
-  transform: translateY(0.3rem);
+  transform: translateY(0.2rem);
+
+  @media ${device.mobileM} {
+    font-size: 0.8rem;
+    transform: translateY(0.25rem);
+  }
+
+  @media ${device.mobileL} {
+    font-size: 0.85rem;
+    transform: translateY(0.3rem);
+  }
 
   @media ${device.tablet} {
     font-size: 1rem;
+    transform: translateY(0.3rem);
   }
 `
 
