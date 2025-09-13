@@ -15,7 +15,7 @@ const PageHeading = styled.h1`
 const IntroText = styled.p`
   line-height: 1.6;
   margin-bottom: 1.5rem;
-  color: #2c3e50;
+  color: #4a3f35;
   font-size: 1.1rem;
   font-weight: 500;
 `
@@ -23,7 +23,7 @@ const IntroText = styled.p`
 const AboutParagraph = styled.p`
   line-height: 1.7;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #6b5b47;
   font-size: 1.05rem;
 
   @media ${device.tablet} {
@@ -34,7 +34,7 @@ const AboutParagraph = styled.p`
 const SectionHeader = styled.p`
   line-height: 1.6;
   margin-bottom: 1rem;
-  color: #2c3e50;
+  color: #4a3f35;
   font-weight: 600;
   font-size: 1.1rem;
 `
@@ -42,7 +42,7 @@ const SectionHeader = styled.p`
 const HobbiesList = styled.p`
   line-height: 1.8;
   margin-bottom: 1.5rem;
-  color: #333;
+  color: #6b5b47;
   font-size: 1.05rem;
 `
 
@@ -51,7 +51,7 @@ export default function About() {
     query {
       aboutMePhoto: file(
         sourceInstanceName: { eq: "images" }
-        name: { eq: "about-photo" }
+        name: { eq: "about_photo" }
       ) {
         childImageSharp {
           gatsbyImageData(width: 650, height: 450, layout: CONSTRAINED)
@@ -68,8 +68,10 @@ export default function About() {
         style={{
           maxWidth: '650px',
           maxHeight: '450px',
-          margin: '0 auto',
+          margin: '0 auto 2rem auto',
           display: 'block',
+          borderRadius: '12px',
+          boxShadow: '0 4px 16px rgba(75, 63, 53, 0.15)',
         }}
         image={getImage(data.aboutMePhoto)}
         alt="Photo of Andria"
@@ -123,9 +125,6 @@ export default function About() {
 
 export function Head() {
   return (
-    <SEO
-      title="A little bit about me"
-      description="There's something about Andria"
-    />
+    <SEO title="About Andria" description="There's something about Andria" />
   )
 }

@@ -1,456 +1,556 @@
 import React from 'react'
-import { Link as GatsbyLink, graphql, useStaticQuery } from 'gatsby'
-import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 
 import SEO from '../components/seo'
 import { device, GlobalStyles } from '../components/globalStyle'
-import {
-  TiSocialGithubCircular,
-  TiSocialAtCircular,
-  TiSocialLinkedinCircular,
-} from 'react-icons/ti'
+import SplitLayout from '../split-layout/split-layout'
+import Button from '../components/button'
 
-const MonogramFont = createGlobalStyle`
-  @font-face {
-    font-family: 'Monogram';
-    src: url('../fonts/monogram.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+// Resume data structure for easy updates
+const resumeData = {
+  personal: {
+    name: 'Andria Hibe',
+    email: 'andriacohibe@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/andriacristiahibe/',
+    github: 'https://github.com/andria-hibe',
+    portfolio: 'https://andriahibe.netlify.app',
+  },
+  profile:
+    'Full-stack engineer with a unique blend of technical expertise and business acumen. Experienced in delivering features end-to-end, collaborating with product and customer success, and contributing to architectural decisions. Background in legislative advocacy, data-driven marketing, and stakeholder management brings valuable perspective on user needs, regulatory considerations, and cross-functional collaboration. Proven ability to bridge technical complexity with business strategy, making complex systems accessible to diverse audiences.',
+  skills: {
+    technical: [
+      'TypeScript',
+      'React',
+      'GraphQL (Hasura)',
+      'Node.js',
+      'Ruby on Rails',
+      'Postgres',
+    ],
+    professional: [
+      'Feature Ownership',
+      'Product Collaboration',
+      'Communication',
+      'Stakeholder Engagement',
+      'Strategic Thinking',
+      'Project Coordination',
+    ],
+  },
+  experience: [
+    {
+      title: 'Senior Software Engineer',
+      company: 'Runn.io',
+      period: 'October 2020 - Present',
+      achievements: [
+        'Third engineering hire. Helped shape product direction, tech stack, and engineering culture as the company scaled.',
+        'Delivered enterprise performance improvements up to 10x for large accounts with 1,000+ users through client-side data handling optimization, GraphQL query improvements, and enhanced rendering logic for high-volume datasets.',
+        'Led and contributed to end-to-end delivery of major features, including:',
+        '• SmartMatching AI - intelligent resource matching based on people attributes, powered by AI.',
+        '• Project Templates - reusable project blueprints that streamline project setup and onboarding.',
+        '• Project Team Membership - enables linking people to projects without active allocations, simplifying reassignments and long-term capacity planning.',
+        '• Workstreams - enables dividing projects into related activity groups with dedicated resource allocation.',
+        '• Consistent Time Off - refactored leave logic for accurate forecasting.',
+        'Collaborated with product, design and customer success teams, often refining requirements and suggesting improvements.',
+      ],
+    },
+    {
+      title: 'Software Developer Intern',
+      company: 'Humanitarian OpenStreetMap Team (Outreachy Programme)',
+      period: 'May 2020 - August 2020',
+      achievements: [
+        'Developed a Slack app to improve internal communication and efficiency, integrating the Slack API, GitHub API, and OpenStreetMap tools.',
+        'Built the application using AWS services, including Lambda for logic, API Gateway for routing, SNS for messaging, and CloudFormation for infrastructure as code.',
+        'Collaborated with the dev team to plan an architecture focused on maintainability, scalability, and cost efficiency for an open-source community project.',
+      ],
+    },
+    {
+      title: 'Other Professional Experience',
+      company: '(Policy Advocacy, Marketing, and Event Management roles)',
+      period: '2013 - 2020',
+      achievements: [
+        'Legislative Advocacy - Successfully advocated for the passage of major economic legislation, developing skills in stakeholder alignment, strategic communication, and navigating complex regulatory environments.',
+        'Brand Management & Digital Marketing - Grew social media engagement by 50%+ and increased local economic activity by 15% through data-driven marketing campaigns and community events.',
+        'Business Development - Generated revenue through multi-channel sales strategies, client relationship management, and event coordination, building strong commercial acumen.',
+        'Cross-functional Leadership - Managed diverse stakeholders including government agencies, business owners, suppliers, and community groups, translating between technical and non-technical audiences.',
+      ],
+    },
+  ],
+  projects: [
+    {
+      name: 'Interactive Portfolio Game',
+      description:
+        'A gamified portfolio built with Kaplay.js, where visitors explore a virtual cottage to learn about me.',
+      tech: 'JavaScript, Kaplay.js, Vite',
+      links: [
+        {
+          label: 'Play',
+          url: 'https://andria-hibe.github.io/2d-portfolio-cottage/',
+        },
+        {
+          label: 'GitHub',
+          url: 'https://github.com/andria-hibe/2d-portfolio-cottage',
+        },
+      ],
+    },
+    {
+      name: 'Personal Portfolio Website',
+      description:
+        'Clean, responsive website showcasing my projects and experience.',
+      tech: 'React, Gatsby, Styled Components, Netlify',
+      links: [
+        {
+          label: 'GitHub',
+          url: 'https://github.com/andria-hibe/andria-portfolio',
+        },
+      ],
+    },
+    {
+      name: 'Slackbot Router (HOTOSM)',
+      description:
+        'Open-source Slack bot framework with asynchronous message routing, integrating multiple APIs to automate tasks and improve internal communications.',
+      tech: 'Node.js, AWS (Lambda, API Gateway, SNS, CloudFormation)',
+      links: [
+        {
+          label: 'GitHub',
+          url: 'https://github.com/hotosm/slack-bots/',
+        },
+        {
+          label: 'Details',
+          url: 'https://www.canva.com/design/DAFgZ0AtNg4/M8zzeI00LBemZp8ZqhZV2w/view?utm_content=DAFgZ0AtNg4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h39eb4cb3de',
+        },
+      ],
+    },
+    {
+      name: 'Peer Postie',
+      description:
+        'Hackathon-winning prototype for a peer-to-peer delivery service (Hack the Crisis NZ 2020, 800+ participants).',
+      tech: 'React, Node.js, Google Maps API',
+      links: [{ label: 'Watch Pitch', url: 'https://youtu.be/Ju80eMQxyC8' }],
+    },
+  ],
+  education: [
+    {
+      degree: 'Web Development Bootcamp',
+      institution: 'Enspiral DevAcademy',
+      details: [
+        'Simulated work environment using modern web development tech stack',
+        'Completed projects with tight deadlines following Agile and Scrum principles',
+      ],
+    },
+    {
+      degree: 'Bachelor of Arts in International Studies',
+      institution: 'De La Salle University',
+      details: [
+        'Graduated with First Class Honours',
+        'Awarded Outstanding Thesis',
+      ],
+    },
+  ],
+}
+
+// Styled components for better readability
+const ResumeContainer = styled.div`
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+  color: #333;
+  padding: 0 1rem;
+
+  @media ${device.tablet} {
+    padding: 0 2rem;
+  }
+
+  @media ${device.laptop} {
+    padding: 0;
   }
 `
 
-const FadeInAnimation = styled.div`
-  animation: fadeIn 0.8s ease-in-out;
+const Header = styled.header`
+  text-align: center;
+  margin-bottom: 1.5em;
+  padding-bottom: 1em;
+  border-bottom: 2px solid #d4c4b0;
 
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  @media ${device.tablet} {
+    margin-bottom: 2em;
+    padding-bottom: 1.5em;
   }
 `
 
-const StaggeredAnimation = styled.div`
-  animation: fadeInUp 0.8s ease-in-out;
-  animation-delay: ${props => props.delay || '0s'};
-  animation-fill-mode: both;
-
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-`
-
-const SkipLink = styled.a`
-  position: absolute;
-  top: -40px;
-  left: 6px;
-  background: #000;
-  color: white;
-  padding: 8px;
-  text-decoration: none;
-  border-radius: 4px;
-  z-index: 2000;
-
-  &:focus {
-    top: 6px;
-  }
-`
-
-const FocusableElement = styled.div`
-  &:focus-within {
-    outline: 2px solid #ffffff;
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-`
-
-const MainContainer = styled.div`
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  margin: 1.5em 1em;
-`
-
-const HomeHeader = styled.h1`
-  font-size: 2.5rem;
+const Name = styled.h1`
+  font-family: 'Playfair Display', serif;
   font-weight: 300;
-  color: white;
-  margin: 0;
-  text-align: center;
-
-  @media ${device.mobileL} {
-    font-size: 3.5rem;
-  }
+  font-size: 2em;
+  margin-bottom: 0.2em;
+  color: #4a3f35;
 
   @media ${device.tablet} {
-    font-size: 4rem;
-  }
-
-  @media ${device.laptop} {
-    font-size: 4.5rem;
+    font-size: 2.5em;
   }
 `
 
-const HomeSubheading = styled.h2`
-  font-size: 1.2rem;
-  margin: 0;
-  text-align: center;
-
-  @media ${device.mobileL} {
-    font-size: 1.5rem;
-  }
+const ContactInfo = styled.div`
+  font-size: 0.8em;
+  color: #8b7a6b;
+  margin-bottom: 1em;
+  line-height: 1.4;
 
   @media ${device.tablet} {
-    font-size: 1.8rem;
+    font-size: 0.9em;
   }
 
-  @media ${device.laptop} {
-    font-size: 2rem;
-  }
-`
+  a {
+    color: #a94442;
+    text-decoration: none;
 
-const Divider = styled.hr`
-  width: 20em;
-  border: 0.1px solid #828282;
-
-  @media ${device.laptop} {
-    width: 30em;
-  }
-`
-
-const CardContainer = styled.div`
-  @media ${device.laptop} {
-    display: flex;
-    flex-direction: row;
-  }
-`
-
-const HomeCard = styled(GatsbyLink)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 7em;
-  height: 3em;
-  border-radius: 0.8em;
-  border: 0.1em solid rgba(255, 255, 255, 0.2);
-  margin: 1em;
-  font-size: 2rem;
-  font-family: 'Nunito', sans-serif;
-  transition: all 0.3s ease;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  position: relative;
-  overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.4),
-      transparent
-    );
-    transition: left 0.6s ease;
-  }
-
-  &:hover {
-    transform: scale(1.05);
-    border-color: rgba(255, 255, 255, 0.4);
-    background: rgba(255, 255, 255, 0.2);
-    color: #828282;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
-
-    &::before {
-      left: 100%;
-    }
-  }
-
-  &:focus {
-    outline: 2px solid #ffffff;
-    outline-offset: 2px;
-    transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.2);
-
-    &::before {
-      left: 100%;
+    &:hover {
+      text-decoration: underline;
     }
   }
 `
 
-const IconContainer = styled.div`
+const Section = styled.section`
+  margin-bottom: 2em;
+
+  @media ${device.tablet} {
+    margin-bottom: 2.5em;
+  }
+`
+
+const SectionTitle = styled.h2`
+  font-family: 'Playfair Display', serif;
+  font-weight: 300;
+  font-size: 1.4em;
+  color: #4a3f35;
+  margin-bottom: 1em;
+  padding-bottom: 0.3em;
+  border-bottom: 1px solid #d4c4b0;
+`
+
+const SubSection = styled.div`
+  margin-bottom: 1.5em;
+  padding-bottom: 1.5em;
+  border-bottom: 1px solid rgba(212, 196, 176, 0.4);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+`
+
+const JobTitle = styled.h3`
+  font-size: 1.1em;
+  color: #4a3f35;
+  margin-bottom: 0.2em;
+`
+
+const Company = styled.h4`
+  font-size: 1em;
+  color: #a94442;
+  margin-bottom: 0.2em;
+  margin-top: 0.1em;
+`
+
+const Period = styled.p`
+  font-size: 0.9em;
+  color: #8b7a6b;
+  margin-bottom: 0.8em;
+  font-style: italic;
+`
+
+const SkillGrid = styled.div`
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1em;
+  margin-bottom: 1em;
+
+  @media ${device.tablet} {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5em;
+  }
+`
+
+const SkillCategory = styled.div`
+  h4 {
+    color: #4a3f35;
+    margin-bottom: 0.5em;
+    font-size: 1em;
+  }
+`
+
+const SkillList = styled.ul`
+  list-style: none;
+  padding: 0;
+
+  li {
+    background: #f5f0e8;
+    padding: 0.3em 0.6em;
+    margin-bottom: 0.3em;
+    border-radius: 4px;
+    font-size: 0.9em;
+    border-left: 3px solid #a94442;
+  }
+`
+
+const AchievementList = styled.ul`
+  margin-left: 0;
+  padding-left: 1em;
+
+  li {
+    margin-bottom: 0.5em;
+    line-height: 1.5;
+
+    &.indented {
+      margin-left: 1.5em;
+      list-style-type: none;
+      text-indent: -0.8em;
+      padding-left: 0.8em;
+    }
+  }
+`
+
+const ProjectGrid = styled.div`
+  display: grid;
+  gap: 1.5em;
+
+  @media ${device.laptop} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+`
+
+const ProjectCard = styled.div`
+  background: #f5f0e8;
+  border: 1px solid #d4c4b0;
+  padding: 1.2em;
+  border-radius: 12px;
+  border-left: 4px solid #a94442;
+  margin-bottom: 1.5em;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h4 {
+    color: #4a3f35;
+    margin-bottom: 0.5em;
+  }
+
+  p {
+    margin-bottom: 0.5em;
+    line-height: 1.5;
+  }
+
+  .tech {
+    font-size: 0.85em;
+    color: #8b7a6b;
+    font-style: italic;
+    margin-bottom: 0.8em;
+  }
+`
+
+const ProjectLinks = styled.div`
   display: flex;
-  flex-direction: row;
-  margin: 1em;
-  gap: 0.5rem;
-  justify-content: center;
+  gap: 0.8em;
+  margin-top: 0.8em;
   flex-wrap: wrap;
-
-  @media ${device.tablet} {
-    gap: 1rem;
-  }
 `
 
-const SocialIconLink = styled.a`
-  display: inline-block;
-  padding: 0.5rem;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+const SubtleLink = styled.a`
+  font-size: 0.8em;
+  color: #a94442;
+  text-decoration: none;
+  padding: 0.3em 0.6em;
+  border: 1px solid rgba(169, 68, 66, 0.3);
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  background: rgba(169, 68, 66, 0.05);
+
+  &:hover {
+    background: rgba(169, 68, 66, 0.1);
+    border-color: rgba(169, 68, 66, 0.5);
+    transform: translateY(-1px);
+  }
 
   &:focus {
-    outline: 2px solid #ffffff;
+    outline: 1px solid #d4a5a5;
     outline-offset: 2px;
-    transform: scale(1.1);
   }
 
-  &:hover {
-    transform: scale(1.1);
-  }
-`
-
-const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
-  color: #555555;
-  height: 3.5em;
-  width: 3.5em;
-  transition: all 0.3s ease;
-
-  @media ${device.tablet} {
-    height: 4.5em;
-    width: 4.5em;
-  }
-
-  ${SocialIconLink}:hover & {
-    color: #333333;
+  &:focus:not(:focus-visible) {
+    outline: none;
   }
 `
 
-const StyledLinkedinLinkIcon = styled(TiSocialLinkedinCircular)`
-  color: #555555;
-  height: 3.5em;
-  width: 3.5em;
-  transition: all 0.3s ease;
-
-  @media ${device.tablet} {
-    height: 4.5em;
-    width: 4.5em;
-  }
-
-  ${SocialIconLink}:hover & {
-    color: #0077b5;
-  }
-`
-
-const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
-  color: #555555;
-  height: 3.5em;
-  width: 3.5em;
-  transition: all 0.3s ease;
-
-  @media ${device.tablet} {
-    height: 4.5em;
-    width: 4.5em;
-  }
-
-  ${SocialIconLink}:hover & {
-    color: #ea4335;
-  }
-`
-
-const TopRightCorner = styled.div`
-  position: fixed;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1000;
+const ButtonLayout = styled.div`
   display: flex;
-
-  @media ${device.tablet} {
-    top: 2rem;
-    right: 2rem;
-  }
-`
-
-const CornerRabbitLink = styled.a`
-  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: 1.5em;
   align-items: center;
-  gap: 0.5rem;
-  text-decoration: none;
-  transition: transform 0.3s ease;
 
-  &:hover {
-    transform: scale(1.1);
+  @media ${device.tablet} {
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 2em;
+    gap: 0.8em;
+  }
+
+  @media ${device.laptop} {
+    padding-bottom: 3em;
   }
 `
 
-const PixelRabbitIcon = styled(GatsbyImage)`
-  width: 3rem !important;
-  height: 3rem !important;
-  border-radius: 0.3rem;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.4));
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-  image-rendering: pixelated;
-`
+const Profile = styled.p`
+  font-size: 1.05em;
+  line-height: 1.7;
+  color: #555;
+  text-align: justify;
+  margin-bottom: 0;
 
-const MonogramText = styled.p`
-  font-family: 'Monogram', monospace;
-  font-size: 0.8rem;
-  color: white;
-  margin: 0;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
-  text-align: center;
-  white-space: nowrap;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-
-  &:hover {
-    opacity: 0.8;
+  @media ${device.tablet} {
+    font-size: 1.1em;
   }
 `
 
-export default function Home() {
-  const data = useStaticQuery(graphql`
-    query {
-      pixelRabbit: file(
-        sourceInstanceName: { eq: "images" }
-        name: { eq: "pixel_rabbit" }
-      ) {
-        childImageSharp {
-          gatsbyImageData(width: 80, height: 80, layout: FIXED, quality: 100)
-        }
-      }
-    }
-  `)
-
-  const pixelRabbitImage = getImage(data.pixelRabbit)
-
+export default function Index() {
   return (
-    <>
-      <SkipLink href="#main-content">Skip to main content</SkipLink>
-      <MainContainer>
-        <MonogramFont />
-        <GlobalStyles gradient whitetext noscroll />
+    <SplitLayout>
+      <GlobalStyles />
+      <ResumeContainer>
+        <Header>
+          <Name>{resumeData.personal.name}</Name>
+          <ContactInfo>
+            <a href={`mailto:${resumeData.personal.email}`}>
+              {' '}
+              {resumeData.personal.email}
+            </a>{' '}
+            ·
+            <a
+              href={resumeData.personal.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {' '}
+              LinkedIn
+            </a>{' '}
+            ·
+            <a
+              href={resumeData.personal.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {' '}
+              GitHub
+            </a>
+          </ContactInfo>
+          <ButtonLayout>
+            <a href={`mailto:${resumeData.personal.email}`}>
+              <Button variant="primary">Email me!</Button>
+            </a>
+            <a href="https://drive.google.com/uc?export=download&id=1WFBif-SXgrJOJGzeigoZwM7V6Eo5QTko">
+              <Button variant="primary">Download as pdf</Button>
+            </a>
+          </ButtonLayout>
+        </Header>
 
-        <main id="main-content" role="main">
-          <FadeInAnimation>
-            <HomeHeader>Andria Hibe</HomeHeader>
-          </FadeInAnimation>
+        <Section>
+          <SectionTitle>Profile</SectionTitle>
+          <Profile>{resumeData.profile}</Profile>
+        </Section>
 
-          <StaggeredAnimation delay="0.2s">
-            <Divider />
-          </StaggeredAnimation>
+        <Section>
+          <SectionTitle>Key Skills</SectionTitle>
+          <SkillGrid>
+            <SkillCategory>
+              <h4>Technical</h4>
+              <SkillList>
+                {resumeData.skills.technical.map((skill, index) => (
+                  <li key={index}>{skill}</li>
+                ))}
+              </SkillList>
+            </SkillCategory>
+            <SkillCategory>
+              <h4>Professional</h4>
+              <SkillList>
+                {resumeData.skills.professional.map((skill, index) => (
+                  <li key={index}>{skill}</li>
+                ))}
+              </SkillList>
+            </SkillCategory>
+          </SkillGrid>
+        </Section>
 
-          <StaggeredAnimation delay="0.4s">
-            <HomeSubheading>Full Stack Developer</HomeSubheading>
-          </StaggeredAnimation>
+        <Section>
+          <SectionTitle>Professional Experience</SectionTitle>
+          {resumeData.experience.map((job, index) => (
+            <SubSection key={index}>
+              <JobTitle>{job.title}</JobTitle>
+              <Company>{job.company}</Company>
+              <Period>{job.period}</Period>
+              <AchievementList>
+                {job.achievements.map((achievement, achIndex) => (
+                  <li
+                    key={achIndex}
+                    className={achievement.startsWith('•') ? 'indented' : ''}
+                  >
+                    {achievement}
+                  </li>
+                ))}
+              </AchievementList>
+            </SubSection>
+          ))}
+        </Section>
 
-          <StaggeredAnimation delay="0.6s">
-            <IconContainer role="list" aria-label="Social media links">
-              <SocialIconLink
-                href="mailto:andriacohibe@gmail.com"
-                aria-label="Send email to Andria Hibe"
-                role="listitem"
-              >
-                <StyledEmailLinkIcon />
-              </SocialIconLink>
-              <SocialIconLink
-                href="https://github.com/andria-hibe"
-                aria-label="Visit Andria Hibe's GitHub profile"
-                target="_blank"
-                rel="noopener noreferrer"
-                role="listitem"
-              >
-                <StyledGithubLinkIcon />
-              </SocialIconLink>
-              <SocialIconLink
-                href="https://www.linkedin.com/in/andriacristiahibe/"
-                aria-label="Visit Andria Hibe's LinkedIn profile"
-                target="_blank"
-                rel="noopener noreferrer"
-                role="listitem"
-              >
-                <StyledLinkedinLinkIcon />
-              </SocialIconLink>
-            </IconContainer>
-          </StaggeredAnimation>
+        <Section>
+          <SectionTitle>Projects (Personal & Open Source)</SectionTitle>
+          <ProjectGrid>
+            {resumeData.projects.map((project, index) => (
+              <ProjectCard key={index}>
+                <h4>{project.name}</h4>
+                <p>{project.description}</p>
+                <p className="tech">{project.tech}</p>
+                {project.links && (
+                  <ProjectLinks>
+                    {project.links.map((link, linkIndex) => (
+                      <SubtleLink
+                        key={linkIndex}
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {link.label}
+                      </SubtleLink>
+                    ))}
+                  </ProjectLinks>
+                )}
+              </ProjectCard>
+            ))}
+          </ProjectGrid>
+        </Section>
 
-          <StaggeredAnimation delay="0.8s">
-            <CardContainer role="navigation" aria-label="Main navigation">
-              <HomeCard to="/resume" aria-label="View resume page">
-                Resume
-              </HomeCard>
-              <HomeCard to="/projects" aria-label="View projects page">
-                Projects
-              </HomeCard>
-              <HomeCard to="/about" aria-label="View about page">
-                About
-              </HomeCard>
-            </CardContainer>
-          </StaggeredAnimation>
-        </main>
-
-        <TopRightCorner>
-          <CornerRabbitLink
-            href="https://andria-hibe.github.io/2d-portfolio-cottage/"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Visit interactive 2D portfolio cottage"
-          >
-            <MonogramText>Check out my interactive portfolio!</MonogramText>
-            <PixelRabbitIcon
-              image={pixelRabbitImage}
-              alt="Pixel art rabbit icon"
-              loading="eager"
-            />
-          </CornerRabbitLink>
-        </TopRightCorner>
-      </MainContainer>
-    </>
+        <Section>
+          <SectionTitle>Education</SectionTitle>
+          {resumeData.education.map((edu, index) => (
+            <SubSection key={index}>
+              <JobTitle>{edu.degree}</JobTitle>
+              <Company>{edu.institution}</Company>
+              <AchievementList>
+                {edu.details.map((detail, detailIndex) => (
+                  <li key={detailIndex}>{detail}</li>
+                ))}
+              </AchievementList>
+            </SubSection>
+          ))}
+        </Section>
+      </ResumeContainer>
+    </SplitLayout>
   )
 }
 
 export function Head() {
   return (
-    <>
-      <SEO
-        title="Andria Hibe - Full Stack Developer"
-        description="Portfolio of Andria Hibe, a passionate Full Stack Developer specializing in modern web technologies. View my projects, resume, and interactive portfolio."
-      />
-      <link
-        rel="preload"
-        href="../fonts/monogram.ttf"
-        as="font"
-        type="font/ttf"
-        crossOrigin="anonymous"
-      />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <meta name="theme-color" content="#a6c1ee" />
-      <meta property="og:type" content="website" />
-      <meta property="og:image" content="../images/pixel_rabbit.png" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:creator" content="@andria-hibe" />
-    </>
+    <SEO
+      title="Andria Hibe - Full Stack Developer"
+      description="Portfolio of Andria Hibe, a passionate Full Stack Developer specializing in modern web technologies."
+    />
   )
 }

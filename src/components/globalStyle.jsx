@@ -30,11 +30,12 @@ export const GlobalStyles = createGlobalStyle`
   
   body {
     height: auto;
-    font-family: Lato;
+    font-family: 'Georgia', 'Times New Roman', serif;
     ${props =>
       props.gradient
-        ? 'background-image: linear-gradient(180deg, rgba(166, 193, 238, 0.9) 0%, rgba(251, 194, 235, 0.9) 100%);'
-        : 'background-color: #fff2f9;'}
+        ? 'background-image: linear-gradient(135deg, rgba(169, 68, 66, 0.1) 0%, rgba(212, 165, 165, 0.15) 35%, rgba(245, 240, 232, 0.95) 70%, rgba(250, 246, 240, 1) 100%);'
+        : 'background-color: #faf6f0;'}
+    background-attachment: fixed;
     ${props =>
       props.noscroll ? `@media ${device.tablet} {overflow: hidden;}` : ''}
   }
@@ -43,19 +44,22 @@ export const GlobalStyles = createGlobalStyle`
     font-family: 'Playfair Display', serif;
     text-align: center;
     font-size: 2rem;
-    color: #5b5b5b;
+    color: #4a3f35;
+    font-weight: 400;
+    letter-spacing: 0.5px;
     
     @media ${device.tablet} {
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
-
   }
 
   h2 {
-    font-family: Lato;
-    color: #5b5b5b;
+    font-family: 'Georgia', serif;
+    color: #4a3f35;
     text-align: center;
     font-size: 1.35rem;
+    font-weight: 400;
+    letter-spacing: 0.3px;
     
     @media ${device.tablet} {
       font-size: 1.8rem;
@@ -63,11 +67,12 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   h3 {
-    font-family: Lato;
+    font-family: 'Georgia', serif;
     font-size: 1.35rem;
     text-align: left;
-    color: #ff9498;
+    color: #a94442;
     margin: 1em 0 0;
+    font-weight: 500;
 
     @media ${device.tablet} {
       font-size: 1.6rem;
@@ -76,11 +81,11 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   h4 {
-    font-family: Lato;
+    font-family: 'Georgia', serif;
     font-size: 1.1rem;
     text-align: left;
-    color: #53c0f6;
-    font-weight: bold;
+    color: #a94442;
+    font-weight: 600;
     margin: 1em 0 0;
 
     @media ${device.tablet} {
@@ -91,8 +96,8 @@ export const GlobalStyles = createGlobalStyle`
 
   h5 {
     font-size: 0.9rem;
-    color: #5b5b5b;
-    font-weight: bold;
+    color: #6b5b47;
+    font-weight: 600;
     margin: 1em 0 0;
 
     @media ${device.tablet} {
@@ -102,10 +107,10 @@ export const GlobalStyles = createGlobalStyle`
 
   ul {
     font-size: 0.9rem;
-    line-height: 1.5em;
-    list-style-type: circle;
+    line-height: 1.6em;
+    list-style-type: disc;
     text-align: left;
-    color: #5b5b5b;
+    color: #6b5b47;
     margin: 0.5em 0;
 
     @media ${device.tablet} {
@@ -115,14 +120,31 @@ export const GlobalStyles = createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: white;
+    color: #a94442;
+    transition: all 0.3s ease;
+
+    &:hover {
+      color: #c85e5a;
+      text-shadow: 0 1px 2px rgba(169, 68, 66, 0.2);
+    }
+
+    &:focus {
+      outline: 2px solid #d4a5a5;
+      outline-offset: 2px;
+      border-radius: 3px;
+      border-radius: 0.5rem;
+    }
+    
+    &:focus:not(:focus-visible) {
+      outline: none;
+    }
   }
 
   p {
     font-size: 0.9rem;
     text-align: left;
-    color: #5b5b5b;
-    line-height: 1.4em;
+    color: #6b5b47;
+    line-height: 1.6em;
     font-weight: normal;
 
     @media ${device.tablet} {
@@ -130,15 +152,26 @@ export const GlobalStyles = createGlobalStyle`
     }
   }
 
-  a:hover {
-    ${props => (props.whitetext ? 'color: #5b5b5b;' : 'color: white;')}
-  }
+  /* Override for navigation and special cases */
+  ${props =>
+    props.whitetext
+      ? `
+    a {
+      color: #faf6f0;
+      &:hover {
+        color: #f5f0e8;
+      }
+    }
+  `
+      : ''}
 
   svg {
-    padding: 0.5em
+    padding: 0.5em;
+    transition: all 0.3s ease;
   }
 
   svg:hover {
-    fill: #E0E0E0
+    fill: #f5f0e8;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
   }
 `

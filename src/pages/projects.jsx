@@ -31,7 +31,7 @@ const SectionTitle = styled.h2`
   font-family: 'Playfair Display', serif;
   font-weight: 300;
   margin-bottom: 0.5em;
-  color: #5b5b5b;
+  color: #6b5b47;
   font-size: 1.8rem;
 
   @media ${device.tablet} {
@@ -41,7 +41,7 @@ const SectionTitle = styled.h2`
 
 const SectionSubtitle = styled.p`
   margin-bottom: 1.5em;
-  color: #888;
+  color: #6b5b47;
   font-size: 1rem;
   font-style: italic;
   line-height: 1.4;
@@ -53,16 +53,12 @@ const SectionSubtitle = styled.p`
 
 const TechStack = styled.span`
   font-weight: 600;
-  color: #5b5b5b;
+  color: #6b5b47;
   font-style: normal;
-  background: linear-gradient(
-    120deg,
-    rgba(83, 192, 246, 0.1) 0%,
-    rgba(166, 193, 238, 0.1) 100%
-  );
+  background: #f5f0e8;
   padding: 0.3em 0.6em;
   border-radius: 0.5em;
-  border-left: 3px solid #53c0f6;
+  border-left: 3px solid #a94442;
   display: inline-block;
   margin-top: 0.5em;
 `
@@ -101,17 +97,19 @@ const ProjectCard = styled.div`
   min-width: 360px;
   max-width: 420px;
   flex-shrink: 0;
-  background: white;
-  box-shadow: 0.25em 0.5em 1.5em rgba(91, 91, 91, 0.25);
-  border-radius: 1em;
+  background: #f5f0e8;
+  border: 1px solid #d4c4b0;
+  box-shadow: 0.25em 0.5em 1.5em rgba(75, 63, 53, 0.15);
+  border-radius: 1.2em;
   overflow: hidden;
   transition: all 0.2s linear;
-  color: #5b5b5b;
+  color: #6b5b47;
   padding-bottom: 1em;
   position: relative;
 
   &:hover {
-    box-shadow: 0.25em 1em 3em rgba(91, 91, 91, 0.3);
+    background: #faf6f0;
+    box-shadow: 0.25em 1em 3em rgba(75, 63, 53, 0.2);
     transform: translateY(-4px);
   }
 
@@ -135,13 +133,10 @@ const ProjectCard = styled.div`
 const ProjectCardHeading = styled.h2`
   text-align: center;
   padding: 1.2rem 1.5rem;
-  background-image: ${props =>
-    props.primary
-      ? 'linear-gradient(120deg, #ff9a9e 0%, #fecfef 100%)'
-      : 'linear-gradient(120deg, #ffc3a0 0%, #ffafbd 100%)'};
+  background: linear-gradient(135deg, #d4a5a5 0%, #e6c4a0 100%);
   margin: 0 0 1.5rem 0;
   font-size: 1.3rem;
-  color: white;
+  color: #ffffff;
   line-height: 1.3;
 
   @media ${device.tablet} {
@@ -166,25 +161,22 @@ const ProjectCardList = styled.ul`
 `
 
 const StyledStackContainer = styled.div`
-  background: linear-gradient(
-    120deg,
-    rgba(83, 192, 246, 0.1) 0%,
-    rgba(166, 193, 238, 0.1) 100%
-  );
+  background: #f5f0e8;
   padding: 0.8em 1em;
   margin: 0.5em 1em;
   border-radius: 0.5em;
-  border-left: 3px solid #53c0f6;
+  border-left: 3px solid #a94442;
 
   h5 {
     margin: 0 0 0.5em 0;
     font-weight: 600;
-    color: #5b5b5b;
+    color: #4a3f35;
   }
 
   ul {
     margin: 0;
     padding-left: 1.2em;
+    color: #6b5b47;
   }
 `
 
@@ -203,8 +195,8 @@ const ScrollButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(255, 255, 255, 0.9);
-  border: 2px solid rgba(91, 91, 91, 0.2);
+  background: rgba(212, 165, 165, 0.9);
+  border: 2px solid rgba(212, 165, 165, 0.4);
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -215,13 +207,22 @@ const ScrollButton = styled.button`
   z-index: 2;
   transition: all 0.2s ease;
   font-size: 16px;
-  color: #5b5b5b;
+  color: #ffffff;
   pointer-events: auto;
 
   &:hover {
-    background: white;
+    background: rgba(212, 165, 165, 1);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    border-color: rgba(91, 91, 91, 0.3);
+    border-color: rgba(212, 165, 165, 1);
+  }
+
+  &:focus {
+    outline: 2px solid #d4a5a5;
+    outline-offset: 2px;
+  }
+
+  &:focus:not(:focus-visible) {
+    outline: none;
   }
 
   &:disabled {
@@ -471,14 +472,14 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button text="Play" />
+                  <Button variant="primary">Play</Button>
                 </a>
                 <a
                   href="https://github.com/andria-hibe/2d-portfolio-cottage"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button text="GitHub" />
+                  <Button variant="primary">GitHub</Button>
                 </a>
               </ButtonLayout>
             </ProjectCard>
@@ -515,14 +516,14 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button text="GitHub" />
+                  <Button variant="primary">GitHub</Button>
                 </a>
                 <a
                   href="https://www.canva.com/design/DAFgZ0AtNg4/M8zzeI00LBemZp8ZqhZV2w/view?utm_content=DAFgZ0AtNg4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h39eb4cb3de"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button text="More details" />
+                  <Button variant="primary">More details</Button>
                 </a>
               </ButtonLayout>
             </ProjectCard>
@@ -553,7 +554,7 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button text="GitHub" />
+                  <Button variant="primary">GitHub</Button>
                 </a>
               </ButtonLayout>
             </ProjectCard>
@@ -588,7 +589,7 @@ export default function Projects() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button text="Watch pitch" />
+                  <Button variant="primary">Watch pitch</Button>
                 </a>
               </ButtonLayout>
             </ProjectCard>

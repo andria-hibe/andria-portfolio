@@ -20,19 +20,50 @@ const CenteredContainer = styled.div`
 const CenteredH3 = styled.h3`
   text-align: center;
   margin: 0;
+  color: #4a3f35;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  font-size: 1.8rem;
+
+  @media (min-width: 768px) {
+    font-size: 2.2rem;
+  }
 `
 
 const CenteredH4 = styled.h4`
   text-align: center;
   margin: 0;
+  color: #6b5b47;
+  font-family: 'Georgia', serif;
+  font-weight: 400;
+  font-size: 1.1rem;
+  line-height: 1.5;
+
+  @media (min-width: 768px) {
+    font-size: 1.3rem;
+  }
 `
 
-export default function About() {
+const CozyMessage = styled.p`
+  color: #a94442;
+  font-style: italic;
+  font-size: 1rem;
+  margin-top: 0.5rem;
+
+  @media (min-width: 768px) {
+    font-size: 1.1rem;
+  }
+`
+
+export default function NotFound() {
   const data = useStaticQuery(graphql`
     query {
-      robot: file(sourceInstanceName: { eq: "images" }, name: { eq: "robot" }) {
+      emptyCottage: file(
+        sourceInstanceName: { eq: "images" }
+        name: { eq: "empty_cottage" }
+      ) {
         childImageSharp {
-          gatsbyImageData(width: 500, height: 500, layout: CONSTRAINED)
+          gatsbyImageData(width: 500, layout: CONSTRAINED)
         }
       }
     }
@@ -44,16 +75,21 @@ export default function About() {
       <CenteredContainer>
         <GatsbyImage
           style={{
-            maxWidth: '250px',
-            maxHeight: '250px',
+            width: '100%',
+            maxWidth: '500px',
+            height: 'auto',
           }}
-          image={getImage(data.robot)}
-          alt="Robot graphic"
+          image={getImage(data.emptyCottage)}
+          alt="Empty cozy cottage interior"
+          imgStyle={{
+            objectFit: 'contain',
+            objectPosition: 'center',
+          }}
         />
-        <CenteredH3>Oh no... We cannot find that page :(</CenteredH3>
-        <CenteredH4>
-          Check out the navigation menu to get back on track.
-        </CenteredH4>
+        <CenteredH4>This cozy corner seems to be empty...</CenteredH4>
+        <CozyMessage>
+          🍃 Check out the navigation menu to get back on track.
+        </CozyMessage>
       </CenteredContainer>
     </SplitLayout>
   )

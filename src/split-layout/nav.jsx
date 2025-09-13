@@ -1,6 +1,8 @@
 import React from 'react'
-import { Link as GatsbyLink } from 'gatsby'
-import styled from 'styled-components'
+import { Link as GatsbyLink, graphql, useStaticQuery } from 'gatsby'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import styled, { createGlobalStyle } from 'styled-components'
+import { useLocation } from '@reach/router'
 
 import { device, GlobalStyles } from '../components/globalStyle'
 import {
@@ -17,16 +19,21 @@ const NavContainer = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  background-image: linear-gradient(
-    90deg,
-    rgba(166, 193, 238, 0.95) 0%,
-    rgba(251, 194, 235, 0.95) 100%
+  background: linear-gradient(
+    135deg,
+    rgba(212, 165, 165, 0.85) 0%,
+    rgba(169, 68, 66, 0.8) 100%
   );
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
   height: 4rem;
   width: 100%;
   padding: 0 1rem;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 8px 32px rgba(75, 63, 53, 0.12),
+    0 2px 8px rgba(169, 68, 66, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 
   @media ${device.tablet} {
     padding: 0 2rem;
@@ -41,13 +48,17 @@ const NavContainer = styled.div`
 
 const NavHeader = styled.h1`
   font-size: 1.2rem;
-  color: #5b5b5b;
+  color: #faf6f0;
   margin: 0;
   text-align: left;
-  font-family: Lato;
-  font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  cursor: pointer;
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  text-shadow: 0 2px 4px rgba(75, 63, 53, 0.3);
+  letter-spacing: 0.5px;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 
   @media ${device.tablet} {
     font-size: 1.4rem;
@@ -58,18 +69,42 @@ const NavHeader = styled.h1`
   }
 `
 
+const InteractivePortfolioTab = styled.div`
+  position: sticky;
+  top: 4rem;
+  right: 1rem;
+  z-index: 999;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -0.5rem;
+  width: 100%;
+  pointer-events: none;
+
+  @media ${device.tablet} {
+    top: 4.5rem;
+    right: 2rem;
+  }
+
+  @media ${device.laptop} {
+    top: 5rem;
+    right: 3rem;
+  }
+`
+
 const NavLinkContainer = styled.div`
   align-items: center;
   display: flex;
   flex-direction: row;
-  gap: 0.5rem;
+  gap: 0.3rem;
+  flex-wrap: wrap;
 
   @media ${device.tablet} {
-    gap: 1rem;
+    gap: 0.8rem;
   }
 
   @media ${device.laptop} {
-    gap: 1.5rem;
+    gap: 1.2rem;
+    flex-wrap: nowrap;
   }
 `
 
@@ -79,9 +114,14 @@ const NavLink = styled(GatsbyLink)`
   font-size: 0.9rem;
   font-weight: 500;
   border-radius: 0.5rem;
-  transition: all 0.3s ease;
+  transition:
+    background-color 0.4s ease,
+    color 0.4s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   position: relative;
   overflow: hidden;
+  color: #faf7f2;
 
   @media ${device.tablet} {
     font-size: 1rem;
@@ -108,12 +148,12 @@ const NavLink = styled(GatsbyLink)`
       rgba(255, 255, 255, 0.3),
       transparent
     );
-    transition: left 0.5s ease;
+    transition: left 0.7s ease;
   }
 
   &:hover {
-    color: #5b5b5b !important;
-    background-color: rgba(255, 255, 255, 0.25) !important;
+    color: #4a3f35 !important;
+    background-color: #f5f0e8 !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
@@ -122,45 +162,51 @@ const NavLink = styled(GatsbyLink)`
     }
   }
 
-  &:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  }
-`
-
-const LogoLink = styled(GatsbyLink)`
-  text-decoration: none;
-  display: inline-block;
-
-  &:hover {
-    background-color: transparent !important;
+  &:focus {
+    outline: 2px solid #d4a5a5;
+    outline-offset: 3px;
+    border-radius: 0.6rem;
   }
 
-  &:hover h1 {
-    color: white !important;
-    transform: scale(1.03);
+  &:focus:not(:focus-visible) {
+    outline: none;
   }
 
-  &:active h1 {
-    transform: scale(1.01);
+  &.active {
+    color: #4a3f35 !important;
+    background-color: #f5f0e8 !important;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 2px;
+    pointer-events: none;
+    cursor: default;
+
+    &:hover {
+      transform: none !important;
+      box-shadow: none !important;
+    }
+
+    &::before {
+      display: none;
+    }
   }
 `
 
 const IconContainer = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 0.1rem;
+  gap: 0.2rem;
 
   @media ${device.tablet} {
-    gap: 0.2rem;
+    gap: 0.3rem;
   }
 
   @media ${device.laptop} {
-    gap: 0.3rem;
+    gap: 0.4rem;
   }
 `
 const linkIconMobileStyle = `
-  color: #555555; 
+  color: #faf7f2; 
   height: 2rem;
   width: 2rem;
   padding: 0.25rem;
@@ -179,6 +225,105 @@ const linkIconLaptopStyle = `
   padding: 0.4rem;
 `
 
+const InteractivePortfolioLink = styled.a`
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+  padding: 0.5rem 1rem 1rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(169, 68, 66, 0.8) 0%,
+    rgba(169, 68, 66, 0.9) 100%
+  );
+  border-radius: 0 0 1rem 1rem;
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: none;
+  width: fit-content;
+  margin-right: 1rem;
+  pointer-events: auto;
+  position: relative;
+  overflow: hidden;
+  transform: translateY(-0.7rem);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.5s ease;
+  }
+
+  &:hover {
+    color: #faf6f0 !important;
+    background: linear-gradient(
+      135deg,
+      rgba(169, 68, 66, 0.85) 0%,
+      rgba(169, 68, 66, 0.95) 100%
+    ) !important;
+    transform: translateY(-0.2rem);
+    box-shadow: 0 6px 20px rgba(75, 63, 53, 0.2);
+
+    &::before {
+      left: 100%;
+    }
+  }
+
+  @media ${device.tablet} {
+    padding: 0.6rem 1.2rem 1.2rem 1.2rem;
+    gap: 0.6rem;
+    margin-right: 2rem;
+  }
+
+  @media ${device.laptop} {
+    margin-right: 3rem;
+  }
+`
+
+const PixelRabbitIcon = styled(GatsbyImage)`
+  width: 2rem !important;
+  height: 2rem !important;
+  border-radius: 50%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+  transform: translateY(0.3rem);
+
+  @media ${device.tablet} {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+  }
+`
+
+const InteractivePortfolioText = styled.span`
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.9rem;
+  color: #faf7f2;
+  white-space: nowrap;
+  transition: color 0.3s ease;
+  transform: translateY(0.3rem);
+
+  @media ${device.tablet} {
+    font-size: 1rem;
+  }
+`
+
 const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
   ${linkIconMobileStyle}
 
@@ -191,9 +336,10 @@ const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
   }
 
   &:hover {
-    color: white !important;
-    fill: white !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
     transform: scale(1.1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
   &:active {
@@ -213,9 +359,10 @@ const StyledLinkedinLinkIcon = styled(TiSocialLinkedinCircular)`
   }
 
   &:hover {
-    color: white !important;
-    fill: white !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
     transform: scale(1.1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
   &:active {
@@ -235,9 +382,10 @@ const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
   }
 
   &:hover {
-    color: white !important;
-    fill: white !important;
+    color: #ffffff !important;
+    fill: #ffffff !important;
     transform: scale(1.1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
   }
 
   &:active {
@@ -245,28 +393,92 @@ const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
   }
 `
 export default function Nav() {
+  const data = useStaticQuery(graphql`
+    query {
+      pixelRabbit: file(
+        sourceInstanceName: { eq: "images" }
+        name: { eq: "pixel_rabbit" }
+      ) {
+        childImageSharp {
+          gatsbyImageData(width: 80, height: 80, layout: FIXED, quality: 100)
+        }
+      }
+    }
+  `)
+
+  const pixelRabbitImage = getImage(data.pixelRabbit)
+  const location = useLocation()
+
+  // Helper function to determine if a link is active
+  const isActive = path => {
+    if (
+      path === '/' &&
+      (location.pathname === '/' || location.pathname === '/resume/')
+    )
+      return true
+    if (path !== '/' && location.pathname.startsWith(path)) return true
+    return false
+  }
+
   return (
-    <NavContainer>
-      <GlobalStyles />
-      <LogoLink to="/">
+    <>
+      <NavContainer>
+        <GlobalStyles />
         <NavHeader>Andria Hibe</NavHeader>
-      </LogoLink>
-      <NavLinkContainer>
-        <NavLink to="/resume">Resume</NavLink>
-        <NavLink to="/projects">Projects</NavLink>
-        <NavLink to="/about">About</NavLink>
-      </NavLinkContainer>
-      <IconContainer>
-        <a href="mailto:andriacohibe@gmail.com">
-          <StyledEmailLinkIcon />
-        </a>
-        <a href="https://github.com/andria-hibe">
-          <StyledGithubLinkIcon />
-        </a>
-        <a href="https://www.linkedin.com/in/andriacristiahibe/">
-          <StyledLinkedinLinkIcon />
-        </a>
-      </IconContainer>
-    </NavContainer>
+        <NavLinkContainer>
+          <NavLink
+            to="/"
+            className={isActive('/') ? 'active' : ''}
+            onClick={isActive('/') ? e => e.preventDefault() : undefined}
+          >
+            Resume
+          </NavLink>
+          <NavLink
+            to="/projects"
+            className={isActive('/projects') ? 'active' : ''}
+            onClick={
+              isActive('/projects') ? e => e.preventDefault() : undefined
+            }
+          >
+            Projects
+          </NavLink>
+          <NavLink
+            to="/about"
+            className={isActive('/about') ? 'active' : ''}
+            onClick={isActive('/about') ? e => e.preventDefault() : undefined}
+          >
+            About
+          </NavLink>
+        </NavLinkContainer>
+        <IconContainer>
+          <a href="mailto:andriacohibe@gmail.com">
+            <StyledEmailLinkIcon />
+          </a>
+          <a href="https://github.com/andria-hibe">
+            <StyledGithubLinkIcon />
+          </a>
+          <a href="https://www.linkedin.com/in/andriacristiahibe/">
+            <StyledLinkedinLinkIcon />
+          </a>
+        </IconContainer>
+      </NavContainer>
+      <InteractivePortfolioTab>
+        <InteractivePortfolioLink
+          href="https://andria-hibe.github.io/2d-portfolio-cottage/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit interactive 2D portfolio cottage"
+        >
+          <InteractivePortfolioText>
+            Interactive Portfolio
+          </InteractivePortfolioText>
+          <PixelRabbitIcon
+            image={pixelRabbitImage}
+            alt="Pixel art rabbit icon"
+            loading="eager"
+          />
+        </InteractivePortfolioLink>
+      </InteractivePortfolioTab>
+    </>
   )
 }
