@@ -140,21 +140,15 @@ const CarouselWrapper = styled.div`
   /* Prevent browser back/forward navigation on horizontal scroll */
   overscroll-behavior-x: contain;
   overscroll-behavior-y: auto;
-
-  /* Allow both horizontal and vertical touch actions */
-  touch-action: pan-x pan-y;
-
+  
+  /* Native touch scrolling for best mobile experience */
+  touch-action: auto;
+  -webkit-overflow-scrolling: touch;
+  
   /* Mobile-specific improvements */
   @media (max-width: 767px) {
     padding: 0 1rem 1rem 1rem;
     gap: 1rem;
-
-    /* More permissive touch handling on mobile */
-    touch-action: manipulation;
-    overscroll-behavior: auto;
-
-    /* Reduce momentum scrolling interference */
-    -webkit-overflow-scrolling: touch;
   }
 
   @media ${device.tablet} {
@@ -506,35 +500,6 @@ export default function Projects() {
     }
   }
 
-  // Enhanced touch handling for mobile
-  const handleTouchStart = (ref, e) => {
-    if (!ref.current) return
-    const touch = e.touches[0]
-    ref.current.touchStartX = touch.clientX
-    ref.current.touchStartY = touch.clientY
-    ref.current.scrollStartX = ref.current.scrollLeft
-  }
-
-  const handleTouchMove = (ref, e) => {
-    if (!ref.current || !ref.current.touchStartX) return
-
-    const touch = e.touches[0]
-    const deltaX = ref.current.touchStartX - touch.clientX
-    const deltaY = ref.current.touchStartY - touch.clientY
-
-    // Only prevent default if horizontal movement is dominant
-    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 10) {
-      e.preventDefault()
-      ref.current.scrollLeft = ref.current.scrollStartX + deltaX
-    }
-  }
-
-  const handleTouchEnd = ref => {
-    if (!ref.current) return
-    ref.current.touchStartX = null
-    ref.current.touchStartY = null
-    ref.current.scrollStartX = null
-  }
 
   return (
     <SplitLayout>
@@ -576,12 +541,7 @@ export default function Projects() {
               ›
             </ScrollButton>
           )}
-          <CarouselWrapper
-            ref={workProjectsRef}
-            onTouchStart={e => handleTouchStart(workProjectsRef, e)}
-            onTouchMove={e => handleTouchMove(workProjectsRef, e)}
-            onTouchEnd={() => handleTouchEnd(workProjectsRef)}
-          >
+          <CarouselWrapper ref={workProjectsRef}>
             <ProjectCard>
               <ProjectCardHeading primary>
                 Enterprise Performance Optimization at Scale
@@ -725,12 +685,7 @@ export default function Projects() {
               ›
             </ScrollButton>
           )}
-          <CarouselWrapper
-            ref={personalProjectsRef}
-            onTouchStart={e => handleTouchStart(personalProjectsRef, e)}
-            onTouchMove={e => handleTouchMove(personalProjectsRef, e)}
-            onTouchEnd={() => handleTouchEnd(personalProjectsRef)}
-          >
+          <CarouselWrapper ref={personalProjectsRef}>
             <ProjectCard>
               <ProjectCardHeading>
                 Andria's Cottage - Interactive Portfolio
