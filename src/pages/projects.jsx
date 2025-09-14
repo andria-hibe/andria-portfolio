@@ -68,6 +68,16 @@ const CarouselContainer = styled.div`
   overflow: hidden;
   margin-bottom: 2em;
 
+  /* Enhance scroll buttons visibility on hover/interaction */
+  &:hover button {
+    opacity: 1;
+
+    @media (max-width: 767px) {
+      background: rgba(212, 165, 165, 0.6);
+      border-color: rgba(212, 165, 165, 0.4);
+    }
+  }
+
   /* Add subtle fade indicators for scrollability on mobile */
   @media (max-width: 767px) {
     &::before,
@@ -76,17 +86,19 @@ const CarouselContainer = styled.div`
       position: absolute;
       top: 0;
       bottom: 0;
-      width: 20px;
+      width: 15px;
       z-index: 2;
       pointer-events: none;
       transition: opacity 0.3s ease;
+      opacity: 0.6;
     }
 
     &::before {
       left: 0;
       background: linear-gradient(
         to right,
-        rgba(250, 246, 240, 0.8),
+        rgba(250, 246, 240, 0.9),
+        rgba(250, 246, 240, 0.3),
         transparent
       );
     }
@@ -95,9 +107,17 @@ const CarouselContainer = styled.div`
       right: 0;
       background: linear-gradient(
         to left,
-        rgba(250, 246, 240, 0.8),
+        rgba(250, 246, 240, 0.9),
+        rgba(250, 246, 240, 0.3),
         transparent
       );
+    }
+
+    &:hover {
+      &::before,
+      &::after {
+        opacity: 0.3;
+      }
     }
   }
 `
@@ -108,6 +128,9 @@ const CarouselWrapper = styled.div`
   overflow-x: auto;
   scroll-behavior: smooth;
   padding: 0 3rem 1rem 3rem;
+
+  /* Scroll snapping for better card alignment */
+  scroll-snap-type: x mandatory;
 
   /* Hide scrollbar but keep functionality */
   scrollbar-width: none;
@@ -155,6 +178,9 @@ const ProjectCard = styled.div`
   color: #6b5b47;
   padding-bottom: 1em;
   position: relative;
+
+  /* Scroll snap alignment */
+  scroll-snap-align: start;
 
   &:hover {
     background: #faf6f0;
@@ -254,8 +280,8 @@ const ScrollButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(212, 165, 165, 0.95);
-  border: 2px solid rgba(212, 165, 165, 0.6);
+  background: rgba(212, 165, 165, 0.4);
+  border: 2px solid rgba(212, 165, 165, 0.3);
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -264,18 +290,21 @@ const ScrollButton = styled.button`
   justify-content: center;
   cursor: pointer;
   z-index: 3;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
   font-family: 'Nunito', sans-serif;
   font-size: 14px;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.8);
   pointer-events: auto;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  opacity: 0.7;
 
   &:hover {
-    background: rgba(212, 165, 165, 1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-    border-color: rgba(212, 165, 165, 1);
-    transform: translateY(-50%) scale(1.1);
+    background: rgba(212, 165, 165, 0.9);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-color: rgba(212, 165, 165, 0.7);
+    transform: translateY(-50%) scale(1.05);
+    opacity: 1;
+    color: #ffffff;
   }
 
   &:focus {
@@ -298,6 +327,21 @@ const ScrollButton = styled.button`
 
   &.right {
     right: 2px;
+  }
+
+  @media (max-width: 767px) {
+    background: rgba(212, 165, 165, 0.25);
+    border-color: rgba(212, 165, 165, 0.2);
+    opacity: 0.5;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+    &:hover,
+    &:active,
+    &:focus {
+      background: rgba(212, 165, 165, 0.7);
+      border-color: rgba(212, 165, 165, 0.5);
+      opacity: 0.9;
+    }
   }
 
   @media ${device.mobileM} {
@@ -335,7 +379,33 @@ export default function Projects() {
 
   const scrollCarousel = (ref, direction) => {
     if (ref.current) {
-      const scrollAmount = 320 // Adjusted for smaller mobile cards
+      // Calculate scroll amount based on screen width and card size
+      const getScrollAmount = () => {
+        const screenWidth = window.innerWidth
+        let cardWidth, gap
+
+        if (screenWidth < 375) {
+          // Mobile S: 280px-320px cards + 1rem gap
+          cardWidth = 300
+          gap = 16 // 1rem = 16px
+        } else if (screenWidth < 495) {
+          // Mobile M: 300px-340px cards + 1rem gap
+          cardWidth = 320
+          gap = 16
+        } else if (screenWidth < 768) {
+          // Mobile L: 340px-380px cards + 1rem gap
+          cardWidth = 360
+          gap = 16
+        } else {
+          // Tablet+: larger cards + 1.5rem gap
+          cardWidth = 450
+          gap = 24 // 1.5rem = 24px
+        }
+
+        return cardWidth + gap
+      }
+
+      const scrollAmount = getScrollAmount()
       const currentScroll = ref.current.scrollLeft
       const targetScroll =
         direction === 'left'
