@@ -140,11 +140,11 @@ const CarouselWrapper = styled.div`
   /* Prevent browser back/forward navigation on horizontal scroll */
   overscroll-behavior-x: contain;
   overscroll-behavior-y: auto;
-  
+
   /* Native touch scrolling for best mobile experience */
   touch-action: auto;
   -webkit-overflow-scrolling: touch;
-  
+
   /* Mobile-specific improvements */
   @media (max-width: 767px) {
     padding: 0 1rem 1rem 1rem;
@@ -158,7 +158,7 @@ const CarouselWrapper = styled.div`
 
 const ProjectCard = styled.div`
   min-width: 280px;
-  max-width: 320px;
+  max-width: calc(100vw - 3rem); /* Account for padding + scroll buttons */
   flex-shrink: 0;
   background: #f5f0e8;
   border: 1px solid #d4c4b0;
@@ -192,17 +192,17 @@ const ProjectCard = styled.div`
 
   @media ${device.mobileM} {
     min-width: 300px;
-    max-width: 340px;
+    max-width: calc(100vw - 3.5rem); /* Slightly more space */
   }
 
   @media ${device.mobileL} {
     min-width: 340px;
-    max-width: 380px;
+    max-width: calc(100vw - 4rem); /* More space for larger mobile */
   }
 
   @media ${device.tablet} {
     min-width: 420px;
-    max-width: 480px;
+    max-width: 480px; /* Fixed width on tablet+ */
   }
 `
 
@@ -499,7 +499,6 @@ export default function Projects() {
       }, 300) // Wait for smooth scroll to complete
     }
   }
-
 
   return (
     <SplitLayout>
