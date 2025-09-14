@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
 
 import SEO from '../components/seo'
@@ -68,13 +68,10 @@ const CarouselContainer = styled.div`
   overflow: hidden;
   margin-bottom: 2em;
 
-  /* Enhance scroll buttons visibility on hover/interaction */
-  &:hover button {
-    opacity: 1;
-
-    @media (max-width: 767px) {
-      background: rgba(212, 165, 165, 0.6);
-      border-color: rgba(212, 165, 165, 0.4);
+  /* Enhance scroll buttons visibility on hover/interaction - desktop only */
+  @media (min-width: 768px) {
+    &:hover button {
+      opacity: 1;
     }
   }
 
@@ -330,17 +327,19 @@ const ScrollButton = styled.button`
   }
 
   @media (max-width: 767px) {
-    background: rgba(212, 165, 165, 0.25);
-    border-color: rgba(212, 165, 165, 0.2);
-    opacity: 0.5;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    background: rgba(212, 165, 165, 0.5);
+    border-color: rgba(212, 165, 165, 0.35);
+    opacity: 0.6;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 
+    /* Remove hover states on touch devices - single consistent state */
     &:hover,
     &:active,
     &:focus {
-      background: rgba(212, 165, 165, 0.7);
-      border-color: rgba(212, 165, 165, 0.5);
-      opacity: 0.9;
+      background: rgba(212, 165, 165, 0.5);
+      border-color: rgba(212, 165, 165, 0.35);
+      opacity: 0.6;
+      transform: translateY(-50%); /* Remove scale effect */
     }
   }
 
@@ -376,6 +375,85 @@ const ScrollButton = styled.button`
 export default function Projects() {
   const workProjectsRef = useRef(null)
   const personalProjectsRef = useRef(null)
+
+  // State to track scroll positions for arrow visibility
+  const [workScrollState, setWorkScrollState] = useState({
+    canScrollLeft: false,
+    canScrollRight: true,
+  })
+  const [personalScrollState, setPersonalScrollState] = useState({
+    canScrollLeft: false,
+    canScrollRight: true,
+  })
+
+  // Function to update scroll state based on current position
+  const updateScrollState = (ref, setState) => {
+    if (!ref.current) return
+
+    const { scrollLeft, scrollWidth, clientWidth } = ref.current
+
+    // Get padding values based on screen size
+    const screenWidth = window.innerWidth
+    const paddingLeft = screenWidth < 768 ? 16 : 64 // 1rem mobile, 4rem tablet+
+    const paddingRight = paddingLeft
+
+    // Account for padding in scroll detection
+    const effectiveScrollWidth = scrollWidth - paddingLeft - paddingRight
+    const canScrollLeft = scrollLeft > paddingLeft + 5 // Small threshold
+    const canScrollRight =
+      scrollLeft < effectiveScrollWidth - clientWidth + paddingLeft - 5
+
+    setState({ canScrollLeft, canScrollRight })
+  }
+
+  // Set up scroll listeners and initial state
+  useEffect(() => {
+    const workElement = workProjectsRef.current
+    const personalElement = personalProjectsRef.current
+
+    const handleWorkScroll = () =>
+      updateScrollState(workProjectsRef, setWorkScrollState)
+    const handlePersonalScroll = () =>
+      updateScrollState(personalProjectsRef, setPersonalScrollState)
+
+    const handleResize = () => {
+      // Update scroll states on resize
+      updateScrollState(workProjectsRef, setWorkScrollState)
+      updateScrollState(personalProjectsRef, setPersonalScrollState)
+    }
+
+    if (workElement) {
+      workElement.addEventListener('scroll', handleWorkScroll)
+      // Set initial state
+      setTimeout(
+        () => updateScrollState(workProjectsRef, setWorkScrollState),
+        100
+      )
+    }
+
+    if (personalElement) {
+      personalElement.addEventListener('scroll', handlePersonalScroll)
+      // Set initial state
+      setTimeout(
+        () => updateScrollState(personalProjectsRef, setPersonalScrollState),
+        100
+      )
+    }
+
+    // Listen for window resize
+    window.addEventListener('resize', handleResize)
+
+    // Cleanup
+    return () => {
+      if (workElement) {
+        workElement.removeEventListener('scroll', handleWorkScroll)
+      }
+      if (personalElement) {
+        personalElement.removeEventListener('scroll', handlePersonalScroll)
+      }
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   const scrollCarousel = (ref, direction) => {
     if (ref.current) {
@@ -416,6 +494,15 @@ export default function Projects() {
         left: targetScroll,
         behavior: 'smooth',
       })
+
+      // Update scroll state after scrolling completes
+      setTimeout(() => {
+        if (ref === workProjectsRef) {
+          updateScrollState(ref, setWorkScrollState)
+        } else if (ref === personalProjectsRef) {
+          updateScrollState(ref, setPersonalScrollState)
+        }
+      }, 300) // Wait for smooth scroll to complete
     }
   }
 
@@ -471,20 +558,24 @@ export default function Projects() {
           </TechStack>
         </SectionSubtitle>
         <CarouselContainer>
-          <ScrollButton
-            className="left"
-            onClick={() => scrollCarousel(workProjectsRef, 'left')}
-            aria-label="Scroll work projects left"
-          >
-            ‹
-          </ScrollButton>
-          <ScrollButton
-            className="right"
-            onClick={() => scrollCarousel(workProjectsRef, 'right')}
-            aria-label="Scroll work projects right"
-          >
-            ›
-          </ScrollButton>
+          {workScrollState.canScrollLeft && (
+            <ScrollButton
+              className="left"
+              onClick={() => scrollCarousel(workProjectsRef, 'left')}
+              aria-label="Scroll work projects left"
+            >
+              ‹
+            </ScrollButton>
+          )}
+          {workScrollState.canScrollRight && (
+            <ScrollButton
+              className="right"
+              onClick={() => scrollCarousel(workProjectsRef, 'right')}
+              aria-label="Scroll work projects right"
+            >
+              ›
+            </ScrollButton>
+          )}
           <CarouselWrapper
             ref={workProjectsRef}
             onTouchStart={e => handleTouchStart(workProjectsRef, e)}
@@ -616,20 +707,24 @@ export default function Projects() {
           Side projects, open source contributions, and hackathon wins
         </SectionSubtitle>
         <CarouselContainer>
-          <ScrollButton
-            className="left"
-            onClick={() => scrollCarousel(personalProjectsRef, 'left')}
-            aria-label="Scroll personal projects left"
-          >
-            ‹
-          </ScrollButton>
-          <ScrollButton
-            className="right"
-            onClick={() => scrollCarousel(personalProjectsRef, 'right')}
-            aria-label="Scroll personal projects right"
-          >
-            ›
-          </ScrollButton>
+          {personalScrollState.canScrollLeft && (
+            <ScrollButton
+              className="left"
+              onClick={() => scrollCarousel(personalProjectsRef, 'left')}
+              aria-label="Scroll personal projects left"
+            >
+              ‹
+            </ScrollButton>
+          )}
+          {personalScrollState.canScrollRight && (
+            <ScrollButton
+              className="right"
+              onClick={() => scrollCarousel(personalProjectsRef, 'right')}
+              aria-label="Scroll personal projects right"
+            >
+              ›
+            </ScrollButton>
+          )}
           <CarouselWrapper
             ref={personalProjectsRef}
             onTouchStart={e => handleTouchStart(personalProjectsRef, e)}
