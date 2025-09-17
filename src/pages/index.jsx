@@ -6,6 +6,25 @@ import { device, GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 import Button from '../components/button'
 
+const colors = {
+  primary: '#4a3f35',
+  secondary: '#8b7a6b',
+  accent: '#a94442',
+  text: '#333',
+  textLight: '#555',
+  background: '#f5f0e8',
+  border: '#d4c4b0',
+}
+
+const fonts = {
+  primary: "'Nunito', sans-serif",
+  heading: "'Playfair Display', serif",
+}
+
+const transitions = {
+  smooth: 'all 0.2s ease',
+}
+
 // Resume data structure for easy updates
 const resumeData = {
   personal: {
@@ -152,7 +171,7 @@ const ResumeContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;
   line-height: 1.6;
-  color: #333;
+  color: ${colors.text};
   padding: 0 1rem;
 
   @media ${device.tablet} {
@@ -168,7 +187,7 @@ const Header = styled.header`
   text-align: center;
   margin-bottom: 1.5em;
   padding-bottom: 1em;
-  border-bottom: 2px solid #d4c4b0;
+  border-bottom: 2px solid ${colors.border};
 
   @media ${device.tablet} {
     margin-bottom: 2em;
@@ -177,11 +196,11 @@ const Header = styled.header`
 `
 
 const Name = styled.h1`
-  font-family: 'Playfair Display', serif;
+  font-family: ${fonts.heading};
   font-weight: 300;
   font-size: 2em;
   margin-bottom: 0.2em;
-  color: #4a3f35;
+  color: ${colors.primary};
 
   @media ${device.tablet} {
     font-size: 2.5em;
@@ -190,7 +209,7 @@ const Name = styled.h1`
 
 const ContactInfo = styled.div`
   font-size: 0.8em;
-  color: #8b7a6b;
+  color: ${colors.secondary};
   margin-bottom: 1em;
   line-height: 1.4;
 
@@ -199,7 +218,7 @@ const ContactInfo = styled.div`
   }
 
   a {
-    color: #a94442;
+    color: ${colors.accent};
     text-decoration: none;
 
     &:hover {
@@ -217,13 +236,13 @@ const Section = styled.section`
 `
 
 const SectionTitle = styled.h2`
-  font-family: 'Playfair Display', serif;
+  font-family: ${fonts.heading};
   font-weight: 300;
   font-size: 1.4em;
-  color: #4a3f35;
+  color: ${colors.primary};
   margin-bottom: 1em;
   padding-bottom: 0.3em;
-  border-bottom: 1px solid #d4c4b0;
+  border-bottom: 1px solid ${colors.border};
 `
 
 const SubSection = styled.div`
@@ -239,21 +258,21 @@ const SubSection = styled.div`
 
 const JobTitle = styled.h3`
   font-size: 1.1em;
-  color: #4a3f35;
+  color: ${colors.primary};
   margin-bottom: 0.2em;
   font-weight: 600;
 `
 
 const Company = styled.h4`
   font-size: 1em;
-  color: #a94442;
+  color: ${colors.accent};
   margin-bottom: 0.2em;
   margin-top: 0.1em;
 `
 
 const Period = styled.p`
   font-size: 0.9em;
-  color: #8b7a6b;
+  color: ${colors.secondary};
   margin-bottom: 0.8em;
   font-style: italic;
 `
@@ -272,7 +291,7 @@ const SkillGrid = styled.div`
 
 const SkillCategory = styled.div`
   h4 {
-    color: #4a3f35;
+    color: ${colors.primary};
     margin-bottom: 0.5em;
     font-size: 1em;
   }
@@ -283,12 +302,12 @@ const SkillList = styled.ul`
   padding: 0;
 
   li {
-    background: #f5f0e8;
+    background: ${colors.background};
     padding: 0.3em 0.6em;
     margin-bottom: 0.3em;
     border-radius: 4px;
     font-size: 0.9em;
-    border-left: 3px solid #a94442;
+    border-left: 3px solid ${colors.accent};
   }
 `
 
@@ -327,14 +346,14 @@ const ProjectGrid = styled.div`
 `
 
 const ProjectCard = styled.div`
-  background: #f5f0e8;
-  border: 1px solid #d4c4b0;
+  background: ${colors.background};
+  border: 1px solid ${colors.border};
   padding: 1.2em;
   border-radius: 12px;
-  border-left: 4px solid #a94442;
+  border-left: 4px solid ${colors.accent};
 
   h4 {
-    color: #4a3f35;
+    color: ${colors.primary};
     margin-bottom: 0.5em;
   }
 
@@ -345,7 +364,7 @@ const ProjectCard = styled.div`
 
   .tech {
     font-size: 0.85em;
-    color: #8b7a6b;
+    color: ${colors.secondary};
     font-style: italic;
     margin-bottom: 0.8em;
   }
@@ -359,14 +378,14 @@ const ProjectLinks = styled.div`
 `
 
 const SubtleLink = styled.a`
-  font-family: 'Nunito', sans-serif;
+  font-family: ${fonts.primary};
   font-size: 0.8em;
-  color: #a94442;
+  color: ${colors.accent};
   text-decoration: none;
   padding: 0.3em 0.6em;
   border: 1px solid rgba(169, 68, 66, 0.3);
   border-radius: 4px;
-  transition: all 0.2s ease;
+  transition: ${transitions.smooth};
   background: rgba(169, 68, 66, 0.05);
 
   &:hover {
@@ -407,7 +426,7 @@ const ButtonLayout = styled.div`
 const Profile = styled.p`
   font-size: 1.05em;
   line-height: 1.7;
-  color: #555;
+  color: ${colors.textLight};
   text-align: justify;
   margin-bottom: 0;
 

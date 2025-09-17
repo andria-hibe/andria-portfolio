@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link as GatsbyLink, graphql, useStaticQuery } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
-import styled, { createGlobalStyle } from 'styled-components'
+import styled from 'styled-components'
 
 import { device, GlobalStyles } from '../components/globalStyle'
 import {
@@ -9,6 +9,26 @@ import {
   TiSocialAtCircular,
   TiSocialLinkedinCircular,
 } from 'react-icons/ti'
+
+const colors = {
+  primary: '#faf6f0',
+  secondary: '#faf7f2',
+  accent: '#4a3f35',
+  background: '#f5f0e8',
+  white: '#ffffff',
+}
+
+const fonts = {
+  primary: "'Nunito', sans-serif",
+  heading: "'Playfair Display', serif",
+}
+
+const transitions = {
+  smooth: 'all 0.3s ease',
+  hover:
+    'background-color 0.4s ease, color 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease',
+  shimmer: 'left 0.7s ease',
+}
 
 const NavContainer = styled.div`
   position: sticky;
@@ -55,17 +75,14 @@ const NavContainer = styled.div`
 
 const NavHeader = styled.h1`
   font-size: 0.9rem;
-  color: #faf6f0;
+  color: ${colors.primary};
   margin: 0;
   text-align: left;
-  font-family: 'Playfair Display', serif;
+  font-family: ${fonts.heading};
   font-weight: 400;
   text-shadow: 0 2px 4px rgba(75, 63, 53, 0.3);
   letter-spacing: 0.5px;
   user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   white-space: nowrap;
   min-width: fit-content;
   flex-shrink: 0;
@@ -147,18 +164,14 @@ const NavLinkContainer = styled.div`
 
 const NavLink = styled(GatsbyLink)`
   padding: 0.25rem 0.8rem;
-  font-family: 'Nunito', sans-serif;
+  font-family: ${fonts.primary};
   font-size: 0.75rem;
   font-weight: 500;
   border-radius: 0.3rem;
-  transition:
-    background-color 0.4s ease,
-    color 0.4s ease,
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
+  transition: ${transitions.hover};
   position: relative;
   overflow: hidden;
-  color: #faf7f2;
+  color: ${colors.secondary};
   text-align: center;
   white-space: nowrap;
   min-width: fit-content;
@@ -207,12 +220,12 @@ const NavLink = styled(GatsbyLink)`
       rgba(255, 255, 255, 0.3),
       transparent
     );
-    transition: left 0.7s ease;
+    transition: ${transitions.shimmer};
   }
 
   &:hover {
-    color: #4a3f35 !important;
-    background-color: #f5f0e8 !important;
+    color: ${colors.accent} !important;
+    background-color: ${colors.background} !important;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 
@@ -232,8 +245,8 @@ const NavLink = styled(GatsbyLink)`
   }
 
   &.active {
-    color: #4a3f35 !important;
-    background-color: #f5f0e8 !important;
+    color: ${colors.accent} !important;
+    background-color: ${colors.background} !important;
     text-decoration: underline;
     text-underline-offset: 4px;
     text-decoration-thickness: 2px;
@@ -273,24 +286,36 @@ const IconContainer = styled.div`
     gap: 0.4rem;
   }
 `
-const linkIconMobileStyle = `
-  color: #faf7f2; 
+// Base icon style to be shared across all social media icons
+const baseLinkIconStyle = `
+  color: ${colors.secondary};
   height: 1.8rem;
   width: 1.8rem;
   padding: 0.2rem;
-  transition: all 0.2s ease;
-`
+  transition: ${transitions.smooth};
 
-const linkIconTabletStyle = `
-  height: 2.5rem;
-  width: 2.5rem;
-  padding: 0.3rem;
-`
+  @media ${device.tablet} {
+    height: 2.5rem;
+    width: 2.5rem;
+    padding: 0.3rem;
+  }
 
-const linkIconLaptopStyle = `
-  height: 3rem;
-  width: 3rem;
-  padding: 0.4rem;
+  @media ${device.laptop} {
+    height: 3rem;
+    width: 3rem;
+    padding: 0.4rem;
+  }
+
+  &:hover {
+    color: ${colors.white} !important;
+    fill: ${colors.white} !important;
+    transform: scale(1.1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  }
+
+  &:active {
+    transform: scale(1.05);
+  }
 `
 
 const InteractivePortfolioLink = styled.a`
@@ -298,7 +323,7 @@ const InteractivePortfolioLink = styled.a`
   align-items: center;
   gap: 0.3rem;
   text-decoration: none;
-  font-family: 'Nunito', sans-serif;
+  font-family: ${fonts.primary};
   transition:
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.3s ease,
@@ -312,13 +337,44 @@ const InteractivePortfolioLink = styled.a`
   border-radius: 0 0 0.8rem 0.8rem;
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border: none;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  cursor: pointer;
   width: fit-content;
   margin-right: 0.7rem;
   pointer-events: auto;
   position: relative;
   overflow: hidden;
   transform: translateY(-0.5rem);
+  box-shadow:
+    0 3px 8px rgba(75, 63, 53, 0.25),
+    0 1px 3px rgba(169, 68, 66, 0.1);
+
+  /* Mobile-specific button enhancements */
+  @media (max-width: 767px) {
+    box-shadow:
+      0 4px 12px rgba(75, 63, 53, 0.2),
+      0 2px 6px rgba(169, 68, 66, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+
+    /* Add subtle glow effect for mobile */
+    &::after {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.1),
+        transparent
+      );
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0.5;
+    }
+  }
 
   @media ${device.mobileM} {
     gap: 0.35rem;
@@ -360,14 +416,15 @@ const InteractivePortfolioLink = styled.a`
   }
 
   &:hover {
-    color: #faf6f0 !important;
+    color: ${colors.primary} !important;
     background: linear-gradient(
       135deg,
       rgba(212, 165, 165, 0.9) 0%,
       rgba(169, 68, 66, 0.85) 100%
     ) !important;
+    border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-0.7rem) scale(1.02);
-    box-shadow: 0 6px 20px rgba(75, 63, 53, 0.2);
+    box-shadow: 0 8px 24px rgba(75, 63, 53, 0.25);
 
     &::before {
       left: 100%;
@@ -383,6 +440,18 @@ const InteractivePortfolioLink = styled.a`
 
     @media ${device.tablet} {
       transform: translateY(-0.9rem) scale(1.02);
+    }
+  }
+
+  &:active {
+    transform: translateY(-0.5rem) scale(0.98);
+    box-shadow: 0 4px 12px rgba(75, 63, 53, 0.2);
+
+    @media (max-width: 767px) {
+      box-shadow:
+        0 2px 8px rgba(75, 63, 53, 0.25),
+        inset 0 2px 4px rgba(0, 0, 0, 0.1);
+      border-color: rgba(255, 255, 255, 0.4);
     }
   }
 
@@ -429,9 +498,9 @@ const PixelRabbitIcon = styled(GatsbyImage)`
 `
 
 const InteractivePortfolioText = styled.span`
-  font-family: 'Nunito', sans-serif;
+  font-family: ${fonts.primary};
   font-size: 0.75rem;
-  color: #faf7f2;
+  color: ${colors.secondary};
   white-space: nowrap;
   transition: color 0.3s ease;
   transform: translateY(0.2rem);
@@ -453,72 +522,15 @@ const InteractivePortfolioText = styled.span`
 `
 
 const StyledGithubLinkIcon = styled(TiSocialGithubCircular)`
-  ${linkIconMobileStyle}
-
-  @media ${device.tablet} {
-    ${linkIconTabletStyle}
-  }
-
-  @media ${device.laptop} {
-    ${linkIconLaptopStyle}
-  }
-
-  &:hover {
-    color: #ffffff !important;
-    fill: #ffffff !important;
-    transform: scale(1.1);
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-  }
-
-  &:active {
-    transform: scale(1.05);
-  }
+  ${baseLinkIconStyle}
 `
 
 const StyledLinkedinLinkIcon = styled(TiSocialLinkedinCircular)`
-  ${linkIconMobileStyle}
-
-  @media ${device.tablet} {
-    ${linkIconTabletStyle}
-  }
-
-  @media ${device.laptop} {
-    ${linkIconLaptopStyle}
-  }
-
-  &:hover {
-    color: #ffffff !important;
-    fill: #ffffff !important;
-    transform: scale(1.1);
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-  }
-
-  &:active {
-    transform: scale(1.05);
-  }
+  ${baseLinkIconStyle}
 `
 
 const StyledEmailLinkIcon = styled(TiSocialAtCircular)`
-  ${linkIconMobileStyle}
-
-  @media ${device.tablet} {
-    ${linkIconTabletStyle}
-  }
-
-  @media ${device.laptop} {
-    ${linkIconLaptopStyle}
-  }
-
-  &:hover {
-    color: #ffffff !important;
-    fill: #ffffff !important;
-    transform: scale(1.1);
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
-  }
-
-  &:active {
-    transform: scale(1.05);
-  }
+  ${baseLinkIconStyle}
 `
 export default function Nav() {
   const data = useStaticQuery(graphql`

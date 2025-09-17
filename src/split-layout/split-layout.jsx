@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 import { device, GlobalStyles } from '../components/globalStyle'
 
 import Nav from '../split-layout/nav'
@@ -35,4 +36,8 @@ export default function SplitLayout(props) {
       <PageLayout>{props.children}</PageLayout>
     </ContentContainer>
   )
+}
+
+SplitLayout.propTypes = {
+  children: PropTypes.node.isRequired,
 }

@@ -17,19 +17,6 @@ const CenteredContainer = styled.div`
   gap: 1.5rem;
 `
 
-const CenteredH3 = styled.h3`
-  text-align: center;
-  margin: 0;
-  color: #4a3f35;
-  font-family: 'Playfair Display', serif;
-  font-weight: 400;
-  font-size: 1.8rem;
-
-  @media (min-width: 768px) {
-    font-size: 2.2rem;
-  }
-`
-
 const CenteredH4 = styled.h4`
   text-align: center;
   margin: 0;

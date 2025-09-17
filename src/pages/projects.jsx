@@ -1,13 +1,36 @@
 import React, { useRef, useState, useEffect } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import SEO from '../components/seo'
 import { device, GlobalStyles } from '../components/globalStyle'
 import SplitLayout from '../split-layout/split-layout'
 import Button from '../components/button'
 
+const colors = {
+  primary: '#4a3f35',
+  secondary: '#6b5b47',
+  accent: '#a94442',
+  white: '#ffffff',
+  background: '#f5f0e8',
+  cardBackground: '#faf6f0',
+  border: '#d4c4b0',
+  buttonBg: 'rgba(212, 165, 165, 0.4)',
+  buttonBorder: 'rgba(212, 165, 165, 0.3)',
+}
+
+const fonts = {
+  primary: "'Nunito', sans-serif",
+  heading: "'Playfair Display', serif",
+}
+
+const transitions = {
+  smooth: 'all 0.3s ease',
+  card: 'all 0.2s linear',
+}
+
 const PageHeading = styled.h1`
-  font-family: 'Playfair Display', serif;
+  font-family: ${fonts.heading};
   font-weight: 300;
 `
 
@@ -28,10 +51,10 @@ const ProjectSection = styled.div`
 `
 
 const SectionTitle = styled.h2`
-  font-family: 'Playfair Display', serif;
+  font-family: ${fonts.heading};
   font-weight: 300;
   margin-bottom: 0.5em;
-  color: #6b5b47;
+  color: ${colors.secondary};
   font-size: 1.8rem;
 
   @media ${device.tablet} {
@@ -41,7 +64,7 @@ const SectionTitle = styled.h2`
 
 const SectionSubtitle = styled.p`
   margin-bottom: 1.5em;
-  color: #6b5b47;
+  color: ${colors.secondary};
   font-size: 1rem;
   font-style: italic;
   line-height: 1.5;
@@ -53,12 +76,12 @@ const SectionSubtitle = styled.p`
 
 const TechStack = styled.span`
   font-weight: 600;
-  color: #6b5b47;
+  color: ${colors.secondary};
   font-style: normal;
-  background: #f5f0e8;
+  background: ${colors.background};
   padding: 0.3em 0.6em;
   border-radius: 0.5em;
-  border-left: 3px solid #a94442;
+  border-left: 3px solid ${colors.accent};
   display: inline-block;
   margin-top: 0.5em;
 `
@@ -160,13 +183,13 @@ const ProjectCard = styled.div`
   min-width: 280px;
   max-width: calc(100vw - 3rem); /* Account for padding + scroll buttons */
   flex-shrink: 0;
-  background: #f5f0e8;
-  border: 1px solid #d4c4b0;
+  background: ${colors.background};
+  border: 1px solid ${colors.border};
   box-shadow: 0.25em 0.5em 1.5em rgba(75, 63, 53, 0.15);
   border-radius: 1.2em;
   overflow: hidden;
-  transition: all 0.2s linear;
-  color: #6b5b47;
+  transition: ${transitions.card};
+  color: ${colors.secondary};
   padding-bottom: 1em;
   position: relative;
 
@@ -174,7 +197,7 @@ const ProjectCard = styled.div`
   scroll-snap-align: start;
 
   &:hover {
-    background: #faf6f0;
+    background: ${colors.cardBackground};
     box-shadow: 0.25em 1em 3em rgba(75, 63, 53, 0.2);
     transform: translateY(-4px);
   }
@@ -212,7 +235,7 @@ const ProjectCardHeading = styled.h2`
   background: linear-gradient(135deg, #d4a5a5 0%, #e6c4a0 100%);
   margin: 0 0 1.5rem 0;
   font-size: 1.3rem;
-  color: #ffffff;
+  color: ${colors.white};
   line-height: 1.3;
 
   @media ${device.tablet} {
@@ -232,27 +255,23 @@ const ProjectCardParagraph = styled.p`
   }
 `
 
-const ProjectCardList = styled.ul`
-  padding-right: 1em;
-`
-
 const StyledStackContainer = styled.div`
-  background: #f5f0e8;
+  background: ${colors.background};
   padding: 0.8em 1em;
   margin: 0.5em 1em;
   border-radius: 0.5em;
-  border-left: 3px solid #a94442;
+  border-left: 3px solid ${colors.accent};
 
   h5 {
     margin: 0 0 0.5em 0;
     font-weight: 600;
-    color: #4a3f35;
+    color: ${colors.primary};
   }
 
   ul {
     margin: 0;
     padding-left: 1.2em;
-    color: #6b5b47;
+    color: ${colors.secondary};
   }
 `
 
@@ -267,12 +286,16 @@ const StackContainer = ({ technologies }) => (
   </StyledStackContainer>
 )
 
+StackContainer.propTypes = {
+  technologies: PropTypes.arrayOf(PropTypes.string).isRequired,
+}
+
 const ScrollButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(212, 165, 165, 0.4);
-  border: 2px solid rgba(212, 165, 165, 0.3);
+  background: ${colors.buttonBg};
+  border: 2px solid ${colors.buttonBorder};
   border-radius: 50%;
   width: 36px;
   height: 36px;
@@ -281,8 +304,8 @@ const ScrollButton = styled.button`
   justify-content: center;
   cursor: pointer;
   z-index: 3;
-  transition: all 0.3s ease;
-  font-family: 'Nunito', sans-serif;
+  transition: ${transitions.smooth};
+  font-family: ${fonts.primary};
   font-size: 14px;
   color: rgba(255, 255, 255, 0.8);
   pointer-events: auto;
@@ -295,7 +318,7 @@ const ScrollButton = styled.button`
     border-color: rgba(212, 165, 165, 0.7);
     transform: translateY(-50%) scale(1.05);
     opacity: 1;
-    color: #ffffff;
+    color: ${colors.white};
   }
 
   &:focus {
@@ -511,10 +534,10 @@ export default function Projects() {
           Some of the features I built at Runn, a strategic resource management
           platform.
           <br />
-          As employee #3 on the engineering team, I've contributed to Runn's
-          growth from a small startup to a global platform serving customers
-          across multiple countries. I've led and delivered key features that
-          helped scale the platform globally.
+          As employee #3 on the engineering team, I&apos;ve contributed to
+          Runn&apos;s growth from a small startup to a global platform serving
+          customers across multiple countries. I&apos;ve led and delivered key
+          features that helped scale the platform globally.
           <br />
           <TechStack>
             Stack: TypeScript · React · Node.js · GraphQL (Hasura) · Postgres ·
@@ -588,9 +611,9 @@ export default function Projects() {
                 inaccurate forecasting and reporting.
               </ProjectCardParagraph>
               <ProjectCardParagraph>
-                <strong>Solution:</strong> Refactored the platform's time-off
-                system, unifying rules and calculations into a consistent
-                framework.
+                <strong>Solution:</strong> Refactored the platform&apos;s
+                time-off system, unifying rules and calculations into a
+                consistent framework.
               </ProjectCardParagraph>
               <ProjectCardParagraph>
                 <strong>Impact:</strong> Improved forecasting accuracy and
@@ -687,7 +710,7 @@ export default function Projects() {
           <CarouselWrapper ref={personalProjectsRef}>
             <ProjectCard>
               <ProjectCardHeading>
-                Andria's Cottage - Interactive Portfolio
+                Andria&apos;s Cottage - Interactive Portfolio
               </ProjectCardHeading>
               <ProjectCardParagraph>
                 Interactive portfolio where you can explore my cozy cottage and
@@ -697,9 +720,9 @@ export default function Projects() {
                 technologies={['Javascript', 'Kaplay.js', 'Vite']}
               />
               <ProjectCardParagraph>
-                I wanted to try building something I haven't done before and so
-                I made this little game to showcase who I am. Try it out on both
-                mobile and desktop.
+                I wanted to try building something I haven&apos;t done before
+                and so I made this little game to showcase who I am. Try it out
+                on both mobile and desktop.
               </ProjectCardParagraph>
               <ButtonLayout>
                 <a
