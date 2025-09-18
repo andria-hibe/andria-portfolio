@@ -149,10 +149,8 @@ const CarouselWrapper = styled.div`
   scroll-behavior: smooth;
   padding: 0 3rem 1rem 3rem;
 
-  /* Scroll snapping for better card alignment */
   scroll-snap-type: x mandatory;
 
-  /* Hide scrollbar but keep functionality */
   scrollbar-width: none;
   -ms-overflow-style: none;
 
@@ -160,15 +158,11 @@ const CarouselWrapper = styled.div`
     display: none;
   }
 
-  /* Prevent browser back/forward navigation on horizontal scroll */
   overscroll-behavior-x: contain;
   overscroll-behavior-y: auto;
-
-  /* Native touch scrolling for best mobile experience */
   touch-action: auto;
   -webkit-overflow-scrolling: touch;
 
-  /* Mobile-specific improvements */
   @media (max-width: 767px) {
     padding: 0 1rem 1rem 1rem;
     gap: 1rem;
@@ -181,7 +175,7 @@ const CarouselWrapper = styled.div`
 
 const ProjectCard = styled.div`
   min-width: 280px;
-  max-width: calc(100vw - 3rem); /* Account for padding + scroll buttons */
+  max-width: calc(100vw - 3rem);
   flex-shrink: 0;
   background: ${colors.background};
   border: 1px solid ${colors.border};
@@ -193,39 +187,34 @@ const ProjectCard = styled.div`
   padding-bottom: 1em;
   position: relative;
 
-  /* Scroll snap alignment */
   scroll-snap-align: start;
 
-  &:hover {
+  @media (min-width: 768px) {
+    &:hover {
+      background: ${colors.cardBackground};
+      box-shadow: 0.25em 1em 3em rgba(75, 63, 53, 0.2);
+      transform: translateY(-4px);
+    }
+  }
+
+  @media (max-width: 767px) {
     background: ${colors.cardBackground};
     box-shadow: 0.25em 1em 3em rgba(75, 63, 53, 0.2);
-    transform: translateY(-4px);
-  }
-
-  /* Prevent child elements from interfering with hover */
-  & * {
-    pointer-events: none;
-  }
-
-  /* Re-enable pointer events for interactive elements */
-  & a,
-  & button {
-    pointer-events: auto;
   }
 
   @media ${device.mobileM} {
     min-width: 300px;
-    max-width: calc(100vw - 3.5rem); /* Slightly more space */
+    max-width: calc(100vw - 3.5rem);
   }
 
   @media ${device.mobileL} {
     min-width: 340px;
-    max-width: calc(100vw - 4rem); /* More space for larger mobile */
+    max-width: calc(100vw - 4rem);
   }
 
   @media ${device.tablet} {
     min-width: 420px;
-    max-width: 480px; /* Fixed width on tablet+ */
+    max-width: 480px;
   }
 `
 

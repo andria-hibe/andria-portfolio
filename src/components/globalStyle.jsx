@@ -23,10 +23,20 @@ export const device = {
 export const GlobalStyles = createGlobalStyle`
   ${normalize};
   
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  html {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+  
   body {
     font-family: 'Lato', 'Georgia', 'Times New Roman', serif;
     background-color: #faf6f0;
-    background-attachment: fixed;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
   }
 
   h1 {
@@ -113,9 +123,11 @@ export const GlobalStyles = createGlobalStyle`
     color: #a94442;
     transition: all 0.3s ease;
 
-    &:hover {
-      color: #c85e5a;
-      text-shadow: 0 1px 2px rgba(169, 68, 66, 0.2);
+    @media (min-width: 768px) {
+      &:hover {
+        color: #c85e5a;
+        text-shadow: 0 1px 2px rgba(169, 68, 66, 0.2);
+      }
     }
 
     &:focus {
@@ -140,7 +152,6 @@ export const GlobalStyles = createGlobalStyle`
       font-size: 1.1rem;
     }
   }
-
 
   svg {
     padding: 0.5em;

@@ -10,6 +10,13 @@ const ContentContainer = styled.div`
   width: 100vw;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 767px) {
+    will-change: scroll-position;
+    transform: translateZ(0);
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
 `
 
 const PageLayout = styled.div`

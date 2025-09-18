@@ -25,7 +25,6 @@ const transitions = {
   smooth: 'all 0.2s ease',
 }
 
-// Resume data structure for easy updates
 const resumeData = {
   personal: {
     name: 'Andria Hibe',
@@ -166,7 +165,6 @@ const resumeData = {
   ],
 }
 
-// Styled components for better readability
 const ResumeContainer = styled.div`
   max-width: 800px;
   margin: 0 auto;

@@ -40,11 +40,9 @@ const NavContainer = styled.div`
   justify-content: space-between;
   background: linear-gradient(
     135deg,
-    rgba(212, 165, 165, 0.85) 0%,
-    rgba(169, 68, 66, 0.8) 100%
+    rgba(212, 165, 165, 0.95) 0%,
+    rgba(169, 68, 66, 0.9) 100%
   );
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
   height: 6rem;
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -53,6 +51,20 @@ const NavContainer = styled.div`
     0 2px 8px rgba(169, 68, 66, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  @media (max-width: 767px) {
+    background: linear-gradient(
+      135deg,
+      rgba(212, 165, 165, 0.98) 0%,
+      rgba(169, 68, 66, 0.95) 100%
+    );
+    will-change: transform;
+    transform: translateZ(0);
+  }
+  @media (min-width: 768px) {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
 
   @media ${device.mobileM} {
     padding: 0.5rem 0.85rem;
@@ -207,30 +219,32 @@ const NavLink = styled(GatsbyLink)`
     border-radius: 0.7rem;
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    transition: ${transitions.shimmer};
-  }
-
-  &:hover {
-    color: ${colors.accent} !important;
-    background-color: ${colors.background} !important;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-
+  @media (min-width: 768px) {
     &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: ${transitions.shimmer};
+    }
+
+    &:hover::before {
       left: 100%;
+    }
+
+    &:hover {
+      color: ${colors.accent} !important;
+      background-color: ${colors.background} !important;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     }
   }
 
@@ -257,10 +271,6 @@ const NavLink = styled(GatsbyLink)`
       transform: none !important;
       box-shadow: none !important;
     }
-
-    &::before {
-      display: none;
-    }
   }
 `
 
@@ -286,7 +296,6 @@ const IconContainer = styled.div`
     gap: 0.4rem;
   }
 `
-// Base icon style to be shared across all social media icons
 const baseLinkIconStyle = `
   color: ${colors.secondary};
   height: 1.8rem;
@@ -306,11 +315,13 @@ const baseLinkIconStyle = `
     padding: 0.4rem;
   }
 
-  &:hover {
-    color: ${colors.white} !important;
-    fill: ${colors.white} !important;
-    transform: scale(1.1);
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+  @media (min-width: 768px) {
+    &:hover {
+      color: ${colors.white} !important;
+      fill: ${colors.white} !important;
+      transform: scale(1.1);
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    }
   }
 
   &:active {
@@ -335,52 +346,35 @@ const InteractivePortfolioLink = styled.a`
     rgba(169, 68, 66, 0.9) 100%
   );
   border-radius: 0 0 0.8rem 0.8rem;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
   border: 2px solid rgba(255, 255, 255, 0.2);
+
+  @media (max-width: 767px) {
+    background: linear-gradient(
+      135deg,
+      rgba(169, 68, 66, 0.95) 0%,
+      rgba(169, 68, 66, 0.98) 100%
+    );
+    will-change: transform;
+    transform: translateZ(0) translateY(-0.5rem);
+  }
+  @media (min-width: 768px) {
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+  }
   cursor: pointer;
   width: fit-content;
   margin-right: 0.7rem;
   pointer-events: auto;
   position: relative;
   overflow: hidden;
-  transform: translateY(-0.5rem);
   box-shadow:
     0 3px 8px rgba(75, 63, 53, 0.25),
     0 1px 3px rgba(169, 68, 66, 0.1);
-
-  /* Mobile-specific button enhancements */
-  @media (max-width: 767px) {
-    box-shadow:
-      0 4px 12px rgba(75, 63, 53, 0.2),
-      0 2px 6px rgba(169, 68, 66, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.3);
-
-    /* Add subtle glow effect for mobile */
-    &::after {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(
-        135deg,
-        rgba(255, 255, 255, 0.1),
-        transparent
-      );
-      border-radius: inherit;
-      z-index: -1;
-      opacity: 0.5;
-    }
-  }
 
   @media ${device.mobileM} {
     gap: 0.3rem;
     padding: 0.35rem 0.6rem 0.7rem 0.6rem;
     margin-right: 0.6rem;
-    transform: translateY(-0.5rem);
   }
 
   @media ${device.mobileL} {
@@ -388,7 +382,6 @@ const InteractivePortfolioLink = styled.a`
     padding: 0.4rem 0.7rem 0.8rem 0.7rem;
     border-radius: 0 0 0.8rem 0.8rem;
     margin-right: 0.7rem;
-    transform: translateY(-0.55rem);
   }
 
   @media ${device.tablet} {
@@ -399,47 +392,41 @@ const InteractivePortfolioLink = styled.a`
     transform: translateY(-0.6rem);
   }
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    transition: left 0.5s ease;
-  }
-
-  &:hover {
-    color: ${colors.primary} !important;
-    background: linear-gradient(
-      135deg,
-      rgba(212, 165, 165, 0.9) 0%,
-      rgba(169, 68, 66, 0.85) 100%
-    ) !important;
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: translateY(-0.7rem) scale(1.02);
-    box-shadow: 0 8px 24px rgba(75, 63, 53, 0.25);
-
+  @media (min-width: 768px) {
     &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      transition: left 0.5s ease;
+    }
+
+    &:hover::before {
       left: 100%;
     }
 
-    @media ${device.mobileM} {
-      transform: translateY(-0.8rem) scale(1.02);
-    }
+    &:hover {
+      color: ${colors.primary} !important;
+      background: linear-gradient(
+        135deg,
+        rgba(212, 165, 165, 0.9) 0%,
+        rgba(169, 68, 66, 0.85) 100%
+      ) !important;
+      border-color: rgba(255, 255, 255, 0.4);
+      transform: translateY(-0.7rem) scale(1.02);
+      box-shadow: 0 8px 24px rgba(75, 63, 53, 0.25);
 
-    @media ${device.mobileL} {
-      transform: translateY(-0.85rem) scale(1.02);
-    }
-
-    @media ${device.tablet} {
-      transform: translateY(-0.9rem) scale(1.02);
+      @media ${device.tablet} {
+        transform: translateY(-0.9rem) scale(1.02);
+      }
     }
   }
 
@@ -548,42 +535,23 @@ export default function Nav() {
 
   const pixelRabbitImage = getImage(data.pixelRabbit)
 
-  // Helper function to determine if a link is active
-  const isActive = path => {
-    if (typeof window === 'undefined') return false
-    const pathname = window.location.pathname
-    if (path === '/' && pathname === '/') return true
-    if (path !== '/' && pathname.startsWith(path)) return true
-    return false
-  }
-
   return (
     <>
       <NavContainer>
         <GlobalStyles />
         <NavHeader>Andria Hibe</NavHeader>
         <NavLinkContainer>
-          <NavLink
-            to="/"
-            className={isActive('/') ? 'active' : ''}
-            onClick={isActive('/') ? e => e.preventDefault() : undefined}
-          >
+          <NavLink to="/" activeClassName="active" partiallyActive={false}>
             Resume
           </NavLink>
           <NavLink
             to="/projects"
-            className={isActive('/projects') ? 'active' : ''}
-            onClick={
-              isActive('/projects') ? e => e.preventDefault() : undefined
-            }
+            activeClassName="active"
+            partiallyActive={false}
           >
             Projects
           </NavLink>
-          <NavLink
-            to="/about"
-            className={isActive('/about') ? 'active' : ''}
-            onClick={isActive('/about') ? e => e.preventDefault() : undefined}
-          >
+          <NavLink to="/about" activeClassName="active" partiallyActive={false}>
             About
           </NavLink>
         </NavLinkContainer>
