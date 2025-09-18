@@ -245,6 +245,26 @@ const SectionTitle = styled.h2`
   border-bottom: 1px solid ${colors.border};
 `
 
+const SectionSubtitle = styled.p`
+  font-size: 0.9em;
+  color: ${colors.secondary};
+  margin-top: -0.8em;
+  margin-bottom: 1.2em;
+  font-style: italic;
+
+  a {
+    color: ${colors.accent};
+    text-decoration: none;
+    font-weight: 500;
+    transition: ${transitions.smooth};
+
+    &:hover {
+      text-decoration: underline;
+      color: ${colors.primary};
+    }
+  }
+`
+
 const SubSection = styled.div`
   margin-bottom: 1.5em;
   padding-bottom: 1.5em;
@@ -510,6 +530,13 @@ export default function Index() {
               <JobTitle>{job.title}</JobTitle>
               <Company>{job.company}</Company>
               <Period>{job.period}</Period>
+              {job.company === 'Runn.io' && (
+                <SectionSubtitle>
+                  <a href="/projects">
+                    See detailed Runn.io project breakdowns →
+                  </a>
+                </SectionSubtitle>
+              )}
               <AchievementList>
                 {job.achievements.map((achievement, achIndex) => (
                   <li
@@ -526,6 +553,9 @@ export default function Index() {
 
         <Section>
           <SectionTitle>Projects (Personal & Open Source)</SectionTitle>
+          <SectionSubtitle>
+            <a href="/projects">View projects and detailed descriptions →</a>
+          </SectionSubtitle>
           <ProjectGrid>
             {resumeData.projects.map((project, index) => (
               <ProjectCard key={index}>

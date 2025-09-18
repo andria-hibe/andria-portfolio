@@ -328,7 +328,7 @@ const InteractivePortfolioLink = styled.a`
     transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
     background 0.3s ease,
     box-shadow 0.3s ease;
-  padding: 0.4rem 0.7rem 0.8rem 0.7rem;
+  padding: 0.3rem 0.5rem 0.6rem 0.5rem;
   background: linear-gradient(
     135deg,
     rgba(169, 68, 66, 0.8) 0%,
@@ -377,26 +377,26 @@ const InteractivePortfolioLink = styled.a`
   }
 
   @media ${device.mobileM} {
-    gap: 0.35rem;
-    padding: 0.45rem 0.8rem 0.9rem 0.8rem;
-    margin-right: 0.8rem;
-    transform: translateY(-0.6rem);
+    gap: 0.3rem;
+    padding: 0.35rem 0.6rem 0.7rem 0.6rem;
+    margin-right: 0.6rem;
+    transform: translateY(-0.5rem);
   }
 
   @media ${device.mobileL} {
-    gap: 0.4rem;
-    padding: 0.5rem 0.9rem 1rem 0.9rem;
-    border-radius: 0 0 0.9rem 0.9rem;
-    margin-right: 0.9rem;
-    transform: translateY(-0.65rem);
+    gap: 0.35rem;
+    padding: 0.4rem 0.7rem 0.8rem 0.7rem;
+    border-radius: 0 0 0.8rem 0.8rem;
+    margin-right: 0.7rem;
+    transform: translateY(-0.55rem);
   }
 
   @media ${device.tablet} {
-    gap: 0.5rem;
-    padding: 0.5rem 1rem 1rem 1rem;
-    border-radius: 0 0 1rem 1rem;
-    margin-right: 1rem;
-    transform: translateY(-0.7rem);
+    gap: 0.4rem;
+    padding: 0.4rem 0.8rem 0.8rem 0.8rem;
+    border-radius: 0 0 0.9rem 0.9rem;
+    margin-right: 0.8rem;
+    transform: translateY(-0.6rem);
   }
 
   &::before {
@@ -455,10 +455,10 @@ const InteractivePortfolioLink = styled.a`
     }
   }
 
-  @media ${device.tablet} {
-    padding: 0.6rem 1.2rem 1.2rem 1.2rem;
-    gap: 0.6rem;
-    margin-right: 2rem;
+  @media ${device.laptop} {
+    padding: 0.5rem 1rem 1rem 1rem;
+    gap: 0.5rem;
+    margin-right: 1.5rem;
   }
 
   @media ${device.laptop} {
@@ -467,8 +467,8 @@ const InteractivePortfolioLink = styled.a`
 `
 
 const PixelRabbitIcon = styled(GatsbyImage)`
-  width: 1.6rem !important;
-  height: 1.6rem !important;
+  width: 1.3rem !important;
+  height: 1.3rem !important;
   border-radius: 50%;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -479,45 +479,45 @@ const PixelRabbitIcon = styled(GatsbyImage)`
   transform: translateY(0.2rem);
 
   @media ${device.mobileM} {
-    width: 1.7rem !important;
-    height: 1.7rem !important;
-    transform: translateY(0.25rem);
+    width: 1.4rem !important;
+    height: 1.4rem !important;
+    transform: translateY(0.2rem);
   }
 
   @media ${device.mobileL} {
-    width: 1.8rem !important;
-    height: 1.8rem !important;
-    transform: translateY(0.3rem);
+    width: 1.5rem !important;
+    height: 1.5rem !important;
+    transform: translateY(0.25rem);
   }
 
   @media ${device.tablet} {
-    width: 2.5rem !important;
-    height: 2.5rem !important;
-    transform: translateY(0.3rem);
+    width: 2rem !important;
+    height: 2rem !important;
+    transform: translateY(0.25rem);
   }
 `
 
 const InteractivePortfolioText = styled.span`
   font-family: ${fonts.primary};
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: ${colors.secondary};
   white-space: nowrap;
   transition: color 0.3s ease;
   transform: translateY(0.2rem);
 
   @media ${device.mobileM} {
-    font-size: 0.8rem;
-    transform: translateY(0.25rem);
+    font-size: 0.7rem;
+    transform: translateY(0.2rem);
   }
 
   @media ${device.mobileL} {
-    font-size: 0.85rem;
-    transform: translateY(0.3rem);
+    font-size: 0.75rem;
+    transform: translateY(0.25rem);
   }
 
   @media ${device.tablet} {
-    font-size: 1rem;
-    transform: translateY(0.3rem);
+    font-size: 0.85rem;
+    transform: translateY(0.25rem);
   }
 `
 
@@ -607,7 +607,7 @@ export default function Nav() {
           aria-label="Visit interactive 2D portfolio cottage"
         >
           <InteractivePortfolioText>
-            Interactive Portfolio
+            Visit my cottage portfolio
           </InteractivePortfolioText>
           <PixelRabbitIcon
             image={pixelRabbitImage}
