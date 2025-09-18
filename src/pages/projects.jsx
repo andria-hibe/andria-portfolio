@@ -91,15 +91,13 @@ const CarouselContainer = styled.div`
   overflow: hidden;
   margin-bottom: 2em;
 
-  /* Enhance scroll buttons visibility on hover/interaction - desktop only */
   @media (min-width: 768px) {
     &:hover button {
       opacity: 1;
     }
   }
 
-  /* Add subtle fade indicators for scrollability on mobile */
-  @media (max-width: 767px) {
+  @media (max-width: 1023px) {
     &::before,
     &::after {
       content: '';
@@ -179,7 +177,7 @@ const ProjectCard = styled.div`
   flex-shrink: 0;
   background: ${colors.background};
   border: 1px solid ${colors.border};
-  box-shadow: 0.25em 0.5em 1.5em rgba(75, 63, 53, 0.15);
+  box-shadow: 0.25em 0.5em 1.5em rgba(75, 63, 53, 0.08);
   border-radius: 1.2em;
   overflow: hidden;
   transition: ${transitions.card};
@@ -189,17 +187,17 @@ const ProjectCard = styled.div`
 
   scroll-snap-align: start;
 
-  @media (min-width: 768px) {
+  @media ${device.laptop} {
     &:hover {
       background: ${colors.cardBackground};
-      box-shadow: 0.25em 1em 3em rgba(75, 63, 53, 0.2);
+      box-shadow: 0.25em 1em 3em rgba(75, 63, 53, 0.12);
       transform: translateY(-4px);
     }
   }
 
-  @media (max-width: 767px) {
+  @media (max-width: 1023px) {
     background: ${colors.cardBackground};
-    box-shadow: 0.25em 1em 3em rgba(75, 63, 53, 0.2);
+    box-shadow: 0.25em 1em 3em rgba(75, 63, 53, 0.12);
   }
 
   @media ${device.mobileM} {
@@ -338,7 +336,6 @@ const ScrollButton = styled.button`
     opacity: 0.6;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 
-    /* Remove hover states on touch devices - single consistent state */
     &:hover,
     &:active,
     &:focus {

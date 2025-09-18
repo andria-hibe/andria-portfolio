@@ -346,7 +346,6 @@ const InteractivePortfolioLink = styled.a`
     rgba(169, 68, 66, 0.9) 100%
   );
   border-radius: 0 0 0.8rem 0.8rem;
-  border: 2px solid rgba(255, 255, 255, 0.2);
 
   @media (max-width: 767px) {
     background: linear-gradient(
@@ -386,13 +385,13 @@ const InteractivePortfolioLink = styled.a`
 
   @media ${device.tablet} {
     gap: 0.4rem;
-    padding: 0.4rem 0.8rem 0.8rem 0.8rem;
+    padding: 0.5rem 0.8rem 0.9rem 0.8rem;
     border-radius: 0 0 0.9rem 0.9rem;
     margin-right: 0.8rem;
     transform: translateY(-0.6rem);
   }
 
-  @media (min-width: 768px) {
+  @media ${device.laptop} {
     &::before {
       content: '';
       position: absolute;
@@ -420,7 +419,6 @@ const InteractivePortfolioLink = styled.a`
         rgba(212, 165, 165, 0.9) 0%,
         rgba(169, 68, 66, 0.85) 100%
       ) !important;
-      border-color: rgba(255, 255, 255, 0.4);
       transform: translateY(-0.7rem) scale(1.02);
       box-shadow: 0 8px 24px rgba(75, 63, 53, 0.25);
 
@@ -430,22 +428,17 @@ const InteractivePortfolioLink = styled.a`
     }
   }
 
-  &:active {
-    transform: translateY(-0.5rem) scale(0.98);
-    box-shadow: 0 4px 12px rgba(75, 63, 53, 0.2);
-
-    @media (max-width: 767px) {
-      box-shadow:
-        0 2px 8px rgba(75, 63, 53, 0.25),
-        inset 0 2px 4px rgba(0, 0, 0, 0.1);
-      border-color: rgba(255, 255, 255, 0.4);
-    }
   }
 
   @media ${device.laptop} {
-    padding: 0.5rem 1rem 1rem 1rem;
+    padding: 0.6rem 1rem 1.1rem 1rem;
     gap: 0.5rem;
     margin-right: 1.5rem;
+
+    &:active {
+      transform: translateY(-0.5rem) scale(0.98);
+      box-shadow: 0 4px 12px rgba(75, 63, 53, 0.2);
+    }
   }
 
   @media ${device.laptop} {
