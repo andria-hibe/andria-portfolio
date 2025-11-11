@@ -33,8 +33,13 @@ const resumeData = {
     github: 'https://github.com/andria-hibe',
     portfolio: 'https://andriahibe.netlify.app',
   },
-  profile:
-    'Full-stack software engineer who enjoys building scalable, reliable, and user-focused products. Skilled at delivering complex features end-to-end, improving performance at scale, and collaborating across product and engineering. With a background in policy advocacy, marketing, and event management, I bring strong communication, strategic thinking, and stakeholder engagement to technical work, enabling me to contribute effectively to both product and organizational success.',
+  profile: `I'm a full-stack software engineer who loves creating reliable, user-friendly products that make a real difference. I enjoy exploring how things work, solving tricky problems, and working closely with others to turn ideas into something simple and effective.
+
+Over the past few years, I've helped design, build, and lead projects that grew alongside the teams I worked with. My colleagues often describe me as reliable, empathetic, and steady, someone who gets things done and brings a sense of calm and clarity when things get busy.
+
+I care deeply about writing code that lasts and building products that genuinely help people. I like working in collaborative environments where ideas are shared freely and everyone feels supported to do their best work.
+
+Before becoming a developer, I worked in policy advocacy, marketing, and event management. Those experiences taught me how to listen, communicate clearly, and think about both users and stakeholders. They continue to shape how I approach engineering and teamwork today.`,
   skills: {
     technical: [
       'TypeScript',
@@ -42,15 +47,14 @@ const resumeData = {
       'GraphQL (Hasura)',
       'Node.js',
       'Ruby on Rails',
-      'Postgres',
+      'PostgreSQL',
     ],
     professional: [
       'Feature Ownership',
-      'Product Collaboration',
-      'Communication',
+      'Product Engineering',
+      'Technical leadership',
       'Stakeholder Engagement',
-      'Strategic Thinking',
-      'Project Coordination',
+      'Project Management',
     ],
   },
   experience: [
@@ -94,9 +98,9 @@ const resumeData = {
   ],
   projects: [
     {
-      name: 'Interactive Portfolio Game',
+      name: 'Interactive Portfolio',
       description:
-        'A gamified portfolio built with Kaplay.js, where visitors explore a virtual cottage to learn about me.',
+        'Interactive 2D portfolio built with Kaplay.js, where visitors explore a virtual cottage to learn about me.',
       tech: 'JavaScript, Kaplay.js, Vite',
       links: [
         {
@@ -447,6 +451,7 @@ const Profile = styled.p`
   color: ${colors.textLight};
   text-align: justify;
   margin-bottom: 0;
+  white-space: pre-line;
 
   @media ${device.tablet} {
     font-size: 1.1em;
@@ -488,7 +493,7 @@ export default function Index() {
             <a href={`mailto:${resumeData.personal.email}`}>
               <Button variant="primary">Email me!</Button>
             </a>
-            <a href="https://drive.google.com/uc?export=download&id=1WFBif-SXgrJOJGzeigoZwM7V6Eo5QTko">
+            <a href="https://drive.google.com/uc?export=download&id=1Yl7R68I2WW9J76Vig3OGJUZdcMZNrVPA">
               <Button variant="primary">Download as pdf</Button>
             </a>
           </ButtonLayout>
@@ -601,8 +606,8 @@ export default function Index() {
 export function Head() {
   return (
     <SEO
-      title="Andria Hibe - Senior Software Engineer"
-      description="Welcome to Andria Hibe's portfolio. Senior Software Engineer specializing in building scalable web applications. Explore my projects, experience, and technical expertise."
+      title="Andria Hibe - Software Engineer"
+      description="Welcome to Andria Hibe's portfolio. Software Engineer specializing in building scalable web applications. Explore my projects, experience, and technical expertise."
     />
   )
 }

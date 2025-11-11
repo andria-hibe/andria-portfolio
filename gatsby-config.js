@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: 'Andria Hibe',
     description:
-      'Senior Software Engineer specializing in scalable web applications. Explore my projects and technical expertise.',
+      'Software Engineer specializing in scalable web applications. Explore my projects and technical expertise.',
     author: 'Andria Hibe',
     url: 'https://andria-hibe.netlify.app',
   },
