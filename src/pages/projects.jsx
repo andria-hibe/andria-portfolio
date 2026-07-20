@@ -695,6 +695,41 @@ export default function Projects() {
           )}
           <CarouselWrapper ref={personalProjectsRef}>
             <ProjectCard>
+              <ProjectCardHeading primary>
+                Den - A Cockpit for Claude-Driven Development
+              </ProjectCardHeading>
+              <ProjectCardParagraph>
+                A cozy, pixel-art desktop app for running many Claude Code
+                sessions at once, each tied to its GitHub PR and Linear ticket,
+                instead of juggling terminal tabs.
+              </ProjectCardParagraph>
+              <StackContainer
+                technologies={[
+                  'Electron',
+                  'TypeScript',
+                  'React',
+                  'Node.js (Fastify)',
+                  'xterm.js',
+                  'SQLite (better-sqlite3)',
+                ]}
+              />
+              <ProjectCardParagraph>
+                Each session runs a persistent terminal streamed over
+                WebSockets, with a reactive pixel-art fox that surfaces when a
+                PR or ticket needs your attention. I built it to make working
+                across many AI-assisted coding tasks feel calm and organised.
+              </ProjectCardParagraph>
+              <ButtonLayout>
+                <a
+                  href="https://github.com/andria-hibe/den"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="primary">GitHub</Button>
+                </a>
+              </ButtonLayout>
+            </ProjectCard>
+            <ProjectCard>
               <ProjectCardHeading>
                 Andria&apos;s Cottage - Interactive Portfolio
               </ProjectCardHeading>

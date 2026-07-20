@@ -98,6 +98,18 @@ Before becoming a developer, I worked in policy advocacy, marketing, and event m
   ],
   projects: [
     {
+      name: 'Den - A Cockpit for Claude-Driven Development',
+      description:
+        'A cozy, pixel-art Electron desktop app for running many Claude Code sessions at once, each tied to its GitHub PR and Linear ticket.',
+      tech: 'Electron, TypeScript, React, Node.js, xterm.js, SQLite',
+      links: [
+        {
+          label: 'GitHub',
+          url: 'https://github.com/andria-hibe/den',
+        },
+      ],
+    },
+    {
       name: 'Interactive Portfolio',
       description:
         'Interactive 2D portfolio built with Kaplay.js, where visitors explore a virtual cottage to learn about me.',
